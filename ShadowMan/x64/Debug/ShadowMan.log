@@ -1,3 +1,0 @@
-﻿  Window.cpp
-C:\Users\YEON SUNGMIN\Desktop\共同制作\夏季制作\ShadowMan\ShadowMan\Window.cpp(24): warning C4101: 'hwnd': ローカル変数は 1 度も使われていません。
-  ShadowMan.vcxproj -> C:\Users\YEON SUNGMIN\Desktop\共同制作\夏季制作\ShadowMan\x64\Debug\ShadowMan.exe

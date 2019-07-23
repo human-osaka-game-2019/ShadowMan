@@ -5,12 +5,8 @@
 
 #define WINDOW_CLASS_NAME "Shadow Man"
 
-LPCSTR pClassName;
+LRESULT CALLBACK WndProc(HWND hWnd, UINT iMsg, WPARAM wParam, LPARAM lParam);
 
-LRESULT CALLBACK WndProc;
-
-int WINAPI WinMain;
-
-bool MakeWindow;
+BOOL MakeWindow(INT width, INT height, CONST CHAR* title_name);
 
 #endif

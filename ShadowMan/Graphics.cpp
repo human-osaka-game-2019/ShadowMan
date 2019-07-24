@@ -51,3 +51,11 @@ VOID EndGraphics()
 	g_D3DDevice->Release();
 	g_D3DInterface->Release();
 }
+
+BOOL CreateGraphicsInterface() {
+	g_D3DInterface = Direct3DCreate9(D3D_SDK_VERSION);
+	if (g_D3DInterface == NULL) {
+		return E_FAIL;
+	}
+	return true;
+}

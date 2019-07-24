@@ -5,7 +5,7 @@
 #ifndef HELP_SCENE_H_
 #define HELP_SCENE_H_
 
-#include"SceneSwicher.h"
+#include"SceneSwitcher.h"
 
 /**
 * @brief ヘルプシーンの更新関数@n

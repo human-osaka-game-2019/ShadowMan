@@ -5,7 +5,7 @@
 #ifndef GAME_OVER_SCENE_H_
 #define GAME_OVER_SCENE_H_
 
-#include"SceneSwicher.h"
+#include"SceneSwitcher.h"
 /**
 * @brief ゲームオーバーシーンの更新関数@n
 * ゲームオーバーシーンの仕様が実行される

@@ -1,11 +1,11 @@
 #include "GameClearScene.h"
 
 // ゲームクリアシーンの初期化
-void InitGameClearScene(){}
+void InitGameClearScene();
 // ゲームクリアシーンのメイン処理
-void MainGameClearScene(){}
+void MainGameClearScene();
 // ゲームクリアシーンの終了
-SceneId FinishGameClearScene() { return SceneId::TitleScene; }
+SceneId FinishGameClearScene();
 
 SceneId UpdateGameClearScene()
 {
@@ -24,6 +24,29 @@ SceneId UpdateGameClearScene()
 
 	return SceneId::GameClearScene;
 }
-void DrawGameClearScene() {
 
+void DrawGameClearScene()
+{
+	// 描画処理
+
+}
+
+void InitGameClearScene()
+{
+	// テクスチャ読み込み
+
+	ChangeSceneStep(SceneStep::MainStep);
+}
+
+void MainGameClearScene()
+{
+	// ゲーム処理
+	ChangeSceneStep(SceneStep::EndStep);
+}
+
+SceneId FinishGameClearScene()
+{
+	// リリース開放
+
+	return SceneId::TitleScene;
 }

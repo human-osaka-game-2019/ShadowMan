@@ -5,7 +5,7 @@
 #ifndef TITLE_SCENE_H_
 #define TITLE_SCENE_H_
 
-#include"SceneSwicher.h"
+#include"SceneSwitcher.h"
 /**
 * @brief タイトルシーンの更新関数@n
 * タイトルシーンの仕様が実行される

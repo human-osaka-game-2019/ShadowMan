@@ -5,7 +5,7 @@
 #ifndef GAME_CLAER_SCENE_H_
 #define GAME_CLEAR_SCENE_H_
 
-#include"SceneSwicher.h"
+#include"SceneSwitcher.h"
 /**
 * @brief クリアシーンの更新関数@n
 * ゲームクリアシーンの仕様が実行される

@@ -36,9 +36,9 @@ BOOL MakeWindow(INT width, INT height, CONST CHAR* title_name)
 	wc.lpszClassName = title_name;
 	wc.hIconSm = LoadIcon(NULL, IDI_APPLICATION);
 
-	if (!RegisterClassEx(&wc))
+	if (RegisterClassEx(&wc) == 0)
 	{
-		return FALSE;
+		return 0;
 	}
 
 	HWND hWnd = CreateWindow(
@@ -47,28 +47,12 @@ BOOL MakeWindow(INT width, INT height, CONST CHAR* title_name)
 		0, 0, width, height,
 		NULL, NULL, GetModuleHandle(nullptr), NULL);
 
-	if (!hWnd)
+	if (hWnd == NULL)
 	{
-		return FALSE;
+		return 0;
 	}
+
 	ShowWindow(hWnd, SW_SHOW);
 	UpdateWindow(hWnd);
 
-	MSG msg;
-	//Main Loop Start
-	ZeroMemory(&msg, sizeof(msg));
-	timeBeginPeriod(1);
-	while (msg.message != WM_QUIT)
-	{
-		if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
-		{
-			TranslateMessage(&msg);
-			DispatchMessage(&msg);
-		}
-		Sleep(1);
-
-	}
-	timeEndPeriod(1);
-	//Main Loop End
-	return (INT)msg.wParam;
 }

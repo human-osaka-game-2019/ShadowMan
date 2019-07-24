@@ -1,6 +1,6 @@
-<<<<<<< HEAD
-#include"Engine.h"
 #include <Windows.h>
+#include"Engine.h"
+#include "SceneSwitcher.h"
 
 INT WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	LPSTR CmdLine, INT nCmdShow)
@@ -9,7 +9,28 @@ INT WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	{
 		return 0;
 	}
+
+	while (TRUE)
+	{
+		MSG msg;
+		//	ƒQ[ƒ€ƒ‹[ƒv
+		ZeroMemory(&msg, sizeof(msg));
+
+		while (msg.message != WM_QUIT)
+		{
+			if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
+			{
+				TranslateMessage(&msg);
+				DispatchMessage(&msg);
+			}
+			else
+			{
+				UpdateScene();
+			}
+
+		}
+	
+		return 0;
+	}
 }
- 
-=======
->>>>>>> origin/master
+

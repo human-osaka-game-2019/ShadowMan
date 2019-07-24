@@ -5,7 +5,7 @@
 #ifndef GAME_SCENE_H_
 #define GAME_SCENE_H_
 
-#include"SceneSwicher.h"
+#include"SceneSwitcher.h"
 /**
 * @brief ゲーム本編シーンの更新関数@n
 * ゲーム本編シーンの仕様が実行される

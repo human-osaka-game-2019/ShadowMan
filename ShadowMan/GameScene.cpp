@@ -2,11 +2,11 @@
 #include"GameScene.h"
 
 // ゲーム本編シーンの初期化
-void InitGameScene(){}
+void InitGameScene();
 // ゲーム本編シーンのメイン処理
-void MainGameScene(){}
+void MainGameScene();
 // ゲーム本編シーンの終了
-SceneId FinishGameScene() { return SceneId::GameClearScene; }
+SceneId FinishGameScene();
 
 static SceneId NextSceneId;
 
@@ -27,6 +27,29 @@ SceneId UpdateGameScene()
 
 	return SceneId::GameScene;
 }
-void DrawGameScene(){
 
+void DrawGameScene()
+{
+	// 描画処理
+
+}
+
+void InitGameScene()
+{
+	// テクスチャ読み込み
+
+	ChangeSceneStep(SceneStep::MainStep);
+}
+
+void MainGameScene()
+{
+	// ゲーム処理
+	ChangeSceneStep(SceneStep::EndStep);
+}
+
+SceneId FinishGameScene()
+{
+	// リリース開放
+
+	return SceneId::GameClearScene;
 }

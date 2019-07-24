@@ -1,11 +1,11 @@
 #include "GameOverScene.h"
 
 // ゲームオーバーシーンの初期化
-void InitGameOverScene(){}
+void InitGameOverScene();
 // ゲームオーバーシーンのメイン
-void MainGameOverScene(){}
+void MainGameOverScene();
 // ゲームオーバーシーンの終了
-SceneId FinishGameOverScene() { return SceneId::TitleScene; }
+SceneId FinishGameOverScene();
 
 SceneId UpdateGameOverScene()
 {
@@ -24,6 +24,29 @@ SceneId UpdateGameOverScene()
 
 	return SceneId::GameOverScene;
 }
-void DrawGameOverScene() {
 
+void DrawGameOverScene()
+{
+	// 描画処理
+
+}
+
+void InitGameOverScene()
+{
+	// テクスチャ読み込み
+
+	ChangeSceneStep(SceneStep::MainStep);
+}
+
+void MainGameOverScene()
+{
+	// ゲーム処理
+	ChangeSceneStep(SceneStep::EndStep);
+}
+
+SceneId FinishGameOverScene()
+{
+	// リリース開放
+
+	return SceneId::TitleScene;
 }

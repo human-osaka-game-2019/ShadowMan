@@ -2,8 +2,8 @@
 * @file Scene.h
 * @brief シーン全体を実行、描画する関数の宣言
 */
-#ifndef SCENESWICHER_H_
-#define SCENESWICHER_H_
+#ifndef SCENESWITCHER_H_
+#define SCENESWITCHER_H_
 
 /** @brief シーンID */
 enum SceneId

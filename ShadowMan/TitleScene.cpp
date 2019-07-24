@@ -1,12 +1,11 @@
 #include "TitleScene.h"
 
-
 // タイトルシーンの初期化
-void InitTitleScene(){}
+void InitTitleScene();
 // タイトルシーンのメイン処理
-void MainTitleScene(){}
+void MainTitleScene();
 // タイトルシーンの終了
-SceneId FinishTitleScene() { return SceneId::GameScene; }
+SceneId FinishTitleScene();
 
 SceneId UpdateTitleScene()
 {
@@ -26,6 +25,28 @@ SceneId UpdateTitleScene()
 	return SceneId::TitleScene;
 }
 
-void DrawTitleScene() {
+void DrawTitleScene()
+{
+	// 描画処理
 
+}
+
+void InitTitleScene()
+{
+	// テクスチャ読み込み
+
+	ChangeSceneStep(SceneStep::MainStep);
+}
+
+void MainTitleScene()
+{
+	// ゲーム処理
+	ChangeSceneStep(SceneStep::EndStep);
+}
+
+SceneId FinishTitleScene()
+{
+	// リリース開放
+	
+	return SceneId::GameScene;
 }

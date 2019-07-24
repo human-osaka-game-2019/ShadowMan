@@ -1,7 +1,14 @@
 #ifndef TEXTURE_H
 #define TEXTURE_H
 
-#include"SceneSwitcher.h"
+#include "SceneSwitcher.h"
+#include "Graphics.h"
+
+typedef enum
+{
+	TitleBackGroundTexture,		// îwåi
+	Title
+} TitleCategoryTextureList;
 
 CONST INT TextureCategoryTitle = SceneId::TitleScene;
 CONST INT TextureCategoryHelp = SceneId::HelpScene;
@@ -12,6 +19,6 @@ CONST INT TextureCategoryResult = SceneId::ResultScene;
 CONST INT MaxTextureCategory = SceneId::SceneIdMax;
 
 
-void ReleaseCategoryTexture(int category_id);
+VOID ReleaseCategoryTexture(INT category_id);
 
 #endif

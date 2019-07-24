@@ -8,4 +8,9 @@ BOOL InitEngine(INT width, INT height, CONST CHAR* title_name)
 	{
 		return FALSE;
 	}
+
+	if (InitGraphics() == FALSE)
+	{
+		return FALSE;
+	}
 }

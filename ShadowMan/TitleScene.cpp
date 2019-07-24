@@ -47,6 +47,7 @@ void MainTitleScene()
 SceneId FinishTitleScene()
 {
 	// ƒŠƒŠ[ƒXŠJ•ú
+
 	
 	return SceneId::GameScene;
 }

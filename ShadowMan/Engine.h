@@ -5,4 +5,6 @@
 
 BOOL InitEngine(INT width, INT height, CONST CHAR* title_name);
 
+VOID EndEngine();
+
 #endif

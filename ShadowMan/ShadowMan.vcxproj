@@ -146,6 +146,7 @@
     <ClCompile Include="GameClearScene.cpp" />
     <ClCompile Include="GameOverScene.cpp" />
     <ClCompile Include="GameScene.cpp" />
+    <ClCompile Include="Graphics.cpp" />
     <ClCompile Include="HelpScene.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="ResultScene.cpp" />
@@ -159,6 +160,7 @@
     <ClInclude Include="GameClearScene.h" />
     <ClInclude Include="GameOverScene.h" />
     <ClInclude Include="GameScene.h" />
+    <ClInclude Include="Graphics.h" />
     <ClInclude Include="HelpScene.h" />
     <ClInclude Include="ResultScene.h" />
     <ClInclude Include="SceneSwitcher.h" />

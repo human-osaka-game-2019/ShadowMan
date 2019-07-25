@@ -8,7 +8,7 @@ static Texture** g_TextureList[MaxTextureCategory] = { nullptr };
 // カテゴリのテクスチャ最大サイズの配列
 INT TextureCategorySize[] =
 {
-	HelpCategoryTextureList::HelpTitleBackGroundTextureMax,
+	HelpCategoryTextureList::HelpTitleTextureMax,
 };
 
 VOID ReleaseCategoryTexture(INT release_category)

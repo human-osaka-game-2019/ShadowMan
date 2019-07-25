@@ -6,15 +6,43 @@
 
 typedef enum
 {
-	TitleBackGroundTexture,		// ”wŒi
-	Title
+	TitleBackGroundTexture,		// title”wŒi
+	TitelMenuGoGameTex,			// Game‘JˆÚ
+	TitelMenuGoHlepTex,			// Help‘JˆÚ
+	TitelFontTexture,			//u‘è–¼v”wŒi‚Æˆê‚É‚È‚Á‚Ä‚¢‚½ê‡íœ
+	TitleTextureMax,
 } TitleCategoryTextureList;
 
 typedef enum
 {
-	HelpTitleBackGroundTexture,		// ”wŒi
-	HelpTitleBackGroundTextureMax,
+	HelpTitleBackGroundTexture,		// Help”wŒi
+	HelpTitleTextureMax,
 } HelpCategoryTextureList;
+
+typedef enum
+{
+	GameBackGroundTexture,			//Game”wŒi
+	GameBlockTexture,				//ƒuƒƒbƒN
+	GameLighTexture,				//Œõ
+	GameTrapTexture,				//ƒgƒ‰ƒbƒv
+	GamePlayerTexture,				//ålŒö
+	GameRemainingHP,				//‘Ì—Íc‹@
+	GameTextureMax,
+}GameCategoryTextureList;
+
+typedef enum 
+{
+	GameClearBackGroundTexture,		//”wŒi
+	GameClearFontTexture,			//uSpaceƒL[‚Åƒ^ƒCƒgƒ‹‚ÉvTex
+	GameClearTextureMax,			
+}GameClearCategoryTextureList;
+
+typedef enum 
+{
+	GameOverbackGroundTexture,		//”wŒi
+	GameOverFontTexture,			//uSpaceƒL[‚Åƒ^ƒCƒgƒ‹‚ÉvTex
+	GameOverTextureMax,				
+}GameOverCategoryTextureList;
 
 
 CONST INT TextureCategoryTitle = SceneId::TitleScene;

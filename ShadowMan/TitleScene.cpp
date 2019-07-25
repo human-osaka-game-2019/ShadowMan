@@ -1,4 +1,5 @@
 #include "TitleScene.h"
+#include "Texture.h"
 
 // タイトルシーンの初期化
 void InitTitleScene();
@@ -28,12 +29,12 @@ SceneId UpdateTitleScene()
 void DrawTitleScene()
 {
 	// 描画処理
-
+	DrawTexture(0.0f, 0.0f, GetTexture(TextureCategoryTitle,TitleBackGroundTexture));
 }
 
 void InitTitleScene()
 {
-	// テクスチャ読み込み
+	LoadTexture("titlebackground.png",TextureCategoryTitle,TitleCategoryTextureList::TitleBackGroundTexture);
 
 	ChangeSceneStep(SceneStep::MainStep);
 }

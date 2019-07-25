@@ -52,7 +52,11 @@
     <ClCompile Include="SceneSwitcher.cpp">
       <Filter>ソース ファイル\Scene</Filter>
     </ClCompile>
+<<<<<<< HEAD
+    <ClCompile Include="Input.cpp">
+=======
     <ClCompile Include="Graphics.cpp">
+>>>>>>> fdc6eb94ecfa72bcab9aa494a05b8ed21eef3cc3
       <Filter>ソース ファイル\Engine</Filter>
     </ClCompile>
   </ItemGroup>
@@ -87,7 +91,11 @@
     <ClInclude Include="SceneSwitcher.h">
       <Filter>ソース ファイル\Scene</Filter>
     </ClInclude>
+<<<<<<< HEAD
+    <ClInclude Include="Input.h">
+=======
     <ClInclude Include="Graphics.h">
+>>>>>>> fdc6eb94ecfa72bcab9aa494a05b8ed21eef3cc3
       <Filter>ソース ファイル\Engine</Filter>
     </ClInclude>
   </ItemGroup>

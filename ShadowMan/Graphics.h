@@ -21,4 +21,8 @@ VOID DrawEnd();
 
 VOID DrawTexture(FLOAT x, FLOAT y, Texture* texture_data);
 
+VOID DrawFont();
+
+BOOL CreateTexture(CONST CHAR* file_name, Texture* texture_data);
+
 #endif

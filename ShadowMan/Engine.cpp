@@ -14,4 +14,12 @@ BOOL InitEngine(INT width, INT height, CONST CHAR* title_name)
 	{
 		return FALSE;
 	}
+
+	return TRUE;
+}
+
+// ƒƒ‚ƒŠŠJ•ú
+VOID EndEngine()
+{
+	EndGraphics();
 }

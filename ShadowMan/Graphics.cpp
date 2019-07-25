@@ -95,11 +95,6 @@ VOID DrawTexture(FLOAT x, FLOAT y, Texture* texture_data)
 
 }
 
-VOID DrawFont()
-{
-
-}
-
 BOOL CreateTexture(CONST CHAR* file_name, Texture* texture_data)
 {
 }
@@ -163,9 +158,4 @@ BOOL SetUpViewPort(D3DPRESENT_PARAMETERS* present_param)
 	}
 
 	return TRUE;
-}
-
-BOOL CreateFontDevice()
-{
-
 }

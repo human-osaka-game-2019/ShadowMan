@@ -1,6 +1,7 @@
 #include <Windows.h>
 #include "Window.h"
 #include "Engine.h"
+#include "Graphics.h"
 
 BOOL InitEngine(INT width, INT height, CONST CHAR* title_name)
 {

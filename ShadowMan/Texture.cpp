@@ -6,10 +6,10 @@
 static Texture** g_TextureList[MaxTextureCategory] = { nullptr };
 
 // カテゴリのテクスチャ最大サイズの配列
-INT TextureCategorySize[] =
+/*INT TextureCategorySize[] =
 {
 
-}
+}*/
 
 VOID ReleaseCategoryTexture(INT release_category)
 {
@@ -18,5 +18,5 @@ VOID ReleaseCategoryTexture(INT release_category)
 		return;
 	}
 
-	for(INT i = 0; i < TextureCategory)
+	//for(INT i = 0; i < TextureCategory)
 }

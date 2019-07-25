@@ -2,65 +2,96 @@
 // @file Input.h
 // @brief 入力に関する関数、定数の宣言
 
-#include <dinput.h>
-
 #ifndef INPUT_H_
 #define INPUT_H_
 
-HRESULT DirectInputCreate(HINSTANCE hInst, DWORD DIRECTINPUT8, 
-						  LPDIRECTINPUT8* lplpDirectInput, LPUNKNOWN punkOuter);
-HRESULT CreateDevice(REFGUID GUID_SysKeyboard, 
-					 LPDIRECTINPUTDEVICE* lplpDIDev, LPUNKNOWN UnkOuter);
-HRESULT SetCooperativeLevel(HWND hWnd, DWORD dwFlags);
-HRESULT SetDataFormat(LPDIDATAFORMAT c_dfDIKeyboard);
-HRESULT Acquire();
-HRESULT GetKeyState(WORD [256], LPVOID lpvData);
-
-BYTE KeyState[256];
+#include <dinput.h>
+#include <Windows.h>
 
 // @brief キーの種類
 enum KeyState
 {
-	Up,    //!<上
-	Left,  //!<左
-	Right, //!<右
-	Down,  //!<下
+	CLEAR, // Key Clear
+	UP,    //!<上
+	LEFT,  //!<左
+	RIGHT, //!<右
+	DOWN,  //!<下
 	H,	   //!< H キー
-	Space, //!< Space キー
+	SPACE, //!< Space キー
 };
 
-/* 
-	@brief Input機能初期化関数@n
-	デバイスの入力取得に必要な初期化を行う
-	InitEngineで実行されるので開発側が実行する必要はない
-	@return 初期化結果(成功はtrue)
-*/
-bool InitInput();
+bool InitDirectInput(HINSTANCE Instance_Handle, HWND Window_Handle);
 
 /*
-	@brief Input機能終了関数@n
-	Input機能を終了させる@n
-	EndEngineで実行されるので開発側が実行する必要はない
+	DirectInputの解放
+		戻り値：
+			なし
+
+		引数：
+			なし
+
+		内容：
+			DirectInputを解放する
 */
-void EndInput();
+void ReleaseDirectInput();
 
 /*
-	@brief 入力情報の更新@n
-	デバイスの入力情報の更新を行う@n
-	毎フレームに１度必ず実行する必要がある
+	キー情報の更新
+		戻り値：
+			なし
+
+		引数：
+			なし
+
+		内容：
+			キーの情報を更新してGetKeyシリーズの関数の取得情報を最新にする
+			この処理は毎フレームの開始時に呼び出すこと
 */
-void UpdateKeyState();
+void KeyUpDate();
 
 /*
-	@brief 入力された瞬間判定関数@n
-	指定したキーボードのキーが入力された瞬間かどうかを判定する
-	@return 判定結果(押された瞬間ならtrue)
-	@param[in] button_type 判定したいキーの種類
+	キーを押してるかを判定
+		戻り値：
+			押されてる => true
+			押されてない => false
+
+		引数：
+			DWORD key_code
+				判断したいキーコード
+
+		内容
+			キーが押されているならtrue、押されていないならfalseを返す
 */
+bool GetKey(DWORD key_code);
 
+/*
+	キーを押した瞬間を判定
+		戻り値：
+			押した瞬間 => true
+			押した瞬間じゃない => false
 
+		引数：
+			DWORD key_code
+				判断したいキーコード
 
-bool GetKeyState();
+		内容
+			キーが押された瞬間ならtrue、押されてない瞬間ならfalse
+*/
+bool GetKeyDown(DWORD key_code);
 
+/*
+	キーを離した瞬間を判定
+		戻り値：
+			離した瞬間 => true
+			離した瞬間じゃない => false
+
+		引数：
+			DWORD key_code
+				判断したいキーコード
+
+		内容
+			キーが離した瞬間ならtrue、離した瞬間じゃないならfalse
+*/
+bool GetKeyUp(DWORD key_code);
 
 #endif

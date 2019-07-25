@@ -1,102 +1,105 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="ソース ファイル">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="ソース ファイル\Engine">
-      <UniqueIdentifier>{b5b214e0-5159-404e-8dd5-bd60b2e62eb9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\Scene">
-      <UniqueIdentifier>{fa2e998c-1d8c-493b-8a34-e7b4ae67d8c1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\Texture">
-      <UniqueIdentifier>{ef1e484a-0589-45d9-bfc7-ef4e78285a16}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\Utililty">
-      <UniqueIdentifier>{8ad8af1e-a514-46b5-8897-f87adf63fb4a}</UniqueIdentifier>
-    </Filter>
-  </ItemGroup>
-  <ItemGroup>
     <ClCompile Include="Main.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="TitleScene.cpp">
-      <Filter>ソース ファイル\Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="HelpScene.cpp">
-      <Filter>ソース ファイル\Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="GameScene.cpp">
-      <Filter>ソース ファイル\Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="GameOverScene.cpp">
-      <Filter>ソース ファイル\Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="GameClearScene.cpp">
-      <Filter>ソース ファイル\Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="ResultScene.cpp">
-      <Filter>ソース ファイル\Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="Window.cpp">
-      <Filter>ソース ファイル\Engine</Filter>
+      <Filter>ソースファイル</Filter>
     </ClCompile>
     <ClCompile Include="Engine.cpp">
-      <Filter>ソース ファイル\Engine</Filter>
+      <Filter>ソースファイル\Engine</Filter>
     </ClCompile>
-    <ClCompile Include="Texture.cpp">
-      <Filter>ソース ファイル\Texture</Filter>
+    <ClCompile Include="Graphics.cpp">
+      <Filter>ソースファイル\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Input.cpp">
+      <Filter>ソースファイル\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Window.cpp">
+      <Filter>ソースファイル\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="GameClearScene.cpp">
+      <Filter>ソースファイル\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="GameOverScene.cpp">
+      <Filter>ソースファイル\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="GameScene.cpp">
+      <Filter>ソースファイル\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="HelpScene.cpp">
+      <Filter>ソースファイル\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="ResultScene.cpp">
+      <Filter>ソースファイル\Scene</Filter>
     </ClCompile>
     <ClCompile Include="SceneSwitcher.cpp">
-      <Filter>ソース ファイル\Scene</Filter>
+      <Filter>ソースファイル\Scene</Filter>
     </ClCompile>
-<<<<<<< HEAD
-    <ClCompile Include="Input.cpp">
-=======
-    <ClCompile Include="Graphics.cpp">
->>>>>>> fdc6eb94ecfa72bcab9aa494a05b8ed21eef3cc3
-      <Filter>ソース ファイル\Engine</Filter>
+    <ClCompile Include="TitleScene.cpp">
+      <Filter>ソースファイル\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture.cpp">
+      <Filter>ソースファイル\Texture</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Engine.h">
+      <Filter>ソースファイル\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics.h">
+      <Filter>ソースファイル\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Input.h">
+      <Filter>ソースファイル\Engine</Filter>
+    </ClInclude>
     <ClInclude Include="TitleScene.h">
-      <Filter>ソース ファイル\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="HelpScene.h">
-      <Filter>ソース ファイル\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="GameScene.h">
-      <Filter>ソース ファイル\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="GameOverScene.h">
-      <Filter>ソース ファイル\Scene</Filter>
+      <Filter>ソースファイル\Scene</Filter>
     </ClInclude>
     <ClInclude Include="GameClearScene.h">
-      <Filter>ソース ファイル\Scene</Filter>
+      <Filter>ソースファイル\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="GameOverScene.h">
+      <Filter>ソースファイル\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="GameScene.h">
+      <Filter>ソースファイル\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="HelpScene.h">
+      <Filter>ソースファイル\Scene</Filter>
     </ClInclude>
     <ClInclude Include="ResultScene.h">
-      <Filter>ソース ファイル\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="Window.h">
-      <Filter>ソース ファイル\Engine</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine.h">
-      <Filter>ソース ファイル\Engine</Filter>
-    </ClInclude>
-    <ClInclude Include="Texture.h">
-      <Filter>ソース ファイル\Texture</Filter>
+      <Filter>ソースファイル\Scene</Filter>
     </ClInclude>
     <ClInclude Include="SceneSwitcher.h">
-      <Filter>ソース ファイル\Scene</Filter>
+      <Filter>ソースファイル\Scene</Filter>
     </ClInclude>
-<<<<<<< HEAD
-    <ClInclude Include="Input.h">
-=======
-    <ClInclude Include="Graphics.h">
->>>>>>> fdc6eb94ecfa72bcab9aa494a05b8ed21eef3cc3
-      <Filter>ソース ファイル\Engine</Filter>
+    <ClInclude Include="Window.h">
+      <Filter>ソースファイル\Engine</Filter>
     </ClInclude>
+    <ClInclude Include="Texture.h">
+      <Filter>ソースファイル\Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="Size.h">
+      <Filter>ソースファイル\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Vec.h">
+      <Filter>ソースファイル\Utility</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="ソースファイル">
+      <UniqueIdentifier>{459d4e56-4deb-43a3-a788-5d76db030111}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソースファイル\Engine">
+      <UniqueIdentifier>{9ecbf5a1-4a1b-4886-b2ad-8077b964735b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソースファイル\Texture">
+      <UniqueIdentifier>{6b16626b-bd8a-4ddd-90ce-051e6a16c273}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソースファイル\Scene">
+      <UniqueIdentifier>{241754e0-483b-4515-9928-5ccc3dad710d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソースファイル\Utility">
+      <UniqueIdentifier>{25d83d49-63ab-4ff8-bb48-80b6646f0666}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>

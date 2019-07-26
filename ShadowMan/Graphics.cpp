@@ -1,7 +1,9 @@
 #include <d3d9.h>
 #include <d3dx9.h>
-#include "Window.h"
 #include "Graphics.h"
+#include "Window.h"
+#include "Texture.h"
+#include "Size.h"
 
 typedef struct
 {
@@ -22,8 +24,6 @@ BOOL CreateGraphicsInterface();
 BOOL CreateGraphicsDevice(D3DPRESENT_PARAMETERS* present_param);
 
 BOOL SetUpViewPort(D3DPRESENT_PARAMETERS* present_param);
-
-BOOL CreateFontDevice();
 
 BOOL InitGraphics()
 {
@@ -95,14 +95,71 @@ VOID DrawTexture(FLOAT x, FLOAT y, Texture* texture_data)
 
 }
 
+VOID DrawMapChip(D3DXVECTOR2 draw_pos, D3DXVECTOR2 texture_pos, D3DXVECTOR2 sprite_size)
+{
+	D3DXVECTOR2 uv = D3DXVECTOR2(texture_pos.x / GetTexture(TextureCategoryGame, GameCategoryTextureList::GameBackGroundTexture)->Width, texture_pos.y / GetTexture(TextureCategoryGame, GameCategoryTextureList::GameBackGroundTexture)->Height);
+	D3DXVECTOR2 uv_size = D3DXVECTOR2(sprite_size.x / GetTexture(TextureCategoryGame, GameCategoryTextureList::GameBackGroundTexture)->Width, sprite_size.y / GetTexture(TextureCategoryGame, GameCategoryTextureList::GameBackGroundTexture)->Height);
+
+	CustomVertex sprite[] =
+	{
+		{ draw_pos.x, draw_pos.y, 0.0f, 1.0f, uv.x, uv.y },
+		{ draw_pos.x + sprite_size.x, draw_pos.y, 0.0f, 1.0f, uv.x + uv_size.x, uv.y },
+		{ draw_pos.x + sprite_size.x, draw_pos.y + sprite_size.y, 0.0f, 1.0f, uv.x + uv_size.x, uv.y + uv_size.y },
+		{ draw_pos.x, draw_pos.y + sprite_size.y, 0.0f, 1.0f, uv.x, uv.y + uv_size.y },
+	};
+
+	g_D3DDevice->SetFVF(D3DFVF_XYZRHW | D3DFVF_TEX1);
+
+	g_D3DDevice->SetTexture(0, GetTexture(TextureCategoryGame, GameCategoryTextureList::GameBackGroundTexture)->TextureData);
+
+	g_D3DDevice->DrawPrimitiveUP(D3DPT_TRIANGLEFAN, 2, sprite, sizeof(CustomVertex));
+}
+
 BOOL CreateTexture(CONST CHAR* file_name, Texture* texture_data)
 {
+	Size size;
+	D3DXIMAGE_INFO info;
+
+	D3DXGetImageInfoFromFileA(file_name, &info);
+
+	if (FAILED(D3DXCreateTextureFromFileExA(g_D3DDevice,
+		file_name,
+		info.Width,
+		info.Height,
+		1,
+		0,
+		D3DFMT_UNKNOWN,
+		D3DPOOL_MANAGED,
+		D3DX_DEFAULT,
+		D3DX_DEFAULT,
+		0x0000ff00,
+		nullptr,
+		nullptr,
+		&texture_data->TextureData)))
+	{
+		return FALSE;
+	}
+	else
+	{
+		D3DSURFACE_DESC desc;
+
+		if (FAILED(texture_data->TextureData->GetLevelDesc(0, &desc)))
+		{
+			texture_data->TextureData->Release();
+			return FALSE;
+		}
+		texture_data->Width = desc.Width;
+		texture_data->Height = desc.Height;
+	}
+
+	return TRUE;
 }
 
 BOOL CreateGraphicsInterface()
 {
 	// インターフェース作成
-	if (NULL == (g_D3DInterface = Direct3DCreate9(D3D_SDK_VERSION)));
+	g_D3DInterface = Direct3DCreate9(D3D_SDK_VERSION);
+	if (g_D3DInterface == NULL)
 	{
 		return FALSE;
 	}

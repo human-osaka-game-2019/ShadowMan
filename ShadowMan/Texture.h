@@ -15,8 +15,8 @@ typedef enum
 
 typedef enum
 {
-	HelpTitleBackGroundTexture,		// Helpîwåi
-	HelpTitleTextureMax,
+	HelpBackGroundTexture,		// Helpîwåi
+	HelpTextureMax,
 } HelpCategoryTextureList;
 
 typedef enum

@@ -1,6 +1,7 @@
 #include <Windows.h>
 #include <dinput.h>
 #include "Input.h"
+#include <math.h>
 
 struct INPUTSTATE // キーの情報の構造体
 {
@@ -136,4 +137,59 @@ void KeyUpDate()
 		enemy->m_PosY += normal_y;
 	}
 
+}
+
+// プレイヤー情報
+struct DrawObject
+{
+	int m_TextureId;
+	float m_PosX;
+	float m_PosY;
+};
+
+void PlayerMovement(DrawObject* player)
+{
+	float speed = x.xf;  //　スピード xには値を入れるべき
+	float vec_x = x.xf;  //  x成分	 xには値を入れるべき
+	float vec_y = x.xf;  //  y成分	 xには値を入れるべき
+	float length = x.xf; //  長さ	 xには値を入れるべき
+
+
+	if (vec_x != 0.0f || vec_y != 0.0f)
+	{
+		// ベクトルの距離を出す
+		length = sqrt(vec_x * vec_x + vec_y * vec_y);
+
+		float normal_x = vec_x / length;
+		float normal_y = vec_y / length;
+
+		float normal_length = sqrt(normal_x * normal_x + normal_y * normal_y);
+
+		// 単位ベクトルに移動量を反映する
+		normal_x *= speed;
+		normal_y *= speed;
+
+		// 移動量の照明（式）
+		float move_length = sqrt(normal_x * normal_x + normal_y * normal_y);
+
+		// 移動量を座標に加算
+		player->m_PosX += normal_x; // プレイヤーの移動
+		player->m_PosY += normal_y;
+
+	}
+}
+
+
+// 敵キャラの移動パターン　（プレイヤー追跡型）
+void EnemyMovement(DrawObject * enemy, DrawObject * player)
+{
+	float vecx = player->m_PosX - enemy->m_PosX; // 相対距離を引いてベクトルを出す (敵 追跡型)
+	float vecy = player->m_PosY - enemy->m_PosY;
+
+	float length = sqrtf((vecx * vecx) + (vecy * vecy));
+	float normal_x = vecx / length;
+	float normal_y = vecy / length;
+
+	enemy->m_PosX += normal_x; // 敵の移動
+	enemy->m_PosY += normal_y;
 }

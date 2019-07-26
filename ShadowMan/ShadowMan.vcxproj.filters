@@ -28,9 +28,6 @@
     <ClCompile Include="HelpScene.cpp">
       <Filter>ソースファイル\Scene</Filter>
     </ClCompile>
-    <ClCompile Include="ResultScene.cpp">
-      <Filter>ソースファイル\Scene</Filter>
-    </ClCompile>
     <ClCompile Include="SceneSwitcher.cpp">
       <Filter>ソースファイル\Scene</Filter>
     </ClCompile>
@@ -64,9 +61,6 @@
       <Filter>ソースファイル\Scene</Filter>
     </ClInclude>
     <ClInclude Include="HelpScene.h">
-      <Filter>ソースファイル\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="ResultScene.h">
       <Filter>ソースファイル\Scene</Filter>
     </ClInclude>
     <ClInclude Include="SceneSwitcher.h">

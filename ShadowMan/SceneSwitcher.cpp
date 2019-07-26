@@ -3,7 +3,6 @@
 #include"GameOverScene.h"
 #include"GameClearScene.h"
 #include"HelpScene.h"
-#include"ResultScene.h"
 
 static SceneId g_CurrentSceneId = SceneId::TitleScene;		// 動作中シーンID
 static SceneStep g_CurrentSceneStep = SceneStep::InitStep;	// 動作中シーンのステップ
@@ -44,9 +43,6 @@ void UpdateScene()
 		break;
 	case SceneId::HelpScene:
 		scene_id = UpdateHelpScene();
-		break;
-	case SceneId::ResultScene:
-		scene_id = UpdateResultScene();
 		break;
 	}
 

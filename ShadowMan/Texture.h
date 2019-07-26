@@ -39,7 +39,7 @@ typedef enum
 
 typedef enum 
 {
-	GameOverbackGroundTexture,		//îwåi
+	GameOverBackGroundTexture,		//îwåi
 	GameOverFontTexture,			//ÅuSpaceÉLÅ[Ç≈É^ÉCÉgÉãÇ…ÅvTex
 	GameOverTextureMax,				
 }GameOverCategoryTextureList;
@@ -50,7 +50,6 @@ CONST INT TextureCategoryHelp = SceneId::HelpScene;
 CONST INT TextureCategoryGame = SceneId::GameScene;
 CONST INT TextureCategoryGameClear = SceneId::GameClearScene;
 CONST INT TextureCategoryGameOver = SceneId::GameOverScene;
-CONST INT TextureCategoryResult = SceneId::ResultScene;
 CONST INT MaxTextureCategory = SceneId::SceneIdMax;
 
 

@@ -47,6 +47,28 @@ BOOL MakeWindow(INT width, INT height, CONST CHAR* title_name)
 		0, 0, width, height,
 		NULL, NULL, GetModuleHandle(nullptr), NULL);
 
+	RECT window;
+	RECT client;
+
+	GetWindowRect(hWnd, &window);
+	GetClientRect(hWnd, &client);
+
+	INT window_size_x = window.right - window.left;
+	INT window_size_y = (window.bottom - window.top);
+	INT client_size_x = (client.right - client.left);
+	INT client_size_y = (client.bottom - client.top);
+	INT frame_size_x = window_size_x - client_size_x;
+	INT frame_size_y = window_size_y - client_size_y;
+
+	SetWindowPos(
+		hWnd,
+		NULL,
+		CW_USEDEFAULT,
+		CW_USEDEFAULT,
+		frame_size_x + width,
+		frame_size_y + height,
+		SWP_NOMOVE);
+
 	if (hWnd == NULL)
 	{
 		return 0;

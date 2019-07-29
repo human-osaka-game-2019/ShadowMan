@@ -40,55 +40,9 @@ SceneId UpdateGameScene()
 void DrawGameScene()
 {
 	// ï`âÊèàóù
-	FILE* fp = nullptr;
+	INT MapChipList[MapSizeHeight][MapSizeWidth];
 
-	fopen_s(&fp, "Map.csv", "r");
-
-	INT MapChipList[MapSizeHeight][MapSizeWidth] = { 0 };
-
-	if (fp != nullptr)
-	{
-		CHAR buffer[1024] = { 0 };
-		CHAR utf_check[] = { 0xEF, 0xBB, 0xBF, 0 };
-
-		CHAR* p = buffer;
-		INT row = 0;
-		INT col = 0;
-
-		if (fgets(buffer, 4, fp) == nullptr)
-		{
-			return;
-		}
-
-		if (strstr(buffer, utf_check) == nullptr)
-		{
-			fseek(fp, 0, SEEK_SET);
-		}
-
-		while (fgets(buffer, 1024, fp))
-		{
-			CHAR* p = buffer;
-			col = 0;
-
-			while (TRUE)
-			{
-				MapChipList[row][col] = atoi(p);
-
-				p = strchr(p, ',');
-
-				if (p == nullptr)
-				{
-					break;
-				}
-				p++;
-				col++;
-			}
-			row++;
-		}
-
-		fclose(fp);
-	}
-
+	MapLoading("Map.csv", MapChipList);
 
 	for (INT i = 0; i < MapSizeHeight; i++)
 	{

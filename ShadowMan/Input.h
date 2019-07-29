@@ -8,6 +8,30 @@
 #include <dinput.h>
 #include <Windows.h>
 
+// プレイヤー情報
+struct DrawObject
+{
+	int Player;
+	float m_PosX;
+	float m_PosY;
+};
+
+// プレイヤー情報
+struct DrawObject
+{
+	int EnemyOne;
+	float m_PosX;
+	float m_PosY;
+};
+
+struct INPUTSTATE // キーの情報の構造体
+{
+	DWORD now;
+	DWORD pushed;
+	DWORD npushed;
+};
+
+
 // @brief キーの種類
 enum KeyState
 {

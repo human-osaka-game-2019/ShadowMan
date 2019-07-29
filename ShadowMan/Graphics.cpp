@@ -1,5 +1,8 @@
 #include <d3d9.h>
 #include <d3dx9.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include "Graphics.h"
 #include "Window.h"
 #include "Texture.h"
@@ -93,6 +96,57 @@ VOID DrawTexture(FLOAT x, FLOAT y, Texture* texture_data)
 
 	g_D3DDevice->DrawPrimitiveUP(D3DPT_TRIANGLEFAN, 2, vertex, sizeof(CustomVertex));
 
+}
+
+VOID MapLoading(CONST CHAR* file_name, INT List[][20])
+{
+	FILE* fp = nullptr;
+
+	fopen_s(&fp, file_name, "r");
+
+	if (fp != nullptr)
+	{
+		CHAR buffer[1024] = { 0 };
+		CHAR utf_check[] = { 0xEF, 0xBB, 0xBF, 0 };
+
+		CHAR* p = buffer;
+		INT row = 0;
+		INT col = 0;
+
+		if (fgets(buffer, 4, fp) == nullptr)
+		{
+			return;
+		}
+
+		if (strstr(buffer, utf_check) == nullptr)
+		{
+			fseek(fp, 0, SEEK_SET);
+		}
+
+		while (fgets(buffer, 1024, fp))
+		{
+
+			CHAR* p = buffer;
+			col = 0;
+
+			while (TRUE)
+			{
+				List[row][col] = atoi(p);
+
+				p = strchr(p, ',');
+
+				if (p == nullptr)
+				{
+					break;
+				}
+				p++;
+				col++;
+			}
+			row++;
+		}
+
+		fclose(fp);
+	}
 }
 
 VOID DrawMapChip(D3DXVECTOR2 draw_pos, D3DXVECTOR2 texture_pos, D3DXVECTOR2 sprite_size)

@@ -1,7 +1,13 @@
 #include "Graphics.h"
 #include "Texture.h"
 #include"GameScene.h"
+<<<<<<< HEAD
 #include "Input.h"
+=======
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+>>>>>>> 9558851511c6e66ffde9bc2599f7cf33fbcd62cd
 
 // ゲーム本編シーンの初期化
 void InitGameScene();
@@ -14,19 +20,6 @@ static CONST INT MapSizeWidth = 20;
 static CONST INT MapSizeHeight = 10;
 static CONST INT MapChipWidth = 64;
 static CONST INT MapChipHeight = 64;
-INT MapChipList[MapSizeHeight][MapSizeWidth]
-{
-	{ 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2 },
-	{ 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-	{ 1, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-	{ 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-	{ 1, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-	{ 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-	{ 1, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-	{ 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-	{ 1, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-	{ 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-};
 
 static SceneId NextSceneId;
 
@@ -51,6 +44,10 @@ SceneId UpdateGameScene()
 void DrawGameScene()
 {
 	// 描画処理
+	INT MapChipList[MapSizeHeight][MapSizeWidth];
+
+	MapLoading("Map.csv", MapChipList);
+
 	for (INT i = 0; i < MapSizeHeight; i++)
 	{
 		for (INT j = 0; j < MapSizeWidth; j++)

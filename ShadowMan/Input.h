@@ -9,15 +9,15 @@
 #include <Windows.h>
 
 // プレイヤー情報
-struct DrawObject
+struct Player
 {
-	int Player;
+	int ShadowMan;
 	float m_PosX;
 	float m_PosY;
 };
 
 // プレイヤー情報
-struct DrawObject
+struct Enemy
 {
 	int EnemyOne;
 	float m_PosX;

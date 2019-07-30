@@ -21,6 +21,7 @@ typedef struct
 
 static LPDIRECT3D9 g_D3DInterface;
 static LPDIRECT3DDEVICE9 g_D3DDevice;
+static LPD3DXFONT g_FontDevice;
 
 BOOL CreateGraphicsInterface();
 
@@ -269,4 +270,47 @@ BOOL SetUpViewPort(D3DPRESENT_PARAMETERS* present_param)
 	}
 
 	return TRUE;
+}
+
+bool CrateFontDeivce()
+{
+	if (FAILED(D3DXCreateFont(g_D3DDevice,	//デバイス
+		FONT_SIZE,				//文字の高さ
+		FONT_SIZE / 2,			//文字幅
+		FW_REGULAR,					//フォントの太さ
+		NULL,						//MIPMAPのレベル
+		FALSE,						//イタリックか
+		DEFAULT_CHARSET,			//文字セット
+		OUT_DEFAULT_PRECIS,			//出力精度
+		PROOF_QUALITY,				//出力品質
+		FIXED_PITCH | FF_SCRIPT,	//フォントピッチとファミリ
+		TEXT("ＭＳ　Ｐゴシック"),	//フォント名
+		&g_FontDevice)))			//Direct3DFontへのポインタへのアドレス
+	{
+		return FALSE;
+	}
+	return TRUE;
+}
+
+void DrawFont(float pos_x, float pos_y, const char* text)
+{
+	RECT rect =
+	{
+		(long)pos_x,
+		(long)pos_y,
+		(long)pos_x + 10000,	//はみ出した分消える
+		(long)pos_y + 20000,
+	};
+
+	int r, g, b;
+	r = g = b = 255;
+
+	g_FontDevice->DrawTextA( //呼び出してるだけ
+		NULL,
+		text,
+		-1,
+		&rect,
+		DT_LEFT,
+		D3DCOLOR_XRGB(r, g, b)
+	);
 }

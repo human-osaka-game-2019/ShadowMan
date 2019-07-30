@@ -12,6 +12,8 @@ typedef struct
 	INT Height;
 } Texture;
 
+#define FONT_SIZE 24
+
 BOOL InitGraphics();
 
 VOID EndGraphics();
@@ -27,5 +29,7 @@ VOID MapLoading(CONST CHAR* file_name, INT MapChipList[][20]);
 VOID DrawMapChip(D3DXVECTOR2 draw_pos, D3DXVECTOR2 texture_pos, D3DXVECTOR2 texture_size);
 
 BOOL CreateTexture(CONST CHAR* file_name, Texture* texture_data);
+
+VOID DrawFont(float pos_x,float pos_y, const char* text);
 
 #endif

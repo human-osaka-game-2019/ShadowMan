@@ -1,5 +1,8 @@
 #include "TitleScene.h"
 #include "Texture.h"
+#include"Input.h"
+#include "SoundManager.h"
+
 
 // タイトルシーンの初期化
 void InitTitleScene();
@@ -36,13 +39,24 @@ void InitTitleScene()
 {
 	LoadTexture("titlebackground.png",TextureCategoryTitle,TitleCategoryTextureList::TitleBackGroundTexture);
 
+	SoundManager& soundManager = SoundManager::GetInstance();
+	soundManager.Load("Sound\\launcher1.wav");
+
 	ChangeSceneStep(SceneStep::MainStep);
 }
 
 void MainTitleScene()
 {
+	SoundManager& soundManager = SoundManager::GetInstance();
+
+	soundManager.Play("Sound\\launcher1.wav", false);
+
 	// ゲーム処理
-	ChangeSceneStep(SceneStep::EndStep);
+	if (GetKeyDown(DIK_SPACE)) 
+	{
+		
+		ChangeSceneStep(SceneStep::EndStep);
+	}
 }
 
 SceneId FinishTitleScene()

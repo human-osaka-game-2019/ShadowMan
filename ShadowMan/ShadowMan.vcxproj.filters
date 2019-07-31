@@ -10,9 +10,6 @@
     <ClCompile Include="Graphics.cpp">
       <Filter>ソースファイル\Engine</Filter>
     </ClCompile>
-    <ClCompile Include="Input.cpp">
-      <Filter>ソースファイル\Engine</Filter>
-    </ClCompile>
     <ClCompile Include="Window.cpp">
       <Filter>ソースファイル\Engine</Filter>
     </ClCompile>
@@ -36,6 +33,9 @@
     </ClCompile>
     <ClCompile Include="Texture.cpp">
       <Filter>ソースファイル\Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="Input.cpp">
+      <Filter>ソースファイル\Engine</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

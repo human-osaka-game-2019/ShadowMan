@@ -3,18 +3,20 @@
 #include "Input.h"
 #include <math.h>
 
+
 static LPDIRECTINPUT8 g_pInputInterface; // DIRECTINPUT8のポインタ
 static LPDIRECTINPUTDEVICE8 g_pKeyDevice; // DIRECTINPUTDEVICE8のポインタ
 static INPUTSTATE g_InputState; // キーの情報
+
 
 bool InitDirectInput(HINSTANCE Instance_Handle, HWND Window_Handle)
 {
 	//IDirectInput8 Interface
 	HRESULT hr = DirectInput8Create(Instance_Handle,
-				 DIRECTINPUT_VERSION,
-				 IID_IDirectInput8,
-				 (void**)& g_pInputInterface,
-				 NULL);
+		DIRECTINPUT_VERSION,
+		IID_IDirectInput8,
+		(void**)& g_pInputInterface,
+		NULL);
 
 	if (FAILED(hr))
 	{
@@ -45,22 +47,15 @@ bool InitDirectInput(HINSTANCE Instance_Handle, HWND Window_Handle)
 		MessageBox(Window_Handle, (char*)"Error", (char*)"CooperativeLevel 設定失敗", MB_OK);
 		return false;
 	}
-	
+
 	g_pKeyDevice->Acquire(); // Device Acquire Start
 
 	return true;
 }
 
-void ReleaseDirectInput()
-{
-	g_pKeyDevice->Unacquire();
-	g_pKeyDevice->Release();
-	g_pInputInterface->Release();
-}
-
 void KeyUpDate()
+
 {
-	//Save Key Info
 	BYTE KeyState[256];
 	HRESULT hr;
 
@@ -104,10 +99,31 @@ void KeyUpDate()
 
 		g_InputState.pushed = (g_InputState.now & (~old)); // Push Info Get
 		g_InputState.npushed = (~g_InputState.now) & old; // NonPush Info Get
-	} else if (hr == DIERR_INPUTLOST) {
+	}
+	else if (hr == DIERR_INPUTLOST) {
 		g_pKeyDevice->Acquire();
 	}
 
 }
 
+bool GetKey(DWORD key_code)
+{
+	return g_InputState.now& key_code;
+}
 
+bool GetKeyDown(DWORD key_code)
+{
+	return g_InputState.pushed& key_code;
+}
+
+bool GetKeyUp(DWORD key_code)
+{
+	return g_InputState.npushed& key_code;
+}
+
+void ReleaseDirectInput()
+{
+	g_pKeyDevice->Unacquire();
+	g_pKeyDevice->Release();
+	g_pInputInterface->Release();
+}

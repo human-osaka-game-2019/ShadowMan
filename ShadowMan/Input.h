@@ -7,21 +7,14 @@
 
 #include <dinput.h>
 #include <Windows.h>
+#include <math.h>
 
-// プレイヤー情報
-struct Player
-{
-	int ShadowMan;
-	float m_PosX;
-	float m_PosY;
-};
 
-// プレイヤー情報
-struct Enemy
+struct DrawObject
 {
-	int EnemyOne;
-	float m_PosX;
-	float m_PosY;
+	int m_TextureId;	// テクスチャの種類
+	float m_PosX;		// 描画座標X
+	float m_PosY;		// 描画座標Y
 };
 
 struct INPUTSTATE // キーの情報の構造体
@@ -44,19 +37,6 @@ enum KeyState
 	SPACE, //!< Space キー
 };
 
-bool InitDirectInput(HINSTANCE Instance_Handle, HWND Window_Handle);
-
-/*
-	DirectInputの解放
-		戻り値：
-			なし
-
-		引数：
-			なし
-
-		内容：
-			DirectInputを解放する
-*/
 void ReleaseDirectInput();
 
 /*
@@ -73,49 +53,28 @@ void ReleaseDirectInput();
 */
 void KeyUpDate();
 
-/*
-	キーを押してるかを判定
-		戻り値：
-			押されてる => true
-			押されてない => false
+	/*
+		キーを押してるかを判定
+			戻り値：
+				押されてる => true
+				押されてない => false
 
-		引数：
-			DWORD key_code
-				判断したいキーコード
+			引数：
+				DWORD key_code
+					判断したいキーコード
 
-		内容
-			キーが押されているならtrue、押されていないならfalseを返す
-*/
+			内容
+				キーが押されているならtrue、押されていないならfalseを返す
+	*/
+	//Save Key Info
+
 bool GetKey(DWORD key_code);
 
-/*
-	キーを押した瞬間を判定
-		戻り値：
-			押した瞬間 => true
-			押した瞬間じゃない => false
 
-		引数：
-			DWORD key_code
-				判断したいキーコード
-
-		内容
-			キーが押された瞬間ならtrue、押されてない瞬間ならfalse
-*/
 bool GetKeyDown(DWORD key_code);
 
-/*
-	キーを離した瞬間を判定
-		戻り値：
-			離した瞬間 => true
-			離した瞬間じゃない => false
 
-		引数：
-			DWORD key_code
-				判断したいキーコード
-
-		内容
-			キーが離した瞬間ならtrue、離した瞬間じゃないならfalse
-*/
 bool GetKeyUp(DWORD key_code);
+
 
 #endif

@@ -1,7 +1,4 @@
-#include <Windows.h>
-#include <dinput.h>
 #include "Input.h"
-#include <math.h>
 
 
 static LPDIRECTINPUT8 g_pInputInterface; // DIRECTINPUT8‚Ìƒ|ƒCƒ“ƒ^

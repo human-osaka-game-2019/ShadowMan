@@ -44,6 +44,8 @@ enum KeyState
 	SPACE, //!< Space ƒL[
 };
 
+bool InitDirectInput(HINSTANCE Instance_Handle, HWND Window_Handle);
+
 void ReleaseDirectInput();
 
 /*

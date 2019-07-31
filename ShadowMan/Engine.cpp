@@ -2,6 +2,7 @@
 #include "Window.h"
 #include "Engine.h"
 #include "Graphics.h"
+#include"Texture.h"
 
 BOOL InitEngine(INT width, INT height, CONST CHAR* title_name)
 {
@@ -14,6 +15,8 @@ BOOL InitEngine(INT width, INT height, CONST CHAR* title_name)
 	{
 		return FALSE;
 	}
+
+	InitTexture();
 
 	return TRUE;
 }

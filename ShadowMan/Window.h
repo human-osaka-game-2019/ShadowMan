@@ -7,6 +7,6 @@
 
 LRESULT CALLBACK WndProc(HWND hWnd, UINT iMsg, WPARAM wParam, LPARAM lParam);
 
-BOOL MakeWindow(INT width, INT height, CONST CHAR* title_name);
+BOOL MakeWindow(INT width, INT height, CONST CHAR* title_name, HWND* hWnd);
 
 #endif

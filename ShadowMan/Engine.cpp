@@ -3,10 +3,15 @@
 #include "Engine.h"
 #include "Graphics.h"
 #include"Texture.h"
+#include"Input.h"
+#include "DirectSound.h"
 
-BOOL InitEngine(INT width, INT height, CONST CHAR* title_name)
+
+BOOL InitEngine(INT width, INT height, CONST CHAR* title_name, HINSTANCE hInstance)
 {
-	if (MakeWindow(width, height, title_name) == false)
+	HWND hWnd;
+
+	if (MakeWindow(width, height, title_name,&hWnd) == false)
 	{
 		return FALSE;
 	}
@@ -16,7 +21,13 @@ BOOL InitEngine(INT width, INT height, CONST CHAR* title_name)
 		return FALSE;
 	}
 
+	InitDirectInput(hInstance,hWnd);
+
 	InitTexture();
+
+
+	DirectSound::CreateInstance(hWnd);
+
 
 	return TRUE;
 }

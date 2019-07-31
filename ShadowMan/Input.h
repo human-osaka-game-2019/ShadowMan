@@ -24,6 +24,13 @@ struct INPUTSTATE // キーの情報の構造体
 	DWORD npushed;
 };
 
+struct Movement
+{
+	float speed = 5.0f;  //　スピード (移動量)  xには値を入れるべき
+	float vec_x = 1.0f;  //  x成分 (X座標築)   xには値を入れるべき
+	float vec_y = 1.0f;  //  y成分 (Y座標築)	  xには値を入れるべき
+	float length = 5.0f; //  長さ (移動距離）	  xには値を入れるべき
+};
 
 // @brief キーの種類
 enum KeyState

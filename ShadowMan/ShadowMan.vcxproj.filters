@@ -37,6 +37,9 @@
     <ClCompile Include="Input.cpp">
       <Filter>ソースファイル\Engine</Filter>
     </ClCompile>
+    <ClCompile Include="AI.cpp">
+      <Filter>ソースファイル\Engine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine.h">
@@ -77,6 +80,9 @@
     </ClInclude>
     <ClInclude Include="Vec.h">
       <Filter>ソースファイル\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="AI.h">
+      <Filter>ソースファイル\Engine</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -14,14 +14,19 @@ void InitGameScene();
 void MainGameScene();
 // ゲーム本編シーンの終了
 SceneId FinishGameScene();
+
+
 // プレイヤー構造体の実体
 DrawObject player;
-// 敵構造体の実体
+// 敵 構造体の実体
 DrawObject enemy;
+// 移動数値の構造体の実体
+Movement value;
 // プレイヤーキャラクタの操作
-void PlayerControl(DrawObject* player);
-// 敵キャラクタの操作
-void EnemyControl(DrawObject* Enemy);
+void PlayerControl(DrawObject* player, Movement* value);
+// 敵 キャラクタの操作
+void EnemyControl(DrawObject* player, DrawObject* Enemy, Movement* value);
+
 
 static CONST INT MapSizeWidth = 20;
 static CONST INT MapSizeHeight = 10;
@@ -66,12 +71,13 @@ void DrawGameScene()
 				continue;
 			}
 
+			//どこに貼り付けるか
 			INT width_num = GetTexture(TextureCategoryGame, GameCategoryTextureList::GameBackGroundTexture)->Width / MapChipWidth;
 			INT height_num = GetTexture(TextureCategoryGame, GameCategoryTextureList::GameBackGroundTexture)->Height / MapChipHeight;
 
 			FLOAT chip_pos_x = (FLOAT)(chip_id % width_num) * MapChipWidth;
 			FLOAT chip_pos_y = (FLOAT)(chip_id / height_num) * MapChipHeight;
-
+			//何を貼り付けたいか
 			DrawMapChip(
 				D3DXVECTOR2(MapChipWidth * j, MapChipHeight * i),
 				D3DXVECTOR2(chip_pos_x, chip_pos_y),
@@ -94,56 +100,51 @@ void MainGameScene()
 
 	// ゲーム処理
 
-	PlayerControl(&player);
+	PlayerControl(&player,&value);
 
-	EnemyControl(&enemy);
+	EnemyControl(&enemy,&player,&value);
 
 	//ChangeSceneStep(SceneStep::EndStep);
 
 }
 
-void PlayerControl(DrawObject* player)
+void PlayerControl(DrawObject* player , Movement* value)
 {
-
-	float speed = x.xf;  //　スピード xには値を入れるべき
-	float vec_x = x.xf;  //  x成分	 xには値を入れるべき
-	float vec_y = x.xf;  //  y成分	 xには値を入れるべき
-	float length = x.xf; //  長さ	 xには値を入れるべき
 
 	if (GetKey(DIK_UP) == true)
 	{
-		vec_y = -speed;
+		value->vec_y =- value->speed;
 	}
 
 	else if (GetKey(DIK_DOWN) == true)
 	{
-		vec_y = speed;
+		value->vec_y = value->speed;
 	}
 
 	// 左右
 	if (GetKey(DIK_LEFT) == true)
 	{
-		vec_x = -speed;
+		value->vec_x =- value->speed;
 	}
 
 	else if (GetKey(DIK_RIGHT) == true)
 	{
-		vec_x = speed;
+		value->vec_x = value->speed;
 	}
 
-	if (vec_x != 0.0f || vec_y != 0.0f)
+	if (value->vec_x != 0.0f || value->vec_y != 0.0f)
 	{
 		// ベクトルの距離を出す
-		length = sqrt(vec_x * vec_x + vec_y * vec_y);
+		value->length = sqrt(value->vec_x * value->vec_x + value->vec_y * value->vec_y);
 
-		float normal_x = vec_x / length;
-		float normal_y = vec_y / length;
+		float normal_x = value->vec_x / value->length;
+		float normal_y = value->vec_y / value->length;
 
 		float normal_length = sqrt(normal_x * normal_x + normal_y * normal_y);
 
 		// 単位ベクトルに移動量を反映する
-		normal_x *= speed;
-		normal_y *= speed;
+		normal_x *= value->speed;
+		normal_y *= value->speed;
 
 		// 移動量の照明（式）
 		float move_length = sqrt(normal_x * normal_x + normal_y * normal_y);
@@ -157,20 +158,20 @@ void PlayerControl(DrawObject* player)
 }
 
 	// 敵キャラの移動パターン　（プレイヤー追跡型）
-void EnemyControl(DrawObject* enemy, DrawObject* player)
+void EnemyControl(DrawObject* enemy, DrawObject* player, Movement* value)
 {
 
 	// ベクトルを出す
-	float vecx = player->m_PosX - enemy->m_PosX; // 相対距離を引いてベクトルを出す (敵 追跡型)
-	float vecy = player->m_PosY - enemy->m_PosY;
+	value->vec_x = player->m_PosX - enemy->m_PosX; // 相対距離を引いてベクトルを出す (敵 追跡型)
+	value->vec_y = player->m_PosY - enemy->m_PosY;
 
 	// ベクトルをそのまま座標に足す
 	//enemy->m_PosX += vecx;
 	//enemy->m_PosY += vecy;
 
-	float length = sqrtf((vecx * vecx) + (vecy * vecy));
-	float normal_x = vecx / length;
-	float normal_y = vecy / length;
+	value->length = sqrtf((value->vec_x * value->vec_x) + (value->vec_y * value->vec_y));
+	float normal_x = value->vec_x / value->length;
+	float normal_y = value->vec_y / value->length;
 
 	enemy->m_PosX += normal_x; // 敵の移動
 	enemy->m_PosY += normal_y;

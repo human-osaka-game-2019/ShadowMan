@@ -5,7 +5,9 @@
 #include"Texture.h"
 #include"Input.h"
 #include "DirectSound.h"
+#include<SoundsManager.h>
 
+SoundLib::SoundsManager g_SoundManager;
 
 BOOL InitEngine(INT width, INT height, CONST CHAR* title_name, HINSTANCE hInstance)
 {
@@ -25,9 +27,8 @@ BOOL InitEngine(INT width, INT height, CONST CHAR* title_name, HINSTANCE hInstan
 
 	InitTexture();
 
-
-	DirectSound::CreateInstance(hWnd);
-
+	//
+	g_SoundManager.Initialize();
 
 	return TRUE;
 }

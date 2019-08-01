@@ -33,13 +33,13 @@ SceneId UpdateTitleScene()
 void DrawTitleScene()
 {
 	// 描画処理
-	DrawTexture(0.0f, 0.0f, GetTexture(TextureCategoryTitle,TitleBackGroundTexture));
+ 	DrawTexture(0.0f, 0.0f, GetTexture(TextureCategoryTitle,TitleBackGroundTexture));
 }
 
 void InitTitleScene()
 {
 	LoadTexture("titlebackground.png",TextureCategoryTitle,TitleCategoryTextureList::TitleBackGroundTexture);
-
+	
 	g_SoundManager.AddFile("Sound/launcher1.wav","TitleBgm");
 
 	g_SoundManager.Start("TitleBgm",TRUE);
@@ -49,9 +49,6 @@ void InitTitleScene()
 
 void MainTitleScene()
 {
-	
-
-	
 
 	// ゲーム処理
 	if (GetKeyDown(DIK_SPACE)) 
@@ -65,6 +62,8 @@ SceneId FinishTitleScene()
 {
 	// リリース開放
 
+	//音を止める処理を書く
+	//開放は.hがやってくれる
 	
 	return SceneId::GameScene;
 }

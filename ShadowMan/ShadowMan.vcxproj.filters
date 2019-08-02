@@ -37,13 +37,19 @@
     <ClCompile Include="Input.cpp">
       <Filter>ソースファイル\Engine</Filter>
     </ClCompile>
-    <ClCompile Include="AI.cpp">
-      <Filter>ソースファイル\Engine</Filter>
-    </ClCompile>
     <ClCompile Include="Object\Enemy.cpp">
       <Filter>ソースファイル\Object</Filter>
     </ClCompile>
-    <ClCompile Include="Object\StayEnemy.cpp">
+    <ClCompile Include="EnemyChase.cpp">
+      <Filter>ソースファイル\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyPredict.cpp">
+      <Filter>ソースファイル\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyPatrol.cpp">
+      <Filter>ソースファイル\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyFlee.cpp">
       <Filter>ソースファイル\Object</Filter>
     </ClCompile>
   </ItemGroup>
@@ -87,13 +93,19 @@
     <ClInclude Include="Vec.h">
       <Filter>ソースファイル\Utility</Filter>
     </ClInclude>
-    <ClInclude Include="AI.h">
-      <Filter>ソースファイル\Engine</Filter>
-    </ClInclude>
-    <ClInclude Include="Object\Enemy.h">
+    <ClInclude Include="EnemyChase.h">
       <Filter>ソースファイル\Object</Filter>
     </ClInclude>
-    <ClInclude Include="Object\StayEnemy.h">
+    <ClInclude Include="EnemyPredict.h">
+      <Filter>ソースファイル\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyPatrol.h">
+      <Filter>ソースファイル\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Object\EnemyAi.h">
+      <Filter>ソースファイル\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyFlee.h">
       <Filter>ソースファイル\Object</Filter>
     </ClInclude>
   </ItemGroup>

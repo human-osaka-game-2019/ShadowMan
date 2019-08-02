@@ -6,7 +6,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
-#include "AI.h"
+#include "Object/EnemyAi.h"
 
 
 // ゲーム本編シーンの初期化

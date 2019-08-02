@@ -146,7 +146,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="AI.cpp" />
+    <ClCompile Include="EnemyChase.cpp" />
+    <ClCompile Include="EnemyFlee.cpp" />
+    <ClCompile Include="EnemyPatrol.cpp" />
+    <ClCompile Include="EnemyPredict.cpp" />
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="GameClearScene.cpp" />
     <ClCompile Include="GameOverScene.cpp" />
@@ -156,14 +159,16 @@
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Object\Enemy.cpp" />
-    <ClCompile Include="Object\StayEnemy.cpp" />
     <ClCompile Include="SceneSwitcher.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="TitleScene.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="AI.h" />
+    <ClInclude Include="EnemyChase.h" />
+    <ClInclude Include="EnemyFlee.h" />
+    <ClInclude Include="EnemyPatrol.h" />
+    <ClInclude Include="EnemyPredict.h" />
     <ClInclude Include="Engine.h" />
     <ClInclude Include="GameClearScene.h" />
     <ClInclude Include="GameOverScene.h" />
@@ -171,8 +176,7 @@
     <ClInclude Include="Graphics.h" />
     <ClInclude Include="HelpScene.h" />
     <ClInclude Include="Input.h" />
-    <ClInclude Include="Object\Enemy.h" />
-    <ClInclude Include="Object\StayEnemy.h" />
+    <ClInclude Include="Object\EnemyAi.h" />
     <ClInclude Include="SceneSwitcher.h" />
     <ClInclude Include="Size.h" />
     <ClInclude Include="Texture.h" />

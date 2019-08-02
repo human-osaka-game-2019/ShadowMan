@@ -70,22 +70,6 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-<<<<<<< HEAD
-    <IncludePath>C:\Users\rikaz\Desktop\SoundLib-master\SoundLib-master\SoundLib\Headers;C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\rikaz\Desktop\SoundLib-master\SoundLib-master\Debug\x64;C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Lib\x64;$(LibraryPath)</LibraryPath>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>C:\Users\rikaz\Desktop\SoundLib-master\SoundLib-master\SoundLib\Headers;C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\rikaz\Desktop\SoundLib-master\SoundLib-master\Debug\x64;C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Lib\x64;$(LibraryPath)</LibraryPath>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>C:\Users\rikaz\Desktop\SoundLib-master\SoundLib-master\SoundLib\Headers;C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\rikaz\Desktop\SoundLib-master\SoundLib-master\Debug\x64;C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Lib\x64;$(LibraryPath)</LibraryPath>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>C:\Users\rikaz\Desktop\SoundLib-master\SoundLib-master\SoundLib\Headers;C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\rikaz\Desktop\SoundLib-master\SoundLib-master\Debug\x64;C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Lib\x64;$(LibraryPath)</LibraryPath>
-=======
     <IncludePath>C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include;$(SolutionDir)SoundLib\Include;$(IncludePath)</IncludePath>
     <LibraryPath>C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Lib\x64;$(SolutionDir)SoundLib\Lib\Debug;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
@@ -100,7 +84,6 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <IncludePath>C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include;$(SolutionDir)SoundLib\Include;$(IncludePath)</IncludePath>
     <LibraryPath>C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Lib\x64;$(SolutionDir)SoundLib\Lib\Release;$(LibraryPath)</LibraryPath>
->>>>>>> 54e5a27a346bce836a3ececfa40ee7e4eb0d3f6f
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -194,11 +177,6 @@
     <ClInclude Include="TitleScene.h" />
     <ClInclude Include="Vec.h" />
     <ClInclude Include="Window.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\SoundLib-master\SoundLib-master\SoundLib\SoundLib.vcxproj">
-      <Project>{25bd07a8-54d8-451f-8d35-d912558d3e30}</Project>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

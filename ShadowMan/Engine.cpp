@@ -3,12 +3,9 @@
 #include "Engine.h"
 #include "Graphics.h"
 #include"Texture.h"
-<<<<<<< HEAD
-=======
 #include"Input.h"
 #include "DirectSound.h"
 #include<SoundsManager.h>
->>>>>>> 54e5a27a346bce836a3ececfa40ee7e4eb0d3f6f
 
 SoundLib::SoundsManager g_SoundManager;
 
@@ -26,10 +23,6 @@ BOOL InitEngine(INT width, INT height, CONST CHAR* title_name, HINSTANCE hInstan
 		return FALSE;
 	}
 
-<<<<<<< HEAD
-	InitTexture();
-
-=======
 	InitDirectInput(hInstance,hWnd);
 
 	InitTexture();
@@ -37,7 +30,6 @@ BOOL InitEngine(INT width, INT height, CONST CHAR* title_name, HINSTANCE hInstan
 	//
 	g_SoundManager.Initialize();
 
->>>>>>> 54e5a27a346bce836a3ececfa40ee7e4eb0d3f6f
 	return TRUE;
 }
 

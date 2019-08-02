@@ -1,5 +1,4 @@
 #include <math.h>
-#include "input.h"
 
 void EnemyTypeChase();  // ’ÇÕŒ^‚Ì“G
 

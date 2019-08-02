@@ -1,9 +1,10 @@
 #include "AI.h"
+#include "Input.h"
 
 
 
-struct DrawObject player;
-struct DrawObject enemy;
+//struct DrawObject player;
+//struct DrawObject enemy;
 
 // 敵キャラの移動パターン　（プレイヤー追跡型）
 void EnemyTypeChase(DrawObject* enemy, DrawObject* player, Movement* valueE, Relativity* status)

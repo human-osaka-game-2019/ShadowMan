@@ -40,6 +40,12 @@
     <ClCompile Include="AI.cpp">
       <Filter>ソースファイル\Engine</Filter>
     </ClCompile>
+    <ClCompile Include="Object\Enemy.cpp">
+      <Filter>ソースファイル\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Object\StayEnemy.cpp">
+      <Filter>ソースファイル\Object</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine.h">
@@ -84,6 +90,12 @@
     <ClInclude Include="AI.h">
       <Filter>ソースファイル\Engine</Filter>
     </ClInclude>
+    <ClInclude Include="Object\Enemy.h">
+      <Filter>ソースファイル\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Object\StayEnemy.h">
+      <Filter>ソースファイル\Object</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="ソースファイル">
@@ -100,6 +112,9 @@
     </Filter>
     <Filter Include="ソースファイル\Utility">
       <UniqueIdentifier>{25d83d49-63ab-4ff8-bb48-80b6646f0666}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソースファイル\Object">
+      <UniqueIdentifier>{1cd5a068-f565-464e-9c01-9555695587b3}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

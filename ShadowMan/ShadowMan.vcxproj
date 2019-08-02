@@ -153,6 +153,8 @@
     <ClCompile Include="HelpScene.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Object\Enemy.cpp" />
+    <ClCompile Include="Object\StayEnemy.cpp" />
     <ClCompile Include="SceneSwitcher.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="TitleScene.cpp" />
@@ -167,6 +169,8 @@
     <ClInclude Include="Graphics.h" />
     <ClInclude Include="HelpScene.h" />
     <ClInclude Include="Input.h" />
+    <ClInclude Include="Object\Enemy.h" />
+    <ClInclude Include="Object\StayEnemy.h" />
     <ClInclude Include="SceneSwitcher.h" />
     <ClInclude Include="Size.h" />
     <ClInclude Include="Texture.h" />

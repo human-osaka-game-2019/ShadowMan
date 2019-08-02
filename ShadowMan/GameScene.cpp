@@ -16,15 +16,15 @@ void MainGameScene();
 // ゲーム本編シーンの終了
 SceneId FinishGameScene();
 
-DrawObject player;  // プレイヤー構造体の実体
+//DrawObject player;  // プレイヤー構造体の実体
 
-DrawObject enemy;   // 敵 構造体の実体
+//DrawObject enemy;   // 敵 構造体の実体
 
-Movement valueP;     // player 移動数値の構造体の実体
+//Movement valueP;     // player 移動数値の構造体の実体
 
-Movement valueE;	 // Enemy  移動数値の構造体の実体
+//Movement valueE;	 // Enemy  移動数値の構造体の実体
 
-Relativity status;  // 相対的数値の構造体の実体
+//Relativity status;  // 相対的数値の構造体の実体
 
 // プレイヤーキャラクタの操作
 void PlayerControl();

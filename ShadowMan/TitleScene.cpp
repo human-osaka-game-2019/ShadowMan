@@ -38,7 +38,7 @@ void DrawTitleScene()
 
 void InitTitleScene()
 {
-	LoadTexture("titlebackground.png",TextureCategoryTitle,TitleCategoryTextureList::TitleBackGroundTexture);
+	LoadTexture("Texture/titlebackground.png",TextureCategoryTitle,TitleCategoryTextureList::TitleBackGroundTexture);
 	
 	g_SoundManager.AddFile("Sound/launcher1.wav","TitleBgm");
 

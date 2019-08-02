@@ -92,7 +92,7 @@ void DrawGameScene()
 void InitGameScene()
 {
 	// テクスチャ読み込み
-	LoadTexture("統合画像.png", TextureCategoryGame, GameCategoryTextureList::GameBackGroundTexture);
+	LoadTexture("Texture/統合画像.png", TextureCategoryGame, GameCategoryTextureList::GameBackGroundTexture);
 
 	ChangeSceneStep(SceneStep::MainStep);
 }

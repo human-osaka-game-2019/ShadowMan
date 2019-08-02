@@ -102,11 +102,11 @@ void MainGameScene()
 
 	// ƒQ[ƒ€ˆ—
 
-	PlayerControl();
+	//PlayerControl();
 
-	EnemyTypeChase();
+	//EnemyTypeChase();
 
-	EnemyTypePredict();
+	//EnemyTypePredict();
 
 	//ChangeSceneStep(SceneStep::EndStep);
 

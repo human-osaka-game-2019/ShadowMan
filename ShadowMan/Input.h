@@ -32,6 +32,18 @@ struct Movement
 	float length = 5.0f; //  長さ (移動距離）	  xには値を入れるべき
 };
 
+struct Relativity
+{
+	float Sr;			 // プレイヤー座標 - 敵座標 = Sr (相対距離)
+	float Vr;		     // プレイヤーの移動量(Speed) - 敵の移動量(Speed) = Vr(相対速度)
+	float Tc;			 // Tc(接近時間) = |Sr| / |Vr|  これで、敵がプレイヤーの座標を予測
+	float normal_x;		 //= value->vec_x / value->length;
+	float normal_y;		 //= value->vec_y / value->length;
+	float normal_length; //= sqrt(normal_x * normal_x + normal_y * normal_y);
+	float move_length;   //= sqrt(normal_x * normal_x + normal_y * normal_y);
+};
+
+
 // @brief キーの種類
 enum KeyState
 {
@@ -43,6 +55,8 @@ enum KeyState
 	H,	   //!< H キー
 	SPACE, //!< Space キー
 };
+
+bool InitDirectInput(HINSTANCE Instance_Handle, HWND Window_Handle);
 
 void ReleaseDirectInput();
 

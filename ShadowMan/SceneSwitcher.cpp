@@ -3,6 +3,7 @@
 #include"GameOverScene.h"
 #include"GameClearScene.h"
 #include"HelpScene.h"
+#include"Graphics.h"
 
 static SceneId g_CurrentSceneId = SceneId::TitleScene;		// 動作中シーンID
 static SceneStep g_CurrentSceneStep = SceneStep::InitStep;	// 動作中シーンのステップ
@@ -57,12 +58,12 @@ void UpdateScene()
 
 void DrawScene()
 {
-	/*
+	
 	if (DrawStart() == false)
 	{
 		return;
 	}
-	*/
+	
 
 	if (g_CurrentSceneStep == SceneStep::MainStep)
 	{
@@ -86,5 +87,5 @@ void DrawScene()
 		}
 	}
 
-	//DrawEnd();
+	DrawEnd();
 }

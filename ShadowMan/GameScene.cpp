@@ -6,6 +6,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
+#include "AI.h"
 
 
 // ゲーム本編シーンの初期化
@@ -15,17 +16,18 @@ void MainGameScene();
 // ゲーム本編シーンの終了
 SceneId FinishGameScene();
 
+DrawObject player;  // プレイヤー構造体の実体
 
-// プレイヤー構造体の実体
-DrawObject player;
-// 敵 構造体の実体
-DrawObject enemy;
-// 移動数値の構造体の実体
-Movement value;
+DrawObject enemy;   // 敵 構造体の実体
+
+Movement valueP;     // player 移動数値の構造体の実体
+
+Movement valueE;	 // Enemy  移動数値の構造体の実体
+
+Relativity status;  // 相対的数値の構造体の実体
+
 // プレイヤーキャラクタの操作
-void PlayerControl(DrawObject* player, Movement* value);
-// 敵 キャラクタの操作
-void EnemyControl(DrawObject* player, DrawObject* Enemy, Movement* value);
+void PlayerControl();
 
 
 static CONST INT MapSizeWidth = 20;
@@ -100,83 +102,67 @@ void MainGameScene()
 
 	// ゲーム処理
 
-	PlayerControl(&player,&value);
+	PlayerControl();
 
-	EnemyControl(&enemy,&player,&value);
+	EnemyTypeChase();
+
+	EnemyTypePredict();
 
 	//ChangeSceneStep(SceneStep::EndStep);
 
 }
 
-void PlayerControl(DrawObject* player , Movement* value)
+void PlayerControl(DrawObject* player, Movement* valueP, Relativity* status)
 {
 
 	if (GetKey(DIK_UP) == true)
 	{
-		value->vec_y =- value->speed;
+		valueP->vec_y =- valueP->speed;
 	}
 
 	else if (GetKey(DIK_DOWN) == true)
 	{
-		value->vec_y = value->speed;
+		valueP->vec_y = valueP->speed;
 	}
 
 	// 左右
 	if (GetKey(DIK_LEFT) == true)
 	{
-		value->vec_x =- value->speed;
+		valueP->vec_x =- valueP->speed;
 	}
 
 	else if (GetKey(DIK_RIGHT) == true)
 	{
-		value->vec_x = value->speed;
+		valueP->vec_x = valueP->speed;
 	}
 
-	if (value->vec_x != 0.0f || value->vec_y != 0.0f)
+	if (valueP->vec_x != 0.0f || valueP->vec_y != 0.0f)
 	{
 		// ベクトルの距離を出す
-		value->length = sqrt(value->vec_x * value->vec_x + value->vec_y * value->vec_y);
+		valueP->length = sqrt(valueP->vec_x * valueP->vec_x + valueP->vec_y * valueP->vec_y);
 
-		float normal_x = value->vec_x / value->length;
-		float normal_y = value->vec_y / value->length;
+		status->normal_x = valueP->vec_x / valueP->length;
+		status->normal_y = valueP->vec_y / valueP->length;
 
-		float normal_length = sqrt(normal_x * normal_x + normal_y * normal_y);
+		status->normal_length = sqrt(status->normal_x * status->normal_x + status->normal_y * status->normal_y);
 
 		// 単位ベクトルに移動量を反映する
-		normal_x *= value->speed;
-		normal_y *= value->speed;
+		status->normal_x *= valueP->speed;
+		status->normal_y *= valueP->speed;
 
 		// 移動量の照明（式）
-		float move_length = sqrt(normal_x * normal_x + normal_y * normal_y);
+		status->move_length = sqrt(status->normal_x * status->normal_x + status->normal_y * status->normal_y);
 
 		// 移動量を座標に加算
-		player->m_PosX += normal_x; // プレイヤーの移動
-		player->m_PosY += normal_y;
+		player->m_PosX += status->normal_x; // プレイヤーの移動
+		player->m_PosY += status->normal_y;
 
 	}
 
 }
 
-	// 敵キャラの移動パターン　（プレイヤー追跡型）
-void EnemyControl(DrawObject* enemy, DrawObject* player, Movement* value)
-{
+	
 
-	// ベクトルを出す
-	value->vec_x = player->m_PosX - enemy->m_PosX; // 相対距離を引いてベクトルを出す (敵 追跡型)
-	value->vec_y = player->m_PosY - enemy->m_PosY;
-
-	// ベクトルをそのまま座標に足す
-	//enemy->m_PosX += vecx;
-	//enemy->m_PosY += vecy;
-
-	value->length = sqrtf((value->vec_x * value->vec_x) + (value->vec_y * value->vec_y));
-	float normal_x = value->vec_x / value->length;
-	float normal_y = value->vec_y / value->length;
-
-	enemy->m_PosX += normal_x; // 敵の移動
-	enemy->m_PosY += normal_y;
-
-}
 
 	
 

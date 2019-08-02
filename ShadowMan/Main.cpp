@@ -1,11 +1,12 @@
 #include <Windows.h>
 #include"Engine.h"
 #include "SceneSwitcher.h"
+#include"Input.h"
 
 INT WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	LPSTR CmdLine, INT nCmdShow)
 {
-	if (InitEngine(1280, 640, "Shadow Man") == FALSE)
+	if (InitEngine(1280, 640, "Shadow Man",hInstance) == FALSE)
 	{
 		return 0;
 	}
@@ -25,6 +26,7 @@ INT WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 			}
 			else
 			{
+				KeyUpDate();
 				UpdateScene();
 			}
 

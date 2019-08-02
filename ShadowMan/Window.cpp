@@ -20,7 +20,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT iMsg, WPARAM wParam, LPARAM lParam)
 	return DefWindowProc(hWnd, iMsg, wParam, lParam);
 }
 
-BOOL MakeWindow(INT width, INT height, CONST CHAR* title_name)
+BOOL MakeWindow(INT width, INT height, CONST CHAR* title_name,HWND* hWnd)
 {
 	WNDCLASSEX wc;
 	wc.cbSize = sizeof(WNDCLASSEX);
@@ -41,7 +41,7 @@ BOOL MakeWindow(INT width, INT height, CONST CHAR* title_name)
 		return 0;
 	}
 
-	HWND hWnd = CreateWindow(
+	*hWnd = CreateWindow(
 		title_name, title_name,
 		WS_OVERLAPPEDWINDOW,
 		0, 0, width, height,
@@ -50,8 +50,8 @@ BOOL MakeWindow(INT width, INT height, CONST CHAR* title_name)
 	RECT window;
 	RECT client;
 
-	GetWindowRect(hWnd, &window);
-	GetClientRect(hWnd, &client);
+	GetWindowRect(*hWnd, &window);
+	GetClientRect(*hWnd, &client);
 
 	INT window_size_x = window.right - window.left;
 	INT window_size_y = (window.bottom - window.top);
@@ -61,7 +61,7 @@ BOOL MakeWindow(INT width, INT height, CONST CHAR* title_name)
 	INT frame_size_y = window_size_y - client_size_y;
 
 	SetWindowPos(
-		hWnd,
+		*hWnd,
 		NULL,
 		CW_USEDEFAULT,
 		CW_USEDEFAULT,
@@ -69,12 +69,12 @@ BOOL MakeWindow(INT width, INT height, CONST CHAR* title_name)
 		frame_size_y + height,
 		SWP_NOMOVE);
 
-	if (hWnd == NULL)
+	if (*hWnd == NULL)
 	{
 		return 0;
 	}
 
-	ShowWindow(hWnd, SW_SHOW);
-	UpdateWindow(hWnd);
+	ShowWindow(*hWnd, SW_SHOW);
+	UpdateWindow(*hWnd);
 
 }

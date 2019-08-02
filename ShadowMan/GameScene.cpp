@@ -30,10 +30,10 @@ SceneId FinishGameScene();
 void PlayerControl();
 
 
-static CONST INT MapSizeWidth = 20;
-static CONST INT MapSizeHeight = 10;
-static CONST INT MapChipWidth = 64;
-static CONST INT MapChipHeight = 64;
+static CONST INT MapSizeWidth = 10;
+static CONST INT MapSizeHeight = 5;
+static CONST INT MapChipWidth = 128;
+static CONST INT MapChipHeight = 128;
 
 static SceneId NextSceneId;
 
@@ -92,7 +92,7 @@ void DrawGameScene()
 void InitGameScene()
 {
 	// テクスチャ読み込み
-	LoadTexture("TEST.png", TextureCategoryGame, GameCategoryTextureList::GameBackGroundTexture);
+	LoadTexture("統合画像.png", TextureCategoryGame, GameCategoryTextureList::GameBackGroundTexture);
 
 	ChangeSceneStep(SceneStep::MainStep);
 }

@@ -99,7 +99,7 @@ VOID DrawTexture(FLOAT x, FLOAT y, Texture* texture_data)
 
 }
 
-VOID MapLoading(CONST CHAR* file_name, INT List[][20])
+VOID MapLoading(CONST CHAR* file_name, INT List[][10])
 {
 	FILE* fp = nullptr;
 

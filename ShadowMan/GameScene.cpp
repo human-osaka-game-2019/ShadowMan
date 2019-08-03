@@ -112,7 +112,7 @@ void MainGameScene()
 
 }
 
-void PlayerControl(DrawObject* player, Movement* valueP, Relativity* status)
+void PlayerControl(DrawObject* enemy, DrawObject* player, Movement* valueP, Relativity* status)
 {
 
 	if (GetKey(DIK_UP) == true)
@@ -156,6 +156,34 @@ void PlayerControl(DrawObject* player, Movement* valueP, Relativity* status)
 		// 移動量を座標に加算
 		player->m_PosX += status->normal_x; // プレイヤーの移動
 		player->m_PosY += status->normal_y;
+
+		// 敵キャラとプレイヤーキャラの当たり判定
+		float circle_pos_xE = enemy->m_PosX;  //敵X座標
+		float circle_pos_yE = enemy->m_PosY;  //敵Y座標
+		float circle_radiusE = 32.0f;		  //敵テクスチャの円形範囲
+
+		float circle_pos_xP = player->m_PosX; //プレイヤーX座標
+		float circle_pos_yP = player->m_PosY; //プレイヤーY座標
+		float circle_radiusP = 32.0f;		  //プレイヤーテクスチャの円形範囲
+
+		float a = circle_pos_xP - circle_pos_xE; // X座標の算出
+		float b = circle_pos_yP - circle_pos_yE; // Y座標の算出
+		float c = sqrt(a * a + b * b);			 // 二つの円の距離の算出
+
+		if (c <= circle_radiusP + circle_radiusE)
+		{
+			/*
+			当たってる
+			プレイヤー死亡
+			*/
+		}
+		else
+		{
+			/*
+			当たってない
+			ゲーム続行
+			*/
+		}
 
 	}
 

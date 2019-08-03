@@ -157,18 +157,14 @@
     <ClCompile Include="Graphics.cpp" />
     <ClCompile Include="HelpScene.cpp" />
     <ClCompile Include="Input.cpp" />
+    <ClCompile Include="Light.cpp" />
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="Object\Enemy.cpp" />
     <ClCompile Include="SceneSwitcher.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="TitleScene.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="EnemyChase.h" />
-    <ClInclude Include="EnemyFlee.h" />
-    <ClInclude Include="EnemyPatrol.h" />
-    <ClInclude Include="EnemyPredict.h" />
     <ClInclude Include="Engine.h" />
     <ClInclude Include="GameClearScene.h" />
     <ClInclude Include="GameOverScene.h" />
@@ -176,6 +172,7 @@
     <ClInclude Include="Graphics.h" />
     <ClInclude Include="HelpScene.h" />
     <ClInclude Include="Input.h" />
+    <ClInclude Include="Light.h" />
     <ClInclude Include="Object\EnemyAi.h" />
     <ClInclude Include="SceneSwitcher.h" />
     <ClInclude Include="Size.h" />

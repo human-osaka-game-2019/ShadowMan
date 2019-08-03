@@ -21,4 +21,35 @@ void EnemyTypeChase(DrawObject* enemy, DrawObject* player, Movement* valueE, Rel
 	enemy->m_PosX += status->normal_x; // 敵の移動
 	enemy->m_PosY += status->normal_y;
 
+	//敵キャラとプレイヤーキャラの当たり判定(円と円)
+	float circle_pos_xE = enemy->m_PosX;  //敵X座標
+	float circle_pos_yE = enemy->m_PosY;  //敵Y座標
+	float circle_radiusE = 32.0f;		  //敵テクスチャの円形範囲
+
+	float circle_pos_xP = player->m_PosX; //プレイヤーX座標
+	float circle_pos_yP = player->m_PosY; //プレイヤーY座標
+	float circle_radiusP = 32.0f;		  //プレイヤーテクスチャの円形範囲
+
+	float a = circle_pos_xE - circle_pos_xP; // X座標の算出
+	float b = circle_pos_yE - circle_pos_yP; // Y座標の算出
+	float c = sqrt(a * a + b * b);			 // 二つの円の距離の算出
+
+	if (c <= circle_radiusE + circle_radiusP)
+	{
+		/*
+		当たってる
+		プレイヤー死亡
+		*/
+	}
+	else
+	{
+		/*
+		当たってない
+		ゲーム続行
+		*/
+	}
+
+	//敵キャラと壁の当たり判定(矩形と矩形)
+
+
 }

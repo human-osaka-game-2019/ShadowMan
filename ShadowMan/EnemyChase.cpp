@@ -1,5 +1,5 @@
 #include "Input.h"
-#include "Object/EnemyAi.h"
+#include "EnemyChase.h"
 
 
 // 敵キャラの移動パターン　（プレイヤー追跡型）

@@ -99,6 +99,9 @@
     <ClInclude Include="Light.h">
       <Filter>ソースファイル\Object</Filter>
     </ClInclude>
+    <ClInclude Include="EnemyChase.h">
+      <Filter>ソースファイル\Object</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="ソースファイル">

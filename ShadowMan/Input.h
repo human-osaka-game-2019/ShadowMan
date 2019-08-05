@@ -13,17 +13,11 @@
 struct DrawObject
 {
 	int m_TextureId;	// テクスチャの種類
-	float m_PosX;		// 描画座標X
-	float m_PosY;		// 描画座標Y
+	float x;		// 描画座標X
+	float y;		// 描画座標Y
 	float speed; //　スピード (移動量)
-	float rect_x;
-	float rect_y;
-	//float rectW_x; マップチップの'壁'のX座標
-	//float rectW_y; 
 	float rect_wid;
 	float rect_hgt;
-	float circle_pos_x;
-	float circle_pos_y;
 	float circle_radius;
 };
 

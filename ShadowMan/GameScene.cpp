@@ -120,23 +120,23 @@ void PlayerControl(DrawObject* player)
 
 	if (GetKey(UP) == true)
 	{
-		player->m_PosY -= player->speed;
+		player->y -= player->speed;
 	}
 
 	else if (GetKey(DOWN) == true)
 	{
-		player->m_PosY += player->speed;
+		player->y += player->speed;
 	}
 
 	// ¶‰E
 	if (GetKey(LEFT) == true)
 	{
-		player->m_PosX -= player->speed;
+		player->x -= player->speed;
 	}
 
 	else if (GetKey(RIGHT) == true)
 	{
-		player->m_PosX += player->speed;
+		player->x += player->speed;
 	}
 
 }

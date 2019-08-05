@@ -29,6 +29,9 @@ SceneId FinishGameScene();
 // プレイヤーキャラクタの操作
 void PlayerControl();
 
+// 当たり判定
+void PlayerCollision();
+
 
 static CONST INT MapSizeWidth = 10;
 static CONST INT MapSizeHeight = 5;
@@ -157,41 +160,75 @@ void PlayerControl(DrawObject* enemy, DrawObject* player, Movement* valueP, Rela
 		player->m_PosX += status->normal_x; // プレイヤーの移動
 		player->m_PosY += status->normal_y;
 
-		// 敵キャラとプレイヤーキャラの当たり判定
-		float circle_pos_xE = enemy->m_PosX;  //敵X座標
-		float circle_pos_yE = enemy->m_PosY;  //敵Y座標
-		float circle_radiusE = 32.0f;		  //敵テクスチャの円形範囲
+		
 
-		float circle_pos_xP = player->m_PosX; //プレイヤーX座標
-		float circle_pos_yP = player->m_PosY; //プレイヤーY座標
-		float circle_radiusP = 32.0f;		  //プレイヤーテクスチャの円形範囲
-
-		float a = circle_pos_xP - circle_pos_xE; // X座標の算出
-		float b = circle_pos_yP - circle_pos_yE; // Y座標の算出
-		float c = sqrt(a * a + b * b);			 // 二つの円の距離の算出
-
-		if (c <= circle_radiusP + circle_radiusE)
-		{
-			/*
-			当たってる
-			プレイヤー死亡
-			*/
-		}
-		else
-		{
-			/*
-			当たってない
-			ゲーム続行
-			*/
-		}
-
+		
+		
 	}
 
 }
 
-	
+// 当たり判定
+void PlayerCollision(DrawObject* enemy, DrawObject* player)
+{
+	// 敵キャラとプレイヤーキャラの当たり判定
+	float circle_pos_xE = enemy->m_PosX;  //敵X座標
+	float circle_pos_yE = enemy->m_PosY;  //敵Y座標
+	float circle_radiusE = 32.0f;		  //敵テクスチャの円形範囲
 
+	float circle_pos_xP = player->m_PosX; //プレイヤーX座標
+	float circle_pos_yP = player->m_PosY; //プレイヤーY座標
+	float circle_radiusP = 32.0f;		  //プレイヤーテクスチャの円形範囲
 
+	float a = circle_pos_xP - circle_pos_xE; // X座標の算出
+	float b = circle_pos_yP - circle_pos_yE; // Y座標の算出
+	float c = sqrt(a * a + b * b);			 // 二つの円の距離の算出
+
+	if (c <= circle_radiusP + circle_radiusE)
+	{
+		/*
+		当たってる
+		プレイヤー死亡
+		*/
+	}
+	else
+	{
+		/*
+		当たってない
+		ゲーム続行
+		*/
+	}
+
+	// プレイヤーキャラと壁の当たり判定
+
+	// Player
+	float rectP_x = player->m_PosX;
+	float rectP_y = player->m_PosY;
+	float rectP_wid = 64.0f;
+	float rectP_hgt = 64.0f;
+
+	// Wall
+	float rectW_x; //マップチップの'壁'のX座標
+	float rectW_y; //マップチップの'壁'のY座標
+	float rectW_wid = 64.0f;
+	float rectW_hgt = 64.0f;
+
+	if (rectP_x + rectP_wid >= rectW_x && rectP_x <= rectW_x + rectW_wid &&
+		rectP_y + rectP_hgt >= rectW_y && rectP_y <= rectW_y + rectW_hgt)
+	{
+
+		// 当たってる
+
+	}
+
+	else
+	{
+
+		// 当たってない
+
+	}
+
+}
 	
 
 SceneId FinishGameScene()

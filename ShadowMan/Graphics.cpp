@@ -60,7 +60,14 @@ VOID EndGraphics()
 
 BOOL DrawStart()
 {
-	g_D3DDevice->Clear(0, NULL, D3DCLEAR_TARGET, D3DCOLOR_XRGB(0, 0, 0), 0.0f, 0);
+	g_D3DDevice->Clear(
+		0,
+		nullptr,
+		D3DCLEAR_TARGET | D3DCLEAR_STENCIL | D3DCLEAR_ZBUFFER,	
+		D3DCOLOR_ARGB(255, 0, 0, 0),							
+		1.0f,													
+		0);														
+
 
 	g_D3DDevice->SetRenderState(D3DRS_ALPHABLENDENABLE, TRUE);
 	g_D3DDevice->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_SRCALPHA);
@@ -242,11 +249,15 @@ BOOL CreateGraphicsDevice(D3DPRESENT_PARAMETERS* present_param)
 	// バックバッファの数
 	present_param->BackBufferCount = 1;
 	// バックバッファのフォーマット
-	present_param->BackBufferFormat = D3DFMT_UNKNOWN;
+	present_param->BackBufferFormat = D3DFMT_X8R8G8B8;
 	// ウィンドウモードの設定
 	present_param->Windowed = TRUE;
 	// スワップエフェクト
 	present_param->SwapEffect = D3DSWAPEFFECT_DISCARD;
+	// 深度バッファの有無
+	present_param->EnableAutoDepthStencil = TRUE; 
+	// 深度バッファのフォーマット
+	present_param->AutoDepthStencilFormat = D3DFMT_D24S8;
 
 	// DirectDeviceの作成
 	if (FAILED(g_D3DInterface->CreateDevice(D3DADAPTER_DEFAULT,

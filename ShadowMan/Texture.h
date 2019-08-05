@@ -23,6 +23,7 @@ typedef enum
 {
 	GameBackGroundTexture,			// Game背景
 	IntegratedTexture,						// 統合画像
+	GameMaskTexture,				//ステンシル用マスクテクスチャ
 	GameTextureMax,
 }GameCategoryTextureList;
 

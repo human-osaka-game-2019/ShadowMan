@@ -66,6 +66,10 @@ BOOL DrawStart()
 	g_D3DDevice->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_SRCALPHA);
 	g_D3DDevice->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA);
 
+	g_D3DDevice->SetRenderState(D3DRS_ALPHATESTENABLE, TRUE);
+	g_D3DDevice->SetRenderState(D3DRS_ALPHAFUNC, D3DCMP_GREATEREQUAL);
+	g_D3DDevice->SetRenderState(D3DRS_ALPHAREF, 0x0ff);
+
 	if (D3D_OK == g_D3DDevice->BeginScene())
 	{
 		return TRUE;
@@ -313,4 +317,53 @@ void DrawFont(float pos_x, float pos_y, const char* text)
 		DT_LEFT,
 		D3DCOLOR_XRGB(r, g, b)
 	);
+}
+
+
+void SetUpStencilRenderState(unsigned char ref, D3DCMPFUNC cmp_func)
+{
+	// Zバッファ設定 => 有効
+	g_D3DDevice->SetRenderState(D3DRS_ZENABLE, TRUE);
+	// ZBUFFER比較設定変更 => (参照値 <= バッファ値)
+	g_D3DDevice->SetRenderState(D3DRS_ZFUNC, D3DCMP_LESSEQUAL);
+
+	// ステンシルバッファ => 有効
+	g_D3DDevice->SetRenderState(D3DRS_STENCILENABLE, TRUE);
+	// ステンシルバッファと比較する参照値設定 => ref
+	g_D3DDevice->SetRenderState(D3DRS_STENCILREF, ref);
+	// ステンシルバッファの値に対してのマスク設定 => 0xff(全て真)
+	g_D3DDevice->SetRenderState(D3DRS_STENCILMASK, 0xff);
+	// ステンシルテストの比較方法設定 => 
+	//		この描画での参照値 >= ステンシルバッファの参照値なら合格
+	g_D3DDevice->SetRenderState(D3DRS_STENCILFUNC, cmp_func);
+	// ステンシルテストの結果に対しての反映設定
+	g_D3DDevice->SetRenderState(D3DRS_STENCILPASS, D3DSTENCILOP_REPLACE);
+	g_D3DDevice->SetRenderState(D3DRS_STENCILFAIL, D3DSTENCILOP_KEEP);
+	g_D3DDevice->SetRenderState(D3DRS_STENCILZFAIL, D3DSTENCILOP_KEEP);
+}
+
+
+void SetUpStencilMaskRenderState(unsigned char ref, D3DCMPFUNC cmp_func)
+{
+	// ステンシルバッファ設定 => 有効
+	g_D3DDevice->SetRenderState(D3DRS_STENCILENABLE, TRUE);
+
+	// ステンシルバッファへ描き込む参照値設定
+	g_D3DDevice->SetRenderState(D3DRS_STENCILREF, ref);
+
+	// マスク設定 => 0xff(全て真)
+	g_D3DDevice->SetRenderState(D3DRS_STENCILMASK, 0xff);
+
+	// ステンシルテスト比較設定 => 必ず成功する
+	g_D3DDevice->SetRenderState(D3DRS_STENCILFUNC, cmp_func);
+
+	// ステンシルテストのテスト設定
+	g_D3DDevice->SetRenderState(D3DRS_STENCILFAIL, D3DSTENCILOP_KEEP);
+	g_D3DDevice->SetRenderState(D3DRS_STENCILZFAIL, D3DSTENCILOP_REPLACE);
+	g_D3DDevice->SetRenderState(D3DRS_STENCILPASS, D3DSTENCILOP_KEEP);
+
+	// Zバッファ設定 => 有効
+	g_D3DDevice->SetRenderState(D3DRS_ZENABLE, TRUE);
+	// ZBUFFER比較設定変更 => 必ず失敗する
+	g_D3DDevice->SetRenderState(D3DRS_ZFUNC, D3DCMP_NEVER);
 }

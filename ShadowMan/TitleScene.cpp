@@ -43,7 +43,6 @@ void InitTitleScene()
 	LoadTexture("Texture/title_bg.png",TextureCategoryTitle,TitleCategoryTextureList::TitleBackGroundTexture);
 	
 	g_SoundManager.AddFile("Sound/launcher1.wav","TitleBgm");
-
 	g_SoundManager.Start("TitleBgm",TRUE);
 
 	ChangeSceneStep(SceneStep::MainStep);
@@ -70,7 +69,9 @@ SceneId FinishTitleScene()
 	// リリース開放
 	ReleaseCategoryTexture(SceneId::TitleScene);
 
-	//音を止める処理を書く
+	//音を止める処理
+
+
 	//開放は.hがやってくれる
 	
 	switch (scene_check)

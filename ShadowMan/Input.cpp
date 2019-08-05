@@ -111,7 +111,7 @@ void KeyUpDate()
 }
 
 // プレーヤー移動
-void PlayerControl(DrawObject* player)
+void PlayerControl(Object* player)
 {
 
 	if (GetKey(UP) == true)
@@ -139,7 +139,7 @@ void PlayerControl(DrawObject* player)
 
 
 // 当たり判定
-void Collision(DrawObject* enemy, DrawObject* player)
+void Collision(Object* enemy, Object* player)
 {
 	// 敵キャラとプレイヤーキャラの当たり判定
 	enemy->x;  //敵X座標
@@ -171,7 +171,7 @@ void Collision(DrawObject* enemy, DrawObject* player)
 
 }
 
-void CollisionWallP(DrawObject* enemy, DrawObject* player)
+void CollisionWallP(Object* enemy, Object* player)
 {
 	// プレイヤーキャラと壁の当たり判定
 

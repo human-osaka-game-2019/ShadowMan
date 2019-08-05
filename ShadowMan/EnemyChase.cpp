@@ -3,7 +3,7 @@
 
 
 // 敵キャラの移動パターン　（プレイヤー追跡型）
-void EnemyTypeChase(DrawObject* enemy, DrawObject* player, Relativity* status)
+void EnemyTypeChase(Object* enemy, Object* player, Relativity* status)
 {
 
 	// ベクトルを出す

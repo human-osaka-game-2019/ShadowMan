@@ -10,15 +10,18 @@
 #include <math.h>
 
 
-struct DrawObject
+struct Object
 {
 	int m_TextureId;	// テクスチャの種類
 	float x;		// 描画座標X
 	float y;		// 描画座標Y
-	float speed; //　スピード (移動量)
+	int mapchip_num_row;	// 何行目
+	int mapchip_num_col;		// 何列目
+	float speed; // スピード
 	float rect_wid;
 	float rect_hgt;
 	float circle_radius;
+	float flame_count;
 };
 
 struct INPUTSTATE // キーの情報の構造体
@@ -40,7 +43,7 @@ struct Relativity
 };
 
 // プレーヤー移動
-void PlayerControl(DrawObject* player);
+void PlayerControl(Object* player);
 
 // 当たり判定
 void Collision();

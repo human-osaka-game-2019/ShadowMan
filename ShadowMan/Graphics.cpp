@@ -174,6 +174,17 @@ VOID DrawMapChip(D3DXVECTOR2 draw_pos, D3DXVECTOR2 texture_pos, D3DXVECTOR2 spri
 	g_D3DDevice->DrawPrimitiveUP(D3DPT_TRIANGLEFAN, 2, sprite, sizeof(CustomVertex));
 }
 
+VOID DrawObject(Object* object, float tex_pos_x, float tex_pos_y, int tex_width, int tex_height)
+{
+	DrawMapChip(
+		D3DXVECTOR2(object->x, object->y),
+		D3DXVECTOR2(tex_pos_x, tex_pos_y),
+		D3DXVECTOR2(tex_width, tex_height),
+		TextureCategoryGame,
+		GameCategoryTextureList::IntegratedTexture
+	);
+}
+
 BOOL CreateTexture(CONST CHAR* file_name, Texture* texture_data)
 {
 	Size size;

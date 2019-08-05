@@ -1,7 +1,7 @@
 #ifndef ENGINE_H
 #define ENGINE_H
 
-void EnemyTypeChase(DrawObject* enemy, DrawObject* player, Relativity* status);
+void EnemyTypeChase(Object* enemy, Object* player, Relativity* status);
 
 void Collision();
 

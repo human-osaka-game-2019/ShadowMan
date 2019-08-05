@@ -14,9 +14,9 @@ void MainGameScene();
 // ゲーム本編シーンの終了
 SceneId FinishGameScene();
 
-//DrawObject player;  // プレイヤー構造体の実体
+//Object player;  // プレイヤー構造体の実体
 
-//DrawObject enemy;   // 敵 構造体の実体
+//Object enemy;   // 敵 構造体の実体
 
 //Movement valueP;     // player 移動数値の構造体の実体
 
@@ -24,15 +24,16 @@ SceneId FinishGameScene();
 
 //Relativity status;  // 相対的数値の構造体の実体
 
-// プレイヤーキャラクタの操作
-void PlayerControl();
+static Object BigEye;
+static INT bigeye_id = 0;
+static INT key_check = 0;
+static INT move_count = 0;
 
 static CONST INT MapSizeWidth = 20;
 static CONST INT MapSizeHeight = 15;
 static CONST INT MapChipWidth = 64;
 static CONST INT MapChipHeight = 64;
 static INT MapChipList[MapSizeHeight][MapSizeWidth];
-static DWORD SyncPrev, SyncCurr;
 
 static SceneId NextSceneId;
 
@@ -86,30 +87,25 @@ void DrawGameScene()
 		}
 	}
 
-	SyncCurr = timeGetTime();
-	if (SyncCurr - SyncPrev >= 0)
+	BigEye.flame_count += 1.0f;
+	switch (bigeye_id)
 	{
-		DrawMapChip(
-			D3DXVECTOR2(MapChipWidth * 1, MapChipHeight * 1),
-			D3DXVECTOR2(448.0f, 225.0f),
-			D3DXVECTOR2(MapChipWidth, MapChipWidth),
-			TextureCategoryGame,
-			GameCategoryTextureList::IntegratedTexture
-		);
-		if (SyncCurr - SyncPrev >= 500)
+	case 0:
+		DrawObject(&BigEye, 448.0f, 225.0f, MapChipWidth, MapChipHeight);
+		if (BigEye.flame_count >= 60)
 		{
-			DrawMapChip(
-				D3DXVECTOR2(MapChipWidth * 1, MapChipHeight * 1),
-				D3DXVECTOR2(512.0f, 225.0f),
-				D3DXVECTOR2(MapChipWidth, MapChipWidth),
-				TextureCategoryGame,
-				GameCategoryTextureList::IntegratedTexture
-			);
-			if (SyncCurr - SyncPrev >= 1000)
-			{
-				SyncPrev = SyncCurr;
-			}
+			BigEye.flame_count = 0;
+			bigeye_id = 1;
 		}
+		break;
+	case 1:
+		DrawObject(&BigEye, 512.0f, 225.0f, MapChipWidth, MapChipHeight);
+		if (BigEye.flame_count >= 60)
+		{
+			BigEye.flame_count = 0;
+			bigeye_id = 0;
+		}
+		break;
 	}
 }
 
@@ -121,15 +117,110 @@ void InitGameScene()
 
 	MapLoading("csv/真MapChip.csv", MapChipList);
 
-	SyncPrev = timeGetTime();
+	BigEye.x = 64.0f;
+	BigEye.y = 64.0f;
+	BigEye.mapchip_num_row = 1;
+	BigEye.mapchip_num_col = 1;
+	BigEye.speed = 2.0f;
+	BigEye.flame_count = 0.0f;
 
 	ChangeSceneStep(SceneStep::MainStep);
 }
 
 void MainGameScene()
 {
-
 	// ゲーム処理
+	if (key_check == 0)
+	{
+		if (GetKeyDown(UP) == true)
+		{
+			key_check = 1;
+		}
+		else if (GetKeyDown(DOWN) == true)
+		{
+			key_check = 2;
+		}
+		else if (GetKeyDown(LEFT) == true)
+		{
+			key_check = 3;
+		}
+		else if (GetKeyDown(RIGHT) == true)
+		{
+			key_check = 4;
+		}
+	}
+
+	switch (key_check)
+	{
+	case 1:
+		if (MapChipList[BigEye.mapchip_num_row - 1][BigEye.mapchip_num_col] == 1)
+		{
+			BigEye.y -= BigEye.speed;
+			move_count += BigEye.speed;
+			if (move_count >= MapChipHeight)
+			{
+				BigEye.mapchip_num_row--;
+				move_count = 0;
+				key_check = 0;
+			}
+		}
+		else
+		{
+			key_check = 0;
+		}
+		break;
+	case 2:
+		if (MapChipList[BigEye.mapchip_num_row + 1][BigEye.mapchip_num_col] == 1)
+		{
+			BigEye.y += BigEye.speed;
+			move_count += BigEye.speed;
+			if (move_count >= MapChipHeight)
+			{
+				BigEye.mapchip_num_row++;
+				move_count = 0;
+				key_check = 0;
+			}
+		}
+		else
+		{
+			key_check = 0;
+		}
+		break;
+	case 3:
+		if (MapChipList[BigEye.mapchip_num_row][BigEye.mapchip_num_col - 1] == 1)
+		{
+			BigEye.x -= BigEye.speed;
+			move_count += BigEye.speed;
+			if (move_count >= MapChipWidth)
+			{
+				BigEye.mapchip_num_col--;
+				move_count = 0;
+				key_check = 0;
+			}
+		}
+		else
+		{
+			key_check = 0;
+		}
+		break;
+	case 4:
+		if (MapChipList[BigEye.mapchip_num_row][BigEye.mapchip_num_col + 1] == 1)
+		{
+			BigEye.x += BigEye.speed;
+			move_count += BigEye.speed;
+			if (move_count >= MapChipWidth)
+			{
+				BigEye.mapchip_num_col++;
+				move_count = 0;
+				key_check = 0;
+			}
+		}
+		else
+		{
+			key_check = 0;
+		}
+		break;
+	}
 
 	//PlayerControl();
 

@@ -43,6 +43,9 @@
     <ClCompile Include="Light.cpp">
       <Filter>ソースファイル\Object</Filter>
     </ClCompile>
+    <ClCompile Include="WaitEnemy.cpp">
+      <Filter>ソースファイル\Object</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine.h">
@@ -88,6 +91,9 @@
       <Filter>ソースファイル\Object</Filter>
     </ClInclude>
     <ClInclude Include="EnemyChase.h">
+      <Filter>ソースファイル\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="WaitEnemy.h">
       <Filter>ソースファイル\Object</Filter>
     </ClInclude>
   </ItemGroup>

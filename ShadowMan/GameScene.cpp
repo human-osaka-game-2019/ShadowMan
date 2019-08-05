@@ -6,6 +6,10 @@
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
+<<<<<<< HEAD
+=======
+
+>>>>>>> ba9f6978b27b6ff98f4b0f2d1bd99de29f533eee
 
 // ゲーム本編シーンの初期化
 void InitGameScene();

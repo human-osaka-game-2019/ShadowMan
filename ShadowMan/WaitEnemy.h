@@ -1,7 +1,7 @@
-//#ifndef ENGINE_H
-//#define ENGINE_H
+#ifndef ENGINE_H
+#define ENGINE_H
 
-//#include"Window.h"
+void EnemyTypeWait();
 
 
-//#endif
+#endif

@@ -24,13 +24,4 @@ void EnemyTypeChase(Object* enemy, Object* player, Relativity* status)
 
 }
 
-void Collision()
-{
-
-	/*
-
-	“G‚ÆƒvƒŒƒCƒ„[‚Ì“–‚½‚è”»’è
-
-	*/
-
-}
+void Collision();

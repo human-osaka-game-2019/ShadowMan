@@ -7,19 +7,19 @@ void EnemyTypeChase(DrawObject* enemy, DrawObject* player, Relativity* status)
 {
 
 	// ベクトルを出す
-	status->normal_x = player->m_PosX - enemy->m_PosX; // 相対距離を引いてベクトルを出す (敵 追跡型)
-	status->normal_y = player->m_PosY - enemy->m_PosY;
+	status->normal_x = player->x - enemy->x; // 相対距離を引いてベクトルを出す (敵 追跡型)
+	status->normal_y = player->y - enemy->y;
 
 	// ベクトルをそのまま座標に足す
 	//enemy->m_PosX += vecx;
 	//enemy->m_PosY += vecy;
 
-	enemy->speed = sqrtf((enemy->m_PosX * enemy->m_PosX) + (enemy->m_PosY * enemy->m_PosY));
-	status->normal_x = enemy->m_PosX / status->normal_length;
-	status->normal_y = enemy->m_PosY / status->normal_length;
+	enemy->speed = sqrtf((enemy->x * enemy->x) + (enemy->y * enemy->y));
+	status->normal_x = enemy->x / status->normal_length;
+	status->normal_y = enemy->y / status->normal_length;
 
-	enemy->m_PosX += status->normal_x; // 敵の移動
-	enemy->m_PosY += status->normal_y;
+	enemy->x += status->normal_x; // 敵の移動
+	enemy->y += status->normal_y;
 
 
 }

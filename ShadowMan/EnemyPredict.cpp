@@ -13,10 +13,10 @@ void EnemyTypePredict(DrawObject* enemy, DrawObject* player, Relativity* status)
 	status->Vr = player->speed - enemy->speed;
 
 	// 相対距離　（敵、プレイヤー間の距離算出）
-	status->Sr = sqrt(pow(enemy->m_PosX - player->m_PosX, 2) + pow(enemy->m_PosY - player->m_PosY, 2));
+	status->Sr = sqrt(pow(enemy->x - player->x, 2) + pow(enemy->y - player->y, 2));
 	// Tc(接近時間) = | Sr| / |Vr |
 	status->Tc = fabsf(status->Sr) / fabsf(status->Vr);
 
-	enemy->m_PosX = (player->m_PosX + player->speed) * status->Tc; // 追撃ポイントの X座標
-	enemy->m_PosY = (player->m_PosY + player->speed) * status->Tc; // 追撃ポイントの Y座標
+	enemy->x = (player->x + player->speed) * status->Tc; // 追撃ポイントの X座標
+	enemy->y = (player->y + player->speed) * status->Tc; // 追撃ポイントの Y座標
 }

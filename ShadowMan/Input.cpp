@@ -115,16 +115,16 @@ void KeyUpDate()
 void Collision(DrawObject* enemy, DrawObject* player)
 {
 	// 敵キャラとプレイヤーキャラの当たり判定
-	enemy->circle_pos_x = enemy->m_PosX;  //敵X座標
-	enemy->circle_pos_y = enemy->m_PosY;  //敵Y座標
+	enemy->x;  //敵X座標
+	enemy->y;  //敵Y座標
 	enemy->circle_radius = 32.0f;		  //敵テクスチャの円形範囲
 
-	player->circle_pos_x = player->m_PosX; //プレイヤーX座標
-	player->circle_pos_y = player->m_PosY; //プレイヤーY座標
+	player->x; //プレイヤーX座標
+	player->y; //プレイヤーY座標
 	player->circle_radius = 32.0f;		  //プレイヤーテクスチャの円形範囲
 
-	float a = player->circle_pos_x - enemy->circle_pos_x; // X座標の算出
-	float b = player->circle_pos_y - enemy->circle_pos_y; // Y座標の算出
+	float a = player->x - enemy->x; // X座標の算出
+	float b = player->y - enemy->y; // Y座標の算出
 	float c = sqrt(a * a + b * b);			 // 二つの円の距離の算出
 
 	if (c <= player->circle_radius + enemy->circle_radius)
@@ -149,14 +149,14 @@ void CollisionWallP(DrawObject* enemy, DrawObject* player)
 	// プレイヤーキャラと壁の当たり判定
 
 	// Player
-	player->rect_x = player->m_PosX;
-	player->rect_y = player->m_PosY;
+	player->x;
+	player->y;
 	player->rect_wid = 64.0f;
 	player->rect_hgt = 64.0f;
 
 	// Enemy
-	enemy->rect_x = enemy->m_PosX;
-	enemy->rect_y = enemy->m_PosY;
+	enemy->x;
+	enemy->y;
 	enemy->rect_wid = 64.0f;
 	enemy->rect_hgt = 64.0f;
 

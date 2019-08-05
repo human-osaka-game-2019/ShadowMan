@@ -24,9 +24,9 @@ VOID DrawEnd();
 
 VOID DrawTexture(FLOAT x, FLOAT y, Texture* texture_data);
 
-VOID MapLoading(CONST CHAR* file_name, INT MapChipList[][10]);
+VOID MapLoading(CONST CHAR* file_name, INT MapChipList[][20]);
 
-VOID DrawMapChip(D3DXVECTOR2 draw_pos, D3DXVECTOR2 texture_pos, D3DXVECTOR2 texture_size);
+VOID DrawMapChip(D3DXVECTOR2 draw_pos, D3DXVECTOR2 texture_pos, D3DXVECTOR2 texture_size, INT category_id, INT texture_id);
 
 BOOL CreateTexture(CONST CHAR* file_name, Texture* texture_data);
 

@@ -12,6 +12,8 @@ void MainTitleScene();
 // タイトルシーンの終了
 SceneId FinishTitleScene();
 
+int scene_check;
+
 SceneId UpdateTitleScene()
 {
 	switch (GetCurrentSceneStep())
@@ -38,7 +40,7 @@ void DrawTitleScene()
 
 void InitTitleScene()
 {
-	LoadTexture("Texture/titlebackground.png",TextureCategoryTitle,TitleCategoryTextureList::TitleBackGroundTexture);
+	LoadTexture("Texture/title_bg.png",TextureCategoryTitle,TitleCategoryTextureList::TitleBackGroundTexture);
 	
 	g_SoundManager.AddFile("Sound/launcher1.wav","TitleBgm");
 
@@ -51,19 +53,33 @@ void MainTitleScene()
 {
 
 	// ゲーム処理
-	if (GetKeyDown(DIK_SPACE)) 
+	if (GetKeyDown(H) == true)
 	{
-		
 		ChangeSceneStep(SceneStep::EndStep);
+		scene_check = 0;
+	}
+	else if (GetKeyDown(SPACE) == true)
+	{
+		ChangeSceneStep(SceneStep::EndStep);
+		scene_check = 1;
 	}
 }
 
 SceneId FinishTitleScene()
 {
 	// リリース開放
+	ReleaseCategoryTexture(SceneId::TitleScene);
 
 	//音を止める処理を書く
 	//開放は.hがやってくれる
 	
-	return SceneId::GameScene;
+	switch (scene_check)
+	{
+	case 0:
+		return SceneId::HelpScene;
+		break;
+	case 1:
+		return SceneId::GameScene;
+		break;
+	}
 }

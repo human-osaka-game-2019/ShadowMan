@@ -21,12 +21,8 @@ typedef enum
 
 typedef enum
 {
-	GameBackGroundTexture,			//Game背景
-	GameBlockTexture,				//ブロック
-	GameLighTexture,				//光
-	GameTrapTexture,				//トラップ
-	GamePlayerTexture,				//主人公
-	GameRemainingHP,				//体力残機
+	GameBackGroundTexture,			// Game背景
+	IntegratedTexture,						// 統合画像
 	GameTextureMax,
 }GameCategoryTextureList;
 

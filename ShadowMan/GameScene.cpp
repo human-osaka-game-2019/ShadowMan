@@ -6,8 +6,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
-#include "Object/EnemyAi.h"
-
 
 // ゲーム本編シーンの初期化
 void InitGameScene();
@@ -92,8 +90,9 @@ void InitGameScene()
 {
 	// テクスチャ読み込み
 	LoadTexture("Texture/maptile.png", TextureCategoryGame, GameCategoryTextureList::GameBackGroundTexture);
+	LoadTexture("Texture/統合画像.png", TextureCategoryGame, GameCategoryTextureList::IntegratedTexture);
 
-	MapLoading("MapChip.csv", MapChipList);
+	MapLoading("csv/新MapChip.csv", MapChipList);
 
 	ChangeSceneStep(SceneStep::MainStep);
 }
@@ -114,35 +113,6 @@ void MainGameScene()
 	//ChangeSceneStep(SceneStep::EndStep);
 
 }
-
-void PlayerControl(DrawObject* player)
-{
-
-	if (GetKey(UP) == true)
-	{
-		player->y -= player->speed;
-	}
-
-	else if (GetKey(DOWN) == true)
-	{
-		player->y += player->speed;
-	}
-
-	// 左右
-	if (GetKey(LEFT) == true)
-	{
-		player->x -= player->speed;
-	}
-
-	else if (GetKey(RIGHT) == true)
-	{
-		player->x += player->speed;
-	}
-
-}
-
-
-	
 
 SceneId FinishGameScene()
 {

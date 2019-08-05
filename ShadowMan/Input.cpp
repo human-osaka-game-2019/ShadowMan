@@ -108,8 +108,35 @@ void KeyUpDate()
 	else if (hr == DIERR_INPUTLOST) {
 		g_pKeyDevice->Acquire();
 	}
+}
+
+// プレーヤー移動
+void PlayerControl(DrawObject* player)
+{
+
+	if (GetKey(UP) == true)
+	{
+		player->y -= player->speed;
+	}
+
+	else if (GetKey(DOWN) == true)
+	{
+		player->y += player->speed;
+	}
+
+	// 左右
+	if (GetKey(LEFT) == true)
+	{
+		player->x -= player->speed;
+	}
+
+	else if (GetKey(RIGHT) == true)
+	{
+		player->x += player->speed;
+	}
 
 }
+
 
 // 当たり判定
 void Collision(DrawObject* enemy, DrawObject* player)
@@ -183,7 +210,6 @@ void CollisionWallP(DrawObject* enemy, DrawObject* player)
 	}
 	*/
 }
-
 
 bool GetKey(DWORD key_code)
 {

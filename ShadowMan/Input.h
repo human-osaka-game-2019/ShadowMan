@@ -39,8 +39,10 @@ struct Relativity
 	float move_length;   //= sqrt(normal_x * normal_x + normal_y * normal_y);
 };
 
+// プレーヤー移動
+void PlayerControl(DrawObject* player);
 
-// 当たり判定のプロトタイプ宣言
+// 当たり判定
 void Collision();
 
 void CollisionWallP();

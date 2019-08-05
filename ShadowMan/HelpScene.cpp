@@ -1,4 +1,7 @@
 #include "HelpScene.h"
+#include "Graphics.h"
+#include "Texture.h"
+#include "Input.h"
 
 // ヘルプシーンの初期化
 void InitHelpScene();
@@ -28,12 +31,13 @@ SceneId UpdateHelpScene()
 void DrawHelpScene()
 {
 	// 描画処理
-
+	DrawTexture(0.0f, 0.0f, GetTexture(TextureCategoryHelp, HelpCategoryTextureList::HelpBackGroundTexture));
 }
 
 void InitHelpScene()
 {
 	// テクスチャ読み込み
+	LoadTexture("Texture/asobikata.png", TextureCategoryHelp, HelpCategoryTextureList::HelpBackGroundTexture);
 
 	ChangeSceneStep(SceneStep::MainStep);
 }
@@ -41,12 +45,15 @@ void InitHelpScene()
 void MainHelpScene()
 {
 	// ゲーム処理
-	ChangeSceneStep(SceneStep::EndStep);
+	if (GetKeyDown(ESCAPE) == true)
+	{
+		ChangeSceneStep(SceneStep::EndStep);
+	}
 }
 
 SceneId FinishHelpScene()
 {
 	// リリース開放
 
-	return SceneId::GameScene;
+	return SceneId::TitleScene;
 }

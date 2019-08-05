@@ -11,8 +11,6 @@ INT WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 		return 0;
 	}
 
-	while (true);
-
 	while (TRUE)
 	{
 		MSG msg;

@@ -86,7 +86,7 @@ void KeyUpDate()
 
 		if (KeyState[DIK_H] & 0x80) // H Key
 		{
-			g_InputState.now |= DIK_H;
+			g_InputState.now |= H;
 			// ƒQ[ƒ€ƒwƒ‹ƒv‚ÖˆÚ‚é
 		}
 

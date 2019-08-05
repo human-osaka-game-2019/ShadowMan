@@ -120,23 +120,23 @@ void MainGameScene()
 void PlayerControl(DrawObject* enemy, DrawObject* player, Movement* valueP, Relativity* status)
 {
 
-	if (GetKey(DIK_UP) == true)
+	if (GetKey(UP) == true)
 	{
 		valueP->vec_y =- valueP->speed;
 	}
 
-	else if (GetKey(DIK_DOWN) == true)
+	else if (GetKey(DOWN) == true)
 	{
 		valueP->vec_y = valueP->speed;
 	}
 
 	// ¶‰E
-	if (GetKey(DIK_LEFT) == true)
+	if (GetKey(LEFT) == true)
 	{
 		valueP->vec_x =- valueP->speed;
 	}
 
-	else if (GetKey(DIK_RIGHT) == true)
+	else if (GetKey(RIGHT) == true)
 	{
 		valueP->vec_x = valueP->speed;
 	}

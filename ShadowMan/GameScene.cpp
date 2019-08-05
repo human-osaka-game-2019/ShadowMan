@@ -32,6 +32,7 @@ static CONST INT MapSizeHeight = 15;
 static CONST INT MapChipWidth = 64;
 static CONST INT MapChipHeight = 64;
 static INT MapChipList[MapSizeHeight][MapSizeWidth];
+static DWORD SyncPrev, SyncCurr;
 
 static SceneId NextSceneId;
 
@@ -84,6 +85,32 @@ void DrawGameScene()
 			);
 		}
 	}
+
+	SyncCurr = timeGetTime();
+	if (SyncCurr - SyncPrev >= 0)
+	{
+		DrawMapChip(
+			D3DXVECTOR2(MapChipWidth * 1, MapChipHeight * 1),
+			D3DXVECTOR2(448.0f, 225.0f),
+			D3DXVECTOR2(MapChipWidth, MapChipWidth),
+			TextureCategoryGame,
+			GameCategoryTextureList::IntegratedTexture
+		);
+		if (SyncCurr - SyncPrev >= 500)
+		{
+			DrawMapChip(
+				D3DXVECTOR2(MapChipWidth * 1, MapChipHeight * 1),
+				D3DXVECTOR2(512.0f, 225.0f),
+				D3DXVECTOR2(MapChipWidth, MapChipWidth),
+				TextureCategoryGame,
+				GameCategoryTextureList::IntegratedTexture
+			);
+			if (SyncCurr - SyncPrev >= 1000)
+			{
+				SyncPrev = SyncCurr;
+			}
+		}
+	}
 }
 
 void InitGameScene()
@@ -92,7 +119,9 @@ void InitGameScene()
 	LoadTexture("Texture/maptile.png", TextureCategoryGame, GameCategoryTextureList::GameBackGroundTexture);
 	LoadTexture("Texture/“‡‰æ‘œ.png", TextureCategoryGame, GameCategoryTextureList::IntegratedTexture);
 
-	MapLoading("csv/VMapChip.csv", MapChipList);
+	MapLoading("csv/^MapChip.csv", MapChipList);
+
+	SyncPrev = timeGetTime();
 
 	ChangeSceneStep(SceneStep::MainStep);
 }

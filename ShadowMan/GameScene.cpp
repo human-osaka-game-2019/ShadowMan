@@ -14,18 +14,10 @@ void MainGameScene();
 // ゲーム本編シーンの終了
 SceneId FinishGameScene();
 
-//Object player;  // プレイヤー構造体の実体
-
-//Object enemy;   // 敵 構造体の実体
-
-//Movement valueP;     // player 移動数値の構造体の実体
-
-//Movement valueE;	 // Enemy  移動数値の構造体の実体
-
-//Relativity status;  // 相対的数値の構造体の実体
-
-static Object BigEye;
-static INT bigeye_id = 0;
+static Object Light;
+static Object ShadowMan;
+static INT light_id = 0;
+static INT shadow_man_id = 0;
 static INT key_check = 0;
 static INT move_count = 0;
 
@@ -87,23 +79,97 @@ void DrawGameScene()
 		}
 	}
 
-	BigEye.flame_count += 1.0f;
-	switch (bigeye_id)
+	// 光(エサ)の描画
+	if (Light.live_flag == true)
+	{
+		Light.flame_count += 1.0f;
+		switch (light_id)
+		{
+		case 0:
+			DrawObject(&Light, 384.0f, 360.0f, 128, 128);
+			if (Light.flame_count >= 30)
+			{
+				Light.flame_count = 0;
+				light_id = 1;
+			}
+			break;
+		case 1:
+			DrawObject(&Light, 896.0f, 360.0f, 128, 128);
+			if (Light.flame_count >= 30)
+			{
+				Light.flame_count = 0;
+				light_id = 2;
+			}
+			break;
+		case 2:
+			DrawObject(&Light, 256.0f, 360.0f, 128, 128);
+			if (Light.flame_count >= 30)
+			{
+				Light.flame_count = 0;
+				light_id = 3;
+			}
+			break;
+		case 3:
+			DrawObject(&Light, 768.0f, 360.0f, 128, 128);
+			if (Light.flame_count >= 30)
+			{
+				Light.flame_count = 0;
+				light_id = 4;
+			}
+			break;
+		case 4:
+			DrawObject(&Light, 128.0f, 360.0f, 128, 128);
+			if (Light.flame_count >= 30)
+			{
+				Light.flame_count = 0;
+				light_id = 5;
+			}
+			break;
+		case 5:
+			DrawObject(&Light, 640.0f, 360.0f, 128, 128);
+			if (Light.flame_count >= 30)
+			{
+				Light.flame_count = 0;
+				light_id = 6;
+			}
+			break;
+		case 6:
+			DrawObject(&Light, 0.0f, 360.0f, 128, 128);
+			if (Light.flame_count >= 30)
+			{
+				Light.flame_count = 0;
+				light_id = 7;
+			}
+			break;
+		case 7:
+			DrawObject(&Light, 512.0f, 360.0f, 128, 128);
+			if (Light.flame_count >= 30)
+			{
+				Light.flame_count = 0;
+				light_id = 0;
+			}
+			break;
+		}
+	}
+
+	// シャドウマンの描画
+	ShadowMan.flame_count += 1.0f;
+	switch (shadow_man_id)
 	{
 	case 0:
-		DrawObject(&BigEye, 448.0f, 225.0f, MapChipWidth, MapChipHeight);
-		if (BigEye.flame_count >= 60)
+		DrawObject(&ShadowMan, 0.0f, 225.0f, MapChipWidth, MapChipHeight);
+		if (ShadowMan.flame_count >= 30)
 		{
-			BigEye.flame_count = 0;
-			bigeye_id = 1;
+			ShadowMan.flame_count = 0;
+			shadow_man_id = 1;
 		}
 		break;
 	case 1:
-		DrawObject(&BigEye, 512.0f, 225.0f, MapChipWidth, MapChipHeight);
-		if (BigEye.flame_count >= 60)
+		DrawObject(&ShadowMan, 64.0f, 225.0f, MapChipWidth, MapChipHeight);
+		if (ShadowMan.flame_count >= 30)
 		{
-			BigEye.flame_count = 0;
-			bigeye_id = 0;
+			ShadowMan.flame_count = 0;
+			shadow_man_id = 0;
 		}
 		break;
 	}
@@ -117,12 +183,20 @@ void InitGameScene()
 
 	MapLoading("csv/真MapChip.csv", MapChipList);
 
-	BigEye.x = 64.0f;
-	BigEye.y = 64.0f;
-	BigEye.mapchip_num_row = 1;
-	BigEye.mapchip_num_col = 1;
-	BigEye.speed = 2.0f;
-	BigEye.flame_count = 0.0f;
+	Light.x = 96.0f;
+	Light.y = 32.0f;
+	Light.circle_radius = 16.0f;
+	Light.flame_count = 0.0f;
+	Light.live_flag = true;
+
+	ShadowMan.x = 64.0f;
+	ShadowMan.y = 64.0f;
+	ShadowMan.mapchip_num_row = 1;
+	ShadowMan.mapchip_num_col = 1;
+	ShadowMan.speed = 2.0f;
+	ShadowMan.circle_radius = 16.0f;
+	ShadowMan.flame_count = 0.0f;
+	ShadowMan.live_flag = true;
 
 	ChangeSceneStep(SceneStep::MainStep);
 }
@@ -153,13 +227,13 @@ void MainGameScene()
 	switch (key_check)
 	{
 	case 1:
-		if (MapChipList[BigEye.mapchip_num_row - 1][BigEye.mapchip_num_col] == 1)
+		if (MapChipList[ShadowMan.mapchip_num_row - 1][ShadowMan.mapchip_num_col] == 1)
 		{
-			BigEye.y -= BigEye.speed;
-			move_count += BigEye.speed;
+			ShadowMan.y -= ShadowMan.speed;
+			move_count += ShadowMan.speed;
 			if (move_count >= MapChipHeight)
 			{
-				BigEye.mapchip_num_row--;
+				ShadowMan.mapchip_num_row--;
 				move_count = 0;
 				key_check = 0;
 			}
@@ -170,13 +244,13 @@ void MainGameScene()
 		}
 		break;
 	case 2:
-		if (MapChipList[BigEye.mapchip_num_row + 1][BigEye.mapchip_num_col] == 1)
+		if (MapChipList[ShadowMan.mapchip_num_row + 1][ShadowMan.mapchip_num_col] == 1)
 		{
-			BigEye.y += BigEye.speed;
-			move_count += BigEye.speed;
+			ShadowMan.y += ShadowMan.speed;
+			move_count += ShadowMan.speed;
 			if (move_count >= MapChipHeight)
 			{
-				BigEye.mapchip_num_row++;
+				ShadowMan.mapchip_num_row++;
 				move_count = 0;
 				key_check = 0;
 			}
@@ -187,13 +261,13 @@ void MainGameScene()
 		}
 		break;
 	case 3:
-		if (MapChipList[BigEye.mapchip_num_row][BigEye.mapchip_num_col - 1] == 1)
+		if (MapChipList[ShadowMan.mapchip_num_row][ShadowMan.mapchip_num_col - 1] == 1)
 		{
-			BigEye.x -= BigEye.speed;
-			move_count += BigEye.speed;
+			ShadowMan.x -= ShadowMan.speed;
+			move_count += ShadowMan.speed;
 			if (move_count >= MapChipWidth)
 			{
-				BigEye.mapchip_num_col--;
+				ShadowMan.mapchip_num_col--;
 				move_count = 0;
 				key_check = 0;
 			}
@@ -204,13 +278,13 @@ void MainGameScene()
 		}
 		break;
 	case 4:
-		if (MapChipList[BigEye.mapchip_num_row][BigEye.mapchip_num_col + 1] == 1)
+		if (MapChipList[ShadowMan.mapchip_num_row][ShadowMan.mapchip_num_col + 1] == 1)
 		{
-			BigEye.x += BigEye.speed;
-			move_count += BigEye.speed;
+			ShadowMan.x += ShadowMan.speed;
+			move_count += ShadowMan.speed;
 			if (move_count >= MapChipWidth)
 			{
-				BigEye.mapchip_num_col++;
+				ShadowMan.mapchip_num_col++;
 				move_count = 0;
 				key_check = 0;
 			}
@@ -222,16 +296,10 @@ void MainGameScene()
 		break;
 	}
 
-	//PlayerControl();
-
-	//EnemyTypeChase();
-
-	//Collision();
-
-	//CollisionWallP();
-
-	//ChangeSceneStep(SceneStep::EndStep);
-
+	if (Collision(&Light, &ShadowMan) == true)
+	{
+		Light.live_flag = false;
+	}
 }
 
 SceneId FinishGameScene()

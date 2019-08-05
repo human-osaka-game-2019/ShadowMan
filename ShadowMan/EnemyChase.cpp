@@ -24,8 +24,8 @@ void EnemyTypeChase(Object* enemy, Object* player, Relativity* status)
 
 }
 
-void Collision()
-{
+//void Collision()
+//{
 
 	/*
 
@@ -33,4 +33,4 @@ void Collision()
 
 	*/
 
-}
+//}

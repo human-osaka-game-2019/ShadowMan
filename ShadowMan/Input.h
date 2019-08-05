@@ -21,7 +21,8 @@ struct Object
 	float rect_wid;
 	float rect_hgt;
 	float circle_radius;
-	float flame_count;
+	int flame_count;
+	bool live_flag;
 };
 
 struct INPUTSTATE // ƒL[‚Ìî•ñ‚Ì\‘¢‘Ì
@@ -46,7 +47,7 @@ struct Relativity
 void PlayerControl(Object* player);
 
 // “–‚½‚è”»’è
-void Collision();
+bool Collision(Object* enemy, Object* player);
 
 void CollisionWallP();
 

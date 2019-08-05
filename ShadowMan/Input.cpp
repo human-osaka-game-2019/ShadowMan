@@ -139,20 +139,12 @@ void PlayerControl(Object* player)
 
 
 // 当たり判定
-void Collision(Object* enemy, Object* player)
+bool Collision(Object* enemy, Object* player)
 {
 	// 敵キャラとプレイヤーキャラの当たり判定
-	enemy->x;  //敵X座標
-	enemy->y;  //敵Y座標
-	enemy->circle_radius = 32.0f;		  //敵テクスチャの円形範囲
-
-	player->x; //プレイヤーX座標
-	player->y; //プレイヤーY座標
-	player->circle_radius = 32.0f;		  //プレイヤーテクスチャの円形範囲
-
-	float a = player->x - enemy->x; // X座標の算出
-	float b = player->y - enemy->y; // Y座標の算出
-	float c = sqrt(a * a + b * b);			 // 二つの円の距離の算出
+	float a = player->x - enemy->x;		// X座標の算出
+	float b = player->y - enemy->y;		// Y座標の算出
+	float c = sqrt(a * a + b * b);			// 二つの円の距離の算出
 
 	if (c <= player->circle_radius + enemy->circle_radius)
 	{
@@ -160,6 +152,7 @@ void Collision(Object* enemy, Object* player)
 		当たってる
 		プレイヤー死亡
 		*/
+		return true;
 	}
 	else
 	{
@@ -167,6 +160,7 @@ void Collision(Object* enemy, Object* player)
 		当たってない
 		ゲーム続行
 		*/
+		return false;
 	}
 
 }

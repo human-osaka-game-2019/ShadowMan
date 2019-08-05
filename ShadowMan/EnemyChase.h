@@ -3,6 +3,6 @@
 
 void EnemyTypeChase(Object* enemy, Object* player, Relativity* status);
 
-void Collision();
+//bool Collision();
 
 #endif

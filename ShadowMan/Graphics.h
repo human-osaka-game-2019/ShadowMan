@@ -32,4 +32,8 @@ BOOL CreateTexture(CONST CHAR* file_name, Texture* texture_data);
 
 VOID DrawFont(float pos_x,float pos_y, const char* text);
 
+void SetUpStencilRenderState(unsigned char ref, D3DCMPFUNC cmp_func);
+
+void SetUpStencilMaskRenderState(unsigned char ref, D3DCMPFUNC cmp_func);
+
 #endif

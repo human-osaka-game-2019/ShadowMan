@@ -15,6 +15,16 @@ struct DrawObject
 	int m_TextureId;	// テクスチャの種類
 	float m_PosX;		// 描画座標X
 	float m_PosY;		// 描画座標Y
+	float speed; //　スピード (移動量)
+	float rect_x;
+	float rect_y;
+	//float rectW_x; マップチップの'壁'のX座標
+	//float rectW_y; 
+	float rect_wid;
+	float rect_hgt;
+	float circle_pos_x;
+	float circle_pos_y;
+	float circle_radius;
 };
 
 struct INPUTSTATE // キーの情報の構造体
@@ -24,25 +34,22 @@ struct INPUTSTATE // キーの情報の構造体
 	DWORD npushed;
 };
 
-struct Movement
-{
-	float speed = 5.0f;  //　スピード (移動量)  xには値を入れるべき
-	float vec_x = 1.0f;  //  x成分 (X座標築)   xには値を入れるべき
-	float vec_y = 1.0f;  //  y成分 (Y座標築)	  xには値を入れるべき
-	float length = 5.0f; //  長さ (移動距離）	  xには値を入れるべき
-};
-
 struct Relativity
 {
 	float Sr;			 // プレイヤー座標 - 敵座標 = Sr (相対距離)
 	float Vr;		     // プレイヤーの移動量(Speed) - 敵の移動量(Speed) = Vr(相対速度)
 	float Tc;			 // Tc(接近時間) = |Sr| / |Vr|  これで、敵がプレイヤーの座標を予測
-	float normal_x;		 //= value->vec_x / value->length;
-	float normal_y;		 //= value->vec_y / value->length;
+	float normal_x;		 //= vec_x / length;
+	float normal_y;		 //= vec_y / length;
 	float normal_length; //= sqrt(normal_x * normal_x + normal_y * normal_y);
 	float move_length;   //= sqrt(normal_x * normal_x + normal_y * normal_y);
 };
 
+
+// 当たり判定のプロトタイプ宣言
+void Collision();
+
+void CollisionWallP();
 
 // @brief キーの種類
 enum KeyState
@@ -97,6 +104,9 @@ bool GetKeyDown(DWORD key_code);
 
 
 bool GetKeyUp(DWORD key_code);
+
+
+
 
 
 #endif

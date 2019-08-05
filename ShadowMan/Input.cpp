@@ -111,6 +111,80 @@ void KeyUpDate()
 
 }
 
+// 当たり判定
+void Collision(DrawObject* enemy, DrawObject* player)
+{
+	// 敵キャラとプレイヤーキャラの当たり判定
+	enemy->circle_pos_x = enemy->m_PosX;  //敵X座標
+	enemy->circle_pos_y = enemy->m_PosY;  //敵Y座標
+	enemy->circle_radius = 32.0f;		  //敵テクスチャの円形範囲
+
+	player->circle_pos_x = player->m_PosX; //プレイヤーX座標
+	player->circle_pos_y = player->m_PosY; //プレイヤーY座標
+	player->circle_radius = 32.0f;		  //プレイヤーテクスチャの円形範囲
+
+	float a = player->circle_pos_x - enemy->circle_pos_x; // X座標の算出
+	float b = player->circle_pos_y - enemy->circle_pos_y; // Y座標の算出
+	float c = sqrt(a * a + b * b);			 // 二つの円の距離の算出
+
+	if (c <= player->circle_radius + enemy->circle_radius)
+	{
+		/*
+		当たってる
+		プレイヤー死亡
+		*/
+	}
+	else
+	{
+		/*
+		当たってない
+		ゲーム続行
+		*/
+	}
+
+}
+
+void CollisionWallP(DrawObject* enemy, DrawObject* player)
+{
+	// プレイヤーキャラと壁の当たり判定
+
+	// Player
+	player->rect_x = player->m_PosX;
+	player->rect_y = player->m_PosY;
+	player->rect_wid = 64.0f;
+	player->rect_hgt = 64.0f;
+
+	// Enemy
+	enemy->rect_x = enemy->m_PosX;
+	enemy->rect_y = enemy->m_PosY;
+	enemy->rect_wid = 64.0f;
+	enemy->rect_hgt = 64.0f;
+
+	/* Wall
+	wall->rect_x; //マップチップの'壁'のX座標
+	float rectW_y; //マップチップの'壁'のY座標
+	float rectW_wid = 64.0f;
+	float rectW_hgt = 64.0f;
+	
+
+	if (player->rect_x + player->rect_wid >= rectW_x && rectP_x <= rectW_x + rectW_wid &&
+		rectP_y + rectP_hgt >= rectW_y && rectP_y <= rectW_y + rectW_hgt)
+	{
+
+		// 当たってる
+
+	}
+
+	else
+	{
+
+		// 当たってない
+
+	}
+	*/
+}
+
+
 bool GetKey(DWORD key_code)
 {
 	return g_InputState.now& key_code;

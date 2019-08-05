@@ -62,36 +62,44 @@ void KeyUpDate()
 		// 1 Prev Frame Info Get
 		DWORD old = g_InputState.now;
 
+		g_InputState.now = CLEAR;
+
 		if (KeyState[DIK_UP] & 0x80) // UP Key
 		{
-			g_InputState.now |= DIK_UP;	// Character Move Up
+			g_InputState.now |= UP;	// Character Move Up
 		}
 
 		if (KeyState[DIK_DOWN] & 0x80) // DOWN Key
 		{
-			g_InputState.now |= DIK_DOWN; // Character Move Down
+			g_InputState.now |= DOWN; // Character Move Down
 		}
 
 		if (KeyState[DIK_LEFT] & 0x80) // LEFT Key
 		{
-			g_InputState.now |= DIK_LEFT; // Character Move Left
+			g_InputState.now |= LEFT; // Character Move Left
 		}
 
 		if (KeyState[DIK_RIGHT] & 0x80) // RIGHT Key
 		{
-			g_InputState.now |= DIK_RIGHT; // Character Move Right
-		}
-
-		if (KeyState[DIK_SPACE] & 0x80) // SPACE Key
-		{
-			g_InputState.now |= DIK_SPACE;
-			// ゲーム本編へ移る
+			g_InputState.now |= RIGHT; // Character Move Right
 		}
 
 		if (KeyState[DIK_H] & 0x80) // H Key
 		{
 			g_InputState.now |= DIK_H;
 			// ゲームヘルプへ移る
+		}
+
+		if (KeyState[DIK_SPACE] & 0x80) // SPACE Key
+		{
+			g_InputState.now |= SPACE;
+			// ゲーム本編へ移る
+		}
+
+		if (KeyState[DIK_ESCAPE] & 0x80) // ESC Key
+		{
+			// ゲームタイトルへ戻る
+			g_InputState.now |= ESCAPE;
 		}
 
 		g_InputState.pushed = (g_InputState.now & (~old)); // Push Info Get

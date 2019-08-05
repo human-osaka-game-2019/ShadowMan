@@ -47,13 +47,14 @@ struct Relativity
 // @brief キーの種類
 enum KeyState
 {
-	CLEAR, // Key Clear
-	UP,    //!<上
-	LEFT,  //!<左
-	RIGHT, //!<右
-	DOWN,  //!<下
-	H,	   //!< H キー
-	SPACE, //!< Space キー
+	CLEAR = 0x0000,		// Key Clear
+	UP = 0x0002,		//!<上
+	LEFT = 0x0004,		//!<左
+	RIGHT = 0x0008,		//!<右
+	DOWN = 0x0010,		//!<下
+	H = 0x0020,		//!< H キー
+	SPACE = 0x0040,		//!< Space キー
+	ESCAPE = 0x0080,		//!< Escape キー
 };
 
 bool InitDirectInput(HINSTANCE Instance_Handle, HWND Window_Handle);

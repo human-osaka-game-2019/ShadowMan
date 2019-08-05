@@ -33,10 +33,11 @@ void PlayerControl();
 void PlayerCollision();
 
 
-static CONST INT MapSizeWidth = 10;
-static CONST INT MapSizeHeight = 5;
-static CONST INT MapChipWidth = 128;
-static CONST INT MapChipHeight = 128;
+static CONST INT MapSizeWidth = 20;
+static CONST INT MapSizeHeight = 15;
+static CONST INT MapChipWidth = 64;
+static CONST INT MapChipHeight = 64;
+static INT MapChipList[MapSizeHeight][MapSizeWidth];
 
 static SceneId NextSceneId;
 
@@ -61,9 +62,8 @@ SceneId UpdateGameScene()
 void DrawGameScene()
 {
 	// 描画処理
-	INT MapChipList[MapSizeHeight][MapSizeWidth];
-
-	MapLoading("Map.csv", MapChipList);
+	INT width_num = GetTexture(TextureCategoryGame, GameCategoryTextureList::GameBackGroundTexture)->Width / MapChipWidth;
+	INT height_num = GetTexture(TextureCategoryGame, GameCategoryTextureList::GameBackGroundTexture)->Height / MapChipHeight;
 
 	for (INT i = 0; i < MapSizeHeight; i++)
 	{
@@ -77,16 +77,16 @@ void DrawGameScene()
 			}
 
 			//どこに貼り付けるか
-			INT width_num = GetTexture(TextureCategoryGame, GameCategoryTextureList::GameBackGroundTexture)->Width / MapChipWidth;
-			INT height_num = GetTexture(TextureCategoryGame, GameCategoryTextureList::GameBackGroundTexture)->Height / MapChipHeight;
 
 			FLOAT chip_pos_x = (FLOAT)(chip_id % width_num) * MapChipWidth;
-			FLOAT chip_pos_y = (FLOAT)(chip_id / height_num) * MapChipHeight;
+			FLOAT chip_pos_y = (FLOAT)(chip_id / width_num) * MapChipHeight;
 			//何を貼り付けたいか
 			DrawMapChip(
 				D3DXVECTOR2(MapChipWidth * j, MapChipHeight * i),
 				D3DXVECTOR2(chip_pos_x, chip_pos_y),
-				D3DXVECTOR2(MapChipWidth, MapChipHeight)
+				D3DXVECTOR2(MapChipWidth, MapChipHeight),
+				TextureCategoryGame,
+				GameCategoryTextureList::GameBackGroundTexture
 			);
 		}
 	}
@@ -95,7 +95,9 @@ void DrawGameScene()
 void InitGameScene()
 {
 	// テクスチャ読み込み
-	LoadTexture("Texture/統合画像.png", TextureCategoryGame, GameCategoryTextureList::GameBackGroundTexture);
+	LoadTexture("Texture/maptile.png", TextureCategoryGame, GameCategoryTextureList::GameBackGroundTexture);
+
+	MapLoading("MapChip.csv", MapChipList);
 
 	ChangeSceneStep(SceneStep::MainStep);
 }

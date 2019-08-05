@@ -6,7 +6,7 @@
 INT WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	LPSTR CmdLine, INT nCmdShow)
 {
-	if (InitEngine(1280, 640, "Shadow Man",hInstance) == FALSE)
+	if (InitEngine(1280, 960, "Shadow Man",hInstance) == FALSE)
 	{
 		return 0;
 	}

@@ -99,7 +99,7 @@ VOID DrawTexture(FLOAT x, FLOAT y, Texture* texture_data)
 
 }
 
-VOID MapLoading(CONST CHAR* file_name, INT List[][10])
+VOID MapLoading(CONST CHAR* file_name, INT List[][20])
 {
 	FILE* fp = nullptr;
 
@@ -150,10 +150,10 @@ VOID MapLoading(CONST CHAR* file_name, INT List[][10])
 	}
 }
 
-VOID DrawMapChip(D3DXVECTOR2 draw_pos, D3DXVECTOR2 texture_pos, D3DXVECTOR2 sprite_size)
+VOID DrawMapChip(D3DXVECTOR2 draw_pos, D3DXVECTOR2 texture_pos, D3DXVECTOR2 sprite_size, INT category_id, INT texture_id)
 {
-	D3DXVECTOR2 uv = D3DXVECTOR2(texture_pos.x / GetTexture(TextureCategoryGame, GameCategoryTextureList::GameBackGroundTexture)->Width, texture_pos.y / GetTexture(TextureCategoryGame, GameCategoryTextureList::GameBackGroundTexture)->Height);
-	D3DXVECTOR2 uv_size = D3DXVECTOR2(sprite_size.x / GetTexture(TextureCategoryGame, GameCategoryTextureList::GameBackGroundTexture)->Width, sprite_size.y / GetTexture(TextureCategoryGame, GameCategoryTextureList::GameBackGroundTexture)->Height);
+	D3DXVECTOR2 uv = D3DXVECTOR2(texture_pos.x / GetTexture(category_id, texture_id)->Width, texture_pos.y / GetTexture(category_id, texture_id)->Height);
+	D3DXVECTOR2 uv_size = D3DXVECTOR2(sprite_size.x / GetTexture(category_id, texture_id)->Width, sprite_size.y / GetTexture(category_id, texture_id)->Height);
 
 	CustomVertex sprite[] =
 	{
@@ -165,7 +165,7 @@ VOID DrawMapChip(D3DXVECTOR2 draw_pos, D3DXVECTOR2 texture_pos, D3DXVECTOR2 spri
 
 	g_D3DDevice->SetFVF(D3DFVF_XYZRHW | D3DFVF_TEX1);
 
-	g_D3DDevice->SetTexture(0, GetTexture(TextureCategoryGame, GameCategoryTextureList::GameBackGroundTexture)->TextureData);
+	g_D3DDevice->SetTexture(0, GetTexture(category_id, texture_id)->TextureData);
 
 	g_D3DDevice->DrawPrimitiveUP(D3DPT_TRIANGLEFAN, 2, sprite, sizeof(CustomVertex));
 }

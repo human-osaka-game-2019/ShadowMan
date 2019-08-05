@@ -13,7 +13,7 @@ BOOL InitEngine(INT width, INT height, CONST CHAR* title_name, HINSTANCE hInstan
 {
 	HWND hWnd;
 
-	if (MakeWindow(width, height, title_name,&hWnd) == false)
+	if (MakeWindow(width, height, title_name, &hWnd) == false)
 	{
 		return FALSE;
 	}

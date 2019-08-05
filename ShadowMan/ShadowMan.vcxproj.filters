@@ -40,15 +40,6 @@
     <ClCompile Include="EnemyChase.cpp">
       <Filter>ソースファイル\Object</Filter>
     </ClCompile>
-    <ClCompile Include="EnemyPredict.cpp">
-      <Filter>ソースファイル\Object</Filter>
-    </ClCompile>
-    <ClCompile Include="EnemyPatrol.cpp">
-      <Filter>ソースファイル\Object</Filter>
-    </ClCompile>
-    <ClCompile Include="EnemyFlee.cpp">
-      <Filter>ソースファイル\Object</Filter>
-    </ClCompile>
     <ClCompile Include="Light.cpp">
       <Filter>ソースファイル\Object</Filter>
     </ClCompile>
@@ -93,10 +84,10 @@
     <ClInclude Include="Vec.h">
       <Filter>ソースファイル\Utility</Filter>
     </ClInclude>
-    <ClInclude Include="Object\EnemyAi.h">
+    <ClInclude Include="Light.h">
       <Filter>ソースファイル\Object</Filter>
     </ClInclude>
-    <ClInclude Include="Light.h">
+    <ClInclude Include="EnemyChase.h">
       <Filter>ソースファイル\Object</Filter>
     </ClInclude>
   </ItemGroup>

@@ -22,7 +22,7 @@ struct Object
 	float rect_hgt;
 	float circle_radius;
 	int flame_count;
-	bool live_flag;
+	int mode;
 };
 
 struct INPUTSTATE // ƒL[‚Ìî•ñ‚Ì\‘¢‘Ì

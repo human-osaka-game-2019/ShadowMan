@@ -80,23 +80,23 @@ void DrawGameScene()
 		}
 	}
 
-	// 光の描画
-	if (Light.live_flag == true)
+	// 光の設置
+	if (Light.mode == 1)
 	{
 		Light.flame_count += 1.0f;
 		switch (light_id)
 		{
 		case 0:
 			DrawObject(Light.x, Light.y, 576.0f, 225.0f, MapChipWidth, MapChipHeight);
-			ChengeTextureId(&ShadowMan, &light_id, 30);
+			ChengeTextureId(&Light, &light_id, 30);
 			break;
 		case 1:
 			DrawObject(Light.x, Light.y, 640.0f, 225.0f, MapChipWidth, MapChipHeight);
-			ChengeTextureId(&ShadowMan, &light_id, 30);
+			ChengeTextureId(&Light, &light_id, 30);
 			break;
 		case 2:
 			DrawObject(Light.x, Light.y, 704.0f, 225.0f, MapChipWidth, MapChipHeight);
-			ChengeTextureId(&ShadowMan, &light_id, 30);
+			ChengeTextureId(&Light, &light_id, 30);
 			break;
 		case 3:
 			DrawObject(Light.x, Light.y, 768.0f, 225.0f, MapChipWidth, MapChipHeight);
@@ -109,8 +109,42 @@ void DrawGameScene()
 		}
 	}
 
+	// 光の吐き出し 
+	if (Light.mode == 2)
+	{
+		Light.flame_count += 1.0f;
+		switch (light_id)
+		{
+		case 0:
+			DrawObject(Light.x, Light.y, 576.0f, 225.0f, MapChipWidth, MapChipHeight);
+			ChengeTextureId(&Light, &light_id, 30);
+			break;
+		case 1:
+			DrawObject(Light.x, Light.y, 640.0f, 225.0f, MapChipWidth, MapChipHeight);
+			ChengeTextureId(&Light, &light_id, 30);
+			break;
+		case 2:
+			DrawObject(Light.x, Light.y, 704.0f, 225.0f, MapChipWidth, MapChipHeight);
+			ChengeTextureId(&Light, &light_id, 30);
+			break;
+		case 3:
+			DrawObject(Light.x, Light.y, 768.0f, 225.0f, MapChipWidth, MapChipHeight);
+			if (Light.flame_count >= 30)
+			{
+				Light.flame_count = 0;
+				light_id = 0;
+			}
+			break;
+		}
+		Light.x += 8.0f;
+		if (Light.x >= 1280)
+		{
+			Light.mode = -1;
+		}
+	}
+
 	// シャドウマンの描画
-	if (ShadowMan.live_flag == true)
+	if (ShadowMan.mode == 1)
 	{
 		ShadowMan.flame_count += 1.0f;
 		switch (shadow_man_id)
@@ -131,7 +165,7 @@ void DrawGameScene()
 	}
 
 	// 光っているシャドウマンの描画
-	if (ShadowMan.live_flag == false)
+	if (ShadowMan.mode == 2)
 	{
 		ShadowMan.flame_count += 1.0f;
 		switch (shineman_id)
@@ -188,7 +222,7 @@ void InitGameScene()
 	Light.y = 64.0f;
 	Light.circle_radius = 8.0f;
 	Light.flame_count = 0.0f;
-	Light.live_flag = true;
+	Light.mode = 1;
 
 	ShadowMan.x = 64.0f;
 	ShadowMan.y = 64.0f;
@@ -197,7 +231,7 @@ void InitGameScene()
 	ShadowMan.speed = 2.0f;
 	ShadowMan.circle_radius = 16.0f;
 	ShadowMan.flame_count = 0.0f;
-	ShadowMan.live_flag = true;
+	ShadowMan.mode = 1;
 
 	ChangeSceneStep(SceneStep::MainStep);
 }
@@ -297,10 +331,27 @@ void MainGameScene()
 		break;
 	}
 
-	if (Collision(&Light, &ShadowMan) == true)
+	if (Light.mode == 1)
 	{
-		Light.live_flag = false;
-		ShadowMan.live_flag = false;
+		if (Collision(&Light, &ShadowMan) == true)
+		{
+			Light.mode = 0;
+		}
+	}
+
+	// スペースを押すと光を放つ
+
+
+	if (Light.mode == 0)
+	{
+		if (GetKeyDown(SPACE) == true)
+		{
+			Light.mode = 2;
+			float tmp_x = ShadowMan.x;
+			float tmp_y = ShadowMan.y;
+			Light.x = tmp_x;
+			Light.y = tmp_y;
+		}
 	}
 }
 

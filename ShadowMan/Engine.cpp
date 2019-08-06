@@ -12,7 +12,7 @@ SoundLib::SoundsManager g_SoundManager;
 BOOL InitEngine(INT width, INT height, CONST CHAR* title_name, HINSTANCE hInstance)
 {
 	HWND hWnd;
-
+	  
 	if (MakeWindow(width, height, title_name, &hWnd) == false)
 	{
 		return FALSE;

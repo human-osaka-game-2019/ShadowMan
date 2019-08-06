@@ -192,7 +192,7 @@ VOID DrawObject(float draw_pos_x, float draw_pos_y, float tex_pos_x, float tex_p
 	);
 }
 
-void ChengeTextureId(Object* object, int* object_id, int flame_counts)
+void ChangeTextureId(Object* object, int* object_id, int flame_counts)
 {
 	if (object->flame_count >= flame_counts)
 	{

@@ -2,6 +2,7 @@
 #include "Texture.h"
 #include"GameScene.h"
 #include "Input.h"
+#include "Animation.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -83,59 +84,13 @@ void DrawGameScene()
 	// 光の設置
 	if (Light.mode == 1)
 	{
-		Light.flame_count += 1.0f;
-		switch (light_id)
-		{
-		case 0:
-			DrawObject(Light.x, Light.y, 576.0f, 225.0f, MapChipWidth, MapChipHeight);
-			ChengeTextureId(&Light, &light_id, 30);
-			break;
-		case 1:
-			DrawObject(Light.x, Light.y, 640.0f, 225.0f, MapChipWidth, MapChipHeight);
-			ChengeTextureId(&Light, &light_id, 30);
-			break;
-		case 2:
-			DrawObject(Light.x, Light.y, 704.0f, 225.0f, MapChipWidth, MapChipHeight);
-			ChengeTextureId(&Light, &light_id, 30);
-			break;
-		case 3:
-			DrawObject(Light.x, Light.y, 768.0f, 225.0f, MapChipWidth, MapChipHeight);
-			if (Light.flame_count >= 30)
-			{
-				Light.flame_count = 0;
-				light_id = 0;
-			}
-			break;
-		}
+		AnimationLight(&Light, &light_id, 30);
 	}
 
 	// 光の吐き出し 
 	if (Light.mode == 2)
 	{
-		Light.flame_count += 1.0f;
-		switch (light_id)
-		{
-		case 0:
-			DrawObject(Light.x, Light.y, 576.0f, 225.0f, MapChipWidth, MapChipHeight);
-			ChengeTextureId(&Light, &light_id, 30);
-			break;
-		case 1:
-			DrawObject(Light.x, Light.y, 640.0f, 225.0f, MapChipWidth, MapChipHeight);
-			ChengeTextureId(&Light, &light_id, 30);
-			break;
-		case 2:
-			DrawObject(Light.x, Light.y, 704.0f, 225.0f, MapChipWidth, MapChipHeight);
-			ChengeTextureId(&Light, &light_id, 30);
-			break;
-		case 3:
-			DrawObject(Light.x, Light.y, 768.0f, 225.0f, MapChipWidth, MapChipHeight);
-			if (Light.flame_count >= 30)
-			{
-				Light.flame_count = 0;
-				light_id = 0;
-			}
-			break;
-		}
+		AnimationLight(&Light, &light_id, 30);
 		Light.x += 8.0f;
 		if (Light.x >= 1280)
 		{
@@ -146,22 +101,7 @@ void DrawGameScene()
 	// シャドウマンの描画
 	if (ShadowMan.mode == 1)
 	{
-		ShadowMan.flame_count += 1.0f;
-		switch (shadow_man_id)
-		{
-		case 0:
-			DrawObject(ShadowMan.x, ShadowMan.y, 0.0f, 225.0f, MapChipWidth, MapChipHeight);
-			ChengeTextureId(&ShadowMan, &shadow_man_id, 30);
-			break;
-		case 1:
-			DrawObject(ShadowMan.x, ShadowMan.y, 64.0f, 225.0f, MapChipWidth, MapChipHeight);
-			if (ShadowMan.flame_count >= 30)
-			{
-				ShadowMan.flame_count = 0;
-				shadow_man_id = 0;
-			}
-			break;
-		}
+		AnimationShadowMan(&ShadowMan, &shadow_man_id, 30);
 	}
 
 	// 光っているシャドウマンの描画
@@ -172,31 +112,31 @@ void DrawGameScene()
 		{
 		case 0:
 			DrawObject(ShadowMan.x - 32, ShadowMan.y  - 32, 384.0f, 360.0f, 128, 128);
-			ChengeTextureId(&ShadowMan, &shineman_id, 30);
+			ChangeTextureId(&ShadowMan, &shineman_id, 30);
 			break;
 		case 1:
 			DrawObject(ShadowMan.x - 32, ShadowMan.y - 32, 896.0f, 360.0f, 128, 128);
-			ChengeTextureId(&ShadowMan, &shineman_id, 30);
+			ChangeTextureId(&ShadowMan, &shineman_id, 30);
 			break;
 		case 2:
 			DrawObject(ShadowMan.x - 32, ShadowMan.y - 32, 256.0f, 360.0f, 128, 128);
-			ChengeTextureId(&ShadowMan, &shineman_id, 30);
+			ChangeTextureId(&ShadowMan, &shineman_id, 30);
 			break;
 		case 3:
 			DrawObject(ShadowMan.x - 32, ShadowMan.y - 32, 768.0f, 360.0f, 128, 128);
-			ChengeTextureId(&ShadowMan, &shineman_id, 30);
+			ChangeTextureId(&ShadowMan, &shineman_id, 30);
 			break;
 		case 4:
 			DrawObject(ShadowMan.x - 32, ShadowMan.y - 32, 128.0f, 360.0f, 128, 128);
-			ChengeTextureId(&ShadowMan, &shineman_id, 30);
+			ChangeTextureId(&ShadowMan, &shineman_id, 30);
 			break;
 		case 5:
 			DrawObject(ShadowMan.x - 32, ShadowMan.y - 32, 640.0f, 360.0f, 128, 128);
-			ChengeTextureId(&ShadowMan, &shineman_id, 30);
+			ChangeTextureId(&ShadowMan, &shineman_id, 30);
 			break;
 		case 6:
 			DrawObject(ShadowMan.x - 32, ShadowMan.y - 32, 0.0f, 360.0f, 128, 128);
-			ChengeTextureId(&ShadowMan, &shineman_id, 30);
+			ChangeTextureId(&ShadowMan, &shineman_id, 30);
 			break;
 		case 7:
 			DrawObject(ShadowMan.x - 32, ShadowMan.y - 32, 512.0f, 360.0f, 128, 128);

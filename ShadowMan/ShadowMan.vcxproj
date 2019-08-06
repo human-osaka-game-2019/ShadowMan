@@ -146,6 +146,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Animation.cpp" />
     <ClCompile Include="EnemyChase.cpp" />
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="GameClearScene.cpp" />
@@ -163,6 +164,7 @@
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Animation.h" />
     <ClInclude Include="EnemyChase.h" />
     <ClInclude Include="Engine.h" />
     <ClInclude Include="GameClearScene.h" />

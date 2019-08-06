@@ -31,7 +31,7 @@ VOID DrawMapChip(D3DXVECTOR2 draw_pos, D3DXVECTOR2 texture_pos, D3DXVECTOR2 text
 
 VOID DrawObject(float draw_pos_x, float draw_pos_y, float tex_pos_x, float tex_pos_y, int tex_width, int tex_height);
 
-void ChengeTextureId(Object* object, int* object_id, int flame_counts);
+void ChangeTextureId(Object* object, int* object_id, int flame_counts);
 
 BOOL CreateTexture(CONST CHAR* file_name, Texture* texture_data);
 

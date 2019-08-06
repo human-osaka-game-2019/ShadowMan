@@ -46,6 +46,9 @@
     <ClCompile Include="WaitEnemy.cpp">
       <Filter>ソースファイル\Object</Filter>
     </ClCompile>
+    <ClCompile Include="Animation.cpp">
+      <Filter>ソースファイル\Animation</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine.h">
@@ -96,6 +99,9 @@
     <ClInclude Include="WaitEnemy.h">
       <Filter>ソースファイル\Object</Filter>
     </ClInclude>
+    <ClInclude Include="Animation.h">
+      <Filter>ソースファイル\Animation</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="ソースファイル">
@@ -115,6 +121,9 @@
     </Filter>
     <Filter Include="ソースファイル\Object">
       <UniqueIdentifier>{1cd5a068-f565-464e-9c01-9555695587b3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソースファイル\Animation">
+      <UniqueIdentifier>{df07c147-f86e-4558-8ad3-6a6a6189ee80}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

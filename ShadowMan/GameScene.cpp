@@ -14,8 +14,9 @@ void MainGameScene();
 // ゲーム本編シーンの終了
 SceneId FinishGameScene();
 
-static Object ShadowMan;
 static Object Light;
+static Object ShadowMan;
+static INT light_id = 0;
 static INT shineman_id = 0;
 static INT shadow_man_id = 0;
 static INT key_check = 0;
@@ -79,92 +80,92 @@ void DrawGameScene()
 		}
 	}
 
-	// シャドウマンの描画
-	ShadowMan.flame_count += 1.0f;
-	switch (shadow_man_id)
+	// 光の描画
+	if (Light.live_flag == true)
 	{
-	case 0:
-		DrawObject(&ShadowMan, 0.0f, 225.0f, MapChipWidth, MapChipHeight);
-		if (ShadowMan.flame_count >= 30)
+		Light.flame_count += 1.0f;
+		switch (light_id)
 		{
-			ShadowMan.flame_count = 0;
-			shadow_man_id = 1;
+		case 0:
+			DrawObject(Light.x, Light.y, 576.0f, 225.0f, MapChipWidth, MapChipHeight);
+			ChengeTextureId(&ShadowMan, &light_id, 30);
+			break;
+		case 1:
+			DrawObject(Light.x, Light.y, 640.0f, 225.0f, MapChipWidth, MapChipHeight);
+			ChengeTextureId(&ShadowMan, &light_id, 30);
+			break;
+		case 2:
+			DrawObject(Light.x, Light.y, 704.0f, 225.0f, MapChipWidth, MapChipHeight);
+			ChengeTextureId(&ShadowMan, &light_id, 30);
+			break;
+		case 3:
+			DrawObject(Light.x, Light.y, 768.0f, 225.0f, MapChipWidth, MapChipHeight);
+			if (Light.flame_count >= 30)
+			{
+				Light.flame_count = 0;
+				light_id = 0;
+			}
+			break;
 		}
-		break;
-	case 1:
-		DrawObject(&ShadowMan, 64.0f, 225.0f, MapChipWidth, MapChipHeight);
-		if (ShadowMan.flame_count >= 30)
+	}
+
+	// シャドウマンの描画
+	if (ShadowMan.live_flag == true)
+	{
+		ShadowMan.flame_count += 1.0f;
+		switch (shadow_man_id)
 		{
-			ShadowMan.flame_count = 0;
-			shadow_man_id = 0;
+		case 0:
+			DrawObject(ShadowMan.x, ShadowMan.y, 0.0f, 225.0f, MapChipWidth, MapChipHeight);
+			ChengeTextureId(&ShadowMan, &shadow_man_id, 30);
+			break;
+		case 1:
+			DrawObject(ShadowMan.x, ShadowMan.y, 64.0f, 225.0f, MapChipWidth, MapChipHeight);
+			if (ShadowMan.flame_count >= 30)
+			{
+				ShadowMan.flame_count = 0;
+				shadow_man_id = 0;
+			}
+			break;
 		}
-		break;
 	}
 
 	// 光っているシャドウマンの描画
-	if (ShadowMan.live_flag == true)
+	if (ShadowMan.live_flag == false)
 	{
 		ShadowMan.flame_count += 1.0f;
 		switch (shineman_id)
 		{
 		case 0:
-			DrawObject(&ShadowMan, 384.0f, 360.0f, 128, 128);
-			if (ShadowMan.flame_count >= 30)
-			{
-				ShadowMan.flame_count = 0;
-				shineman_id = 1;
-			}
+			DrawObject(ShadowMan.x - 32, ShadowMan.y  - 32, 384.0f, 360.0f, 128, 128);
+			ChengeTextureId(&ShadowMan, &shineman_id, 30);
 			break;
 		case 1:
-			DrawObject(&ShadowMan, 896.0f, 360.0f, 128, 128);
-			if (ShadowMan.flame_count >= 30)
-			{
-				ShadowMan.flame_count = 0;
-				shineman_id = 2;
-			}
+			DrawObject(ShadowMan.x - 32, ShadowMan.y - 32, 896.0f, 360.0f, 128, 128);
+			ChengeTextureId(&ShadowMan, &shineman_id, 30);
 			break;
 		case 2:
-			DrawObject(&ShadowMan, 256.0f, 360.0f, 128, 128);
-			if (ShadowMan.flame_count >= 30)
-			{
-				ShadowMan.flame_count = 0;
-				shineman_id = 3;
-			}
+			DrawObject(ShadowMan.x - 32, ShadowMan.y - 32, 256.0f, 360.0f, 128, 128);
+			ChengeTextureId(&ShadowMan, &shineman_id, 30);
 			break;
 		case 3:
-			DrawObject(&ShadowMan, 768.0f, 360.0f, 128, 128);
-			if (ShadowMan.flame_count >= 30)
-			{
-				ShadowMan.flame_count = 0;
-				shineman_id = 4;
-			}
+			DrawObject(ShadowMan.x - 32, ShadowMan.y - 32, 768.0f, 360.0f, 128, 128);
+			ChengeTextureId(&ShadowMan, &shineman_id, 30);
 			break;
 		case 4:
-			DrawObject(&ShadowMan, 128.0f, 360.0f, 128, 128);
-			if (ShadowMan.flame_count >= 30)
-			{
-				ShadowMan.flame_count = 0;
-				shineman_id = 5;
-			}
+			DrawObject(ShadowMan.x - 32, ShadowMan.y - 32, 128.0f, 360.0f, 128, 128);
+			ChengeTextureId(&ShadowMan, &shineman_id, 30);
 			break;
 		case 5:
-			DrawObject(&ShadowMan, 640.0f, 360.0f, 128, 128);
-			if (ShadowMan.flame_count >= 30)
-			{
-				ShadowMan.flame_count = 0;
-				shineman_id = 6;
-			}
+			DrawObject(ShadowMan.x - 32, ShadowMan.y - 32, 640.0f, 360.0f, 128, 128);
+			ChengeTextureId(&ShadowMan, &shineman_id, 30);
 			break;
 		case 6:
-			DrawObject(&ShadowMan, 0.0f, 360.0f, 128, 128);
-			if (ShadowMan.flame_count >= 30)
-			{
-				ShadowMan.flame_count = 0;
-				shineman_id = 7;
-			}
+			DrawObject(ShadowMan.x - 32, ShadowMan.y - 32, 0.0f, 360.0f, 128, 128);
+			ChengeTextureId(&ShadowMan, &shineman_id, 30);
 			break;
 		case 7:
-			DrawObject(&ShadowMan, 512.0f, 360.0f, 128, 128);
+			DrawObject(ShadowMan.x - 32, ShadowMan.y - 32, 512.0f, 360.0f, 128, 128);
 			if (ShadowMan.flame_count >= 30)
 			{
 				ShadowMan.flame_count = 0;
@@ -181,11 +182,11 @@ void InitGameScene()
 	LoadTexture("Texture/maptile.png", TextureCategoryGame, GameCategoryTextureList::GameBackGroundTexture);
 	LoadTexture("Texture/統合画像.png", TextureCategoryGame, GameCategoryTextureList::IntegratedTexture);
 
-	MapLoading("csv/真MapChip.csv", MapChipList);
+	MapLoading("csv/New_MapChip.csv", MapChipList);
 
-	Light.x = 96.0f;
-	Light.y = 32.0f;
-	Light.circle_radius = 16.0f;
+	Light.x = 128.0f;
+	Light.y = 64.0f;
+	Light.circle_radius = 8.0f;
 	Light.flame_count = 0.0f;
 	Light.live_flag = true;
 
@@ -206,19 +207,19 @@ void MainGameScene()
 	// ゲーム処理
 	if (key_check == 0)
 	{
-		if (GetKeyDown(UP) == true)
+		if (GetKey(UP) == true)
 		{
 			key_check = 1;
 		}
-		else if (GetKeyDown(DOWN) == true)
+		else if (GetKey(DOWN) == true)
 		{
 			key_check = 2;
 		}
-		else if (GetKeyDown(LEFT) == true)
+		else if (GetKey(LEFT) == true)
 		{
 			key_check = 3;
 		}
-		else if (GetKeyDown(RIGHT) == true)
+		else if (GetKey(RIGHT) == true)
 		{
 			key_check = 4;
 		}
@@ -296,10 +297,11 @@ void MainGameScene()
 		break;
 	}
 
-	/*if (Collision(&ShadowMan, &ShadowMan) == true)
+	if (Collision(&Light, &ShadowMan) == true)
 	{
+		Light.live_flag = false;
 		ShadowMan.live_flag = false;
-	}*/
+	}
 }
 
 SceneId FinishGameScene()

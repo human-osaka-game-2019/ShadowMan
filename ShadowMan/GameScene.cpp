@@ -22,6 +22,7 @@ static INT shineman_id = 0;
 static INT shadow_man_id = 0;
 static INT key_check = 0;
 static INT move_count = 0;
+static INT direction = 0;
 
 static CONST INT MapSizeWidth = 20;
 static CONST INT MapSizeHeight = 15;
@@ -81,7 +82,7 @@ void DrawGameScene()
 		}
 	}
 
-	// 光の設置
+	// 光の配置
 	if (Light.mode == 1)
 	{
 		AnimationLight(&Light, &light_id, 30);
@@ -91,7 +92,14 @@ void DrawGameScene()
 	if (Light.mode == 2)
 	{
 		AnimationLight(&Light, &light_id, 30);
-		Light.x += 8.0f;
+		if (direction == 3 || direction == 4)
+		{
+			Light.x += Light.speed;
+		}
+		else if (direction == 1 || direction == 2)
+		{
+			Light.y += Light.speed;
+		}
 		if (Light.x >= 1280)
 		{
 			Light.mode = -1;
@@ -158,16 +166,16 @@ void InitGameScene()
 
 	MapLoading("csv/New_MapChip.csv", MapChipList);
 
-	Light.x = 128.0f;
-	Light.y = 64.0f;
+	Light.x = 576.0f;
+	Light.y = 704.0f;
 	Light.circle_radius = 8.0f;
 	Light.flame_count = 0.0f;
 	Light.mode = 1;
 
-	ShadowMan.x = 64.0f;
-	ShadowMan.y = 64.0f;
-	ShadowMan.mapchip_num_row = 1;
-	ShadowMan.mapchip_num_col = 1;
+	ShadowMan.x = 576.0f;
+	ShadowMan.y = 758.0f;
+	ShadowMan.mapchip_num_row = 12;
+	ShadowMan.mapchip_num_col = 9;
 	ShadowMan.speed = 2.0f;
 	ShadowMan.circle_radius = 16.0f;
 	ShadowMan.flame_count = 0.0f;
@@ -184,18 +192,22 @@ void MainGameScene()
 		if (GetKey(UP) == true)
 		{
 			key_check = 1;
+			direction = 1;
 		}
 		else if (GetKey(DOWN) == true)
 		{
 			key_check = 2;
+			direction = 2;
 		}
 		else if (GetKey(LEFT) == true)
 		{
 			key_check = 3;
+			direction = 3;
 		}
 		else if (GetKey(RIGHT) == true)
 		{
 			key_check = 4;
+			direction = 4;
 		}
 	}
 
@@ -280,17 +292,34 @@ void MainGameScene()
 	}
 
 	// スペースを押すと光を放つ
-
-
 	if (Light.mode == 0)
 	{
-		if (GetKeyDown(SPACE) == true)
+		if (GetKey(SPACE) == true)
 		{
-			Light.mode = 2;
 			float tmp_x = ShadowMan.x;
 			float tmp_y = ShadowMan.y;
 			Light.x = tmp_x;
 			Light.y = tmp_y;
+
+			switch (direction)
+			{
+			case 1:
+				Light.mode = 2;
+				Light.speed = -8.0f;
+				break;
+			case 2:
+				Light.mode = 2;
+				Light.speed = 8.0f;
+				break;
+			case 3:
+				Light.mode = 2;
+				Light.speed = -8.0f;
+				break;
+			case 4:
+				Light.mode = 2;
+				Light.speed = 8.0f;
+				break;
+			}
 		}
 	}
 }

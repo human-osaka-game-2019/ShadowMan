@@ -27,7 +27,6 @@ BOOL InitEngine(INT width, INT height, CONST CHAR* title_name, HINSTANCE hInstan
 
 	InitTexture();
 
-	//
 	g_SoundManager.Initialize();
 
 	return TRUE;

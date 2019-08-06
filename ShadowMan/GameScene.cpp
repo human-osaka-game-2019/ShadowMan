@@ -14,9 +14,9 @@ void MainGameScene();
 // ゲーム本編シーンの終了
 SceneId FinishGameScene();
 
-static Object Light;
 static Object ShadowMan;
-static INT light_id = 0;
+static Object Light;
+static INT shineman_id = 0;
 static INT shadow_man_id = 0;
 static INT key_check = 0;
 static INT move_count = 0;
@@ -79,79 +79,6 @@ void DrawGameScene()
 		}
 	}
 
-	// 光(エサ)の描画
-	if (Light.live_flag == true)
-	{
-		Light.flame_count += 1.0f;
-		switch (light_id)
-		{
-		case 0:
-			DrawObject(&Light, 384.0f, 360.0f, 128, 128);
-			if (Light.flame_count >= 30)
-			{
-				Light.flame_count = 0;
-				light_id = 1;
-			}
-			break;
-		case 1:
-			DrawObject(&Light, 896.0f, 360.0f, 128, 128);
-			if (Light.flame_count >= 30)
-			{
-				Light.flame_count = 0;
-				light_id = 2;
-			}
-			break;
-		case 2:
-			DrawObject(&Light, 256.0f, 360.0f, 128, 128);
-			if (Light.flame_count >= 30)
-			{
-				Light.flame_count = 0;
-				light_id = 3;
-			}
-			break;
-		case 3:
-			DrawObject(&Light, 768.0f, 360.0f, 128, 128);
-			if (Light.flame_count >= 30)
-			{
-				Light.flame_count = 0;
-				light_id = 4;
-			}
-			break;
-		case 4:
-			DrawObject(&Light, 128.0f, 360.0f, 128, 128);
-			if (Light.flame_count >= 30)
-			{
-				Light.flame_count = 0;
-				light_id = 5;
-			}
-			break;
-		case 5:
-			DrawObject(&Light, 640.0f, 360.0f, 128, 128);
-			if (Light.flame_count >= 30)
-			{
-				Light.flame_count = 0;
-				light_id = 6;
-			}
-			break;
-		case 6:
-			DrawObject(&Light, 0.0f, 360.0f, 128, 128);
-			if (Light.flame_count >= 30)
-			{
-				Light.flame_count = 0;
-				light_id = 7;
-			}
-			break;
-		case 7:
-			DrawObject(&Light, 512.0f, 360.0f, 128, 128);
-			if (Light.flame_count >= 30)
-			{
-				Light.flame_count = 0;
-				light_id = 0;
-			}
-			break;
-		}
-	}
-
 	// シャドウマンの描画
 	ShadowMan.flame_count += 1.0f;
 	switch (shadow_man_id)
@@ -172,6 +99,79 @@ void DrawGameScene()
 			shadow_man_id = 0;
 		}
 		break;
+	}
+
+	// 光っているシャドウマンの描画
+	if (ShadowMan.live_flag == true)
+	{
+		ShadowMan.flame_count += 1.0f;
+		switch (shineman_id)
+		{
+		case 0:
+			DrawObject(&ShadowMan, 384.0f, 360.0f, 128, 128);
+			if (ShadowMan.flame_count >= 30)
+			{
+				ShadowMan.flame_count = 0;
+				shineman_id = 1;
+			}
+			break;
+		case 1:
+			DrawObject(&ShadowMan, 896.0f, 360.0f, 128, 128);
+			if (ShadowMan.flame_count >= 30)
+			{
+				ShadowMan.flame_count = 0;
+				shineman_id = 2;
+			}
+			break;
+		case 2:
+			DrawObject(&ShadowMan, 256.0f, 360.0f, 128, 128);
+			if (ShadowMan.flame_count >= 30)
+			{
+				ShadowMan.flame_count = 0;
+				shineman_id = 3;
+			}
+			break;
+		case 3:
+			DrawObject(&ShadowMan, 768.0f, 360.0f, 128, 128);
+			if (ShadowMan.flame_count >= 30)
+			{
+				ShadowMan.flame_count = 0;
+				shineman_id = 4;
+			}
+			break;
+		case 4:
+			DrawObject(&ShadowMan, 128.0f, 360.0f, 128, 128);
+			if (ShadowMan.flame_count >= 30)
+			{
+				ShadowMan.flame_count = 0;
+				shineman_id = 5;
+			}
+			break;
+		case 5:
+			DrawObject(&ShadowMan, 640.0f, 360.0f, 128, 128);
+			if (ShadowMan.flame_count >= 30)
+			{
+				ShadowMan.flame_count = 0;
+				shineman_id = 6;
+			}
+			break;
+		case 6:
+			DrawObject(&ShadowMan, 0.0f, 360.0f, 128, 128);
+			if (ShadowMan.flame_count >= 30)
+			{
+				ShadowMan.flame_count = 0;
+				shineman_id = 7;
+			}
+			break;
+		case 7:
+			DrawObject(&ShadowMan, 512.0f, 360.0f, 128, 128);
+			if (ShadowMan.flame_count >= 30)
+			{
+				ShadowMan.flame_count = 0;
+				shineman_id = 0;
+			}
+			break;
+		}
 	}
 }
 
@@ -296,10 +296,10 @@ void MainGameScene()
 		break;
 	}
 
-	if (Collision(&Light, &ShadowMan) == true)
+	/*if (Collision(&ShadowMan, &ShadowMan) == true)
 	{
-		Light.live_flag = false;
-	}
+		ShadowMan.live_flag = false;
+	}*/
 }
 
 SceneId FinishGameScene()

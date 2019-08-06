@@ -1,4 +1,7 @@
 #include "GameOverScene.h"
+#include "Texture.h"
+#include"Input.h"
+#include <SoundsManager.h>
 
 // ゲームオーバーシーンの初期化
 void InitGameOverScene();
@@ -28,12 +31,13 @@ SceneId UpdateGameOverScene()
 void DrawGameOverScene()
 {
 	// 描画処理
-
+	DrawTexture(0.0f, 0.0f, GetTexture(TextureCategoryGameOver, GameOverBackGroundTexture));
 }
 
 void InitGameOverScene()
 {
 	// テクスチャ読み込み
+	LoadTexture("Texture/ゲームオーバー.png", TextureCategoryGameOver, GameOverCategoryTextureList::GameOverBackGroundTexture);
 
 	ChangeSceneStep(SceneStep::MainStep);
 }
@@ -41,12 +45,16 @@ void InitGameOverScene()
 void MainGameOverScene()
 {
 	// ゲーム処理
-	ChangeSceneStep(SceneStep::EndStep);
+	if (GetKeyDown(ESCAPE) == true)
+	{
+		ChangeSceneStep(SceneStep::EndStep);
+	}
 }
 
 SceneId FinishGameOverScene()
 {
 	// リリース開放
+	ReleaseCategoryTexture(SceneId::GameOverScene);
 
 	return SceneId::TitleScene;
 }

@@ -23,6 +23,7 @@ static INT shadow_man_id = 0;
 static INT key_check = 0;
 static INT move_count = 0;
 static INT direction = 0;
+static INT value = 0;
 
 static CONST INT MapSizeWidth = 20;
 static CONST INT MapSizeHeight = 15;
@@ -86,24 +87,6 @@ void DrawGameScene()
 	if (Light.mode == 1)
 	{
 		AnimationLight(&Light, &light_id, 30);
-	}
-
-	// 光の吐き出し 
-	if (Light.mode == 2)
-	{
-		AnimationLight(&Light, &light_id, 30);
-		if (direction == 3 || direction == 4)
-		{
-			Light.x += Light.speed;
-		}
-		else if (direction == 1 || direction == 2)
-		{
-			Light.y += Light.speed;
-		}
-		if (Light.x >= 1280)
-		{
-			Light.mode = -1;
-		}
 	}
 
 	// シャドウマンの描画
@@ -298,35 +281,88 @@ void MainGameScene()
 		{
 			float tmp_x = ShadowMan.x;
 			float tmp_y = ShadowMan.y;
+			float tmp_row = ShadowMan.mapchip_num_row;
+			float tmp_col = ShadowMan.mapchip_num_col;
 			Light.x = tmp_x;
 			Light.y = tmp_y;
+			Light.mapchip_num_row = tmp_row;
+			Light.mapchip_num_col = tmp_col;
 
 			switch (direction)
 			{
 			case 1:
 				Light.mode = 2;
 				Light.speed = -8.0f;
+				while (MapChipList[Light.mapchip_num_row + 1][Light.mapchip_num_col] == 1)
+				{
+					value += 64;
+					Light.mapchip_num_col++;
+				}
 				break;
 			case 2:
 				Light.mode = 2;
 				Light.speed = 8.0f;
+				while (MapChipList[Light.mapchip_num_row - 1][Light.mapchip_num_col] == 1)
+				{
+					value += -64;
+					Light.mapchip_num_col--;
+				}
 				break;
 			case 3:
 				Light.mode = 2;
 				Light.speed = -8.0f;
+				while (MapChipList[Light.mapchip_num_row][Light.mapchip_num_col - 1] == 1)
+				{
+					value += -64;
+					Light.mapchip_num_col--;
+				}
 				break;
 			case 4:
 				Light.mode = 2;
 				Light.speed = 8.0f;
+				while (MapChipList[Light.mapchip_num_row][Light.mapchip_num_col + 1] == 1)
+				{
+					value += 64;
+					Light.mapchip_num_col++;
+				}
 				break;
 			}
 		}
+	}
+
+	// 光の吐き出し 
+	if (Light.mode == 2)
+	{
+		AnimationLight(&Light, &light_id, 30);
+		float value = 0;
+		if (direction == 3 || direction == 4)
+		{
+			Light.x += Light.speed;
+			if (Light.x >= Light.x + value)
+			{
+				Light.mode = -1;
+			}
+		}
+		else if (direction == 1 || direction == 2)
+		{
+			Light.y += Light.speed;
+			if (Light.y >= Light.y + value)
+			{
+				Light.mode = -1;
+			}
+		}
+	}
+
+	if (GetKeyDown(ESCAPE) == true)
+	{
+		ChangeSceneStep(SceneStep::EndStep);
 	}
 }
 
 SceneId FinishGameScene()
 {
 	// リリース開放
+	ReleaseCategoryTexture(SceneId::GameScene);
 
 	return SceneId::GameClearScene;
 }

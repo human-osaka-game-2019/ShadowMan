@@ -2,10 +2,65 @@
 #include "WaitEnemy.h"
 #include <time.h>
 
-//void WaitEnemy(INT MapChipList[][20]) {
+void WaitEnemy(INT MapChipList[][20], Object WaitEnemy, Object Player)
+{
+	srand(time(NULL));//ÇPâÒÇæÇØåƒÇ—èoÇπÇŒÇ¢Ç¢Ç©ÇÁèÍèäïœÇ¶ÇÈ
 
-//}
+	static int ramdom;
 
+	ramdom = rand() % 4 + 1;
+
+	switch (ramdom) //ìπÇÕÇP
+	{
+	case 1:
+		if (MapChipList[WaitEnemy.mapchip_num_col++][WaitEnemy.mapchip_num_row] == 1
+			||
+			MapChipList[Player.mapchip_num_col][Player.mapchip_num_row])
+		{
+			MapChipList[WaitEnemy.mapchip_num_col++][WaitEnemy.mapchip_num_row];
+			break;
+		}
+
+	case 2:
+		if (MapChipList[WaitEnemy.mapchip_num_col--][WaitEnemy.mapchip_num_row] == 1
+			||
+			MapChipList[Player.mapchip_num_col][Player.mapchip_num_row])
+		{
+			MapChipList[WaitEnemy.mapchip_num_col--][WaitEnemy.mapchip_num_row];
+			break;
+		}
+	case 3:
+		if (MapChipList[WaitEnemy.mapchip_num_col][WaitEnemy.mapchip_num_row++] == 1
+			||
+			MapChipList[Player.mapchip_num_col][Player.mapchip_num_row])
+		{
+			MapChipList[WaitEnemy.mapchip_num_col][WaitEnemy.mapchip_num_row++];
+			break;
+		}
+
+	case 4:
+		if (MapChipList[WaitEnemy.mapchip_num_col][WaitEnemy.mapchip_num_row--] == 1
+			||
+			MapChipList[Player.mapchip_num_col][Player.mapchip_num_row])
+		{
+			MapChipList[WaitEnemy.mapchip_num_col][WaitEnemy.mapchip_num_row--];
+			break;
+		}
+	default:
+		break;
+	}
+	/*
+	if (MapChipList[Player.mapchip_num_col][Player.mapchip_num_row]
+		==
+		MapChipList[WaitEnemy.mapchip_num_col][WaitEnemy.mapchip_num_row])
+	{
+		//écã@å∏ÇÁÇ∑èàóù
+	}
+	*/
+}
+
+
+/*
 void EnemyTypeWait(Object* enemy, Object* player, Relativity* status)
 {
 
@@ -54,4 +109,4 @@ void EnemyTypeWait(Object* enemy, Object* player, Relativity* status)
 }
 
 void Collision();
-
+*/

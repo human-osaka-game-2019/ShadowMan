@@ -54,6 +54,7 @@ void MainHelpScene()
 SceneId FinishHelpScene()
 {
 	// ƒŠƒŠ[ƒXŠJ•ú
+	ReleaseCategoryTexture(SceneId::HelpScene);
 
 	return SceneId::TitleScene;
 }

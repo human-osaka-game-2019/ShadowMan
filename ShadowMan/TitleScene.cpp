@@ -35,7 +35,7 @@ SceneId UpdateTitleScene()
 void DrawTitleScene()
 {
 	// •`‰æˆ—
- 	DrawTexture(0.0f, 0.0f, GetTexture(TextureCategoryTitle,TitleBackGroundTexture));
+ 	DrawTexture(0.0f, 0.0f, GetTexture(TextureCategoryTitle, TitleBackGroundTexture));
 }
 
 void InitTitleScene()

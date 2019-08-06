@@ -75,7 +75,11 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <IncludePath>C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include;$(SolutionDir)SoundLib\Include;$(IncludePath)</IncludePath>
+<<<<<<< HEAD
     <LibraryPath>C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Lib\x64;$(PlatformTarget);$(SolutionDir)SoundLib\Lib\;$(LibraryPath)</LibraryPath>
+=======
+    <LibraryPath>C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Lib\x64;$(SolutionDir)SoundLib\Lib\Release;$(LibraryPath)</LibraryPath>
+>>>>>>> 075f0d6fc42d23b95591c8a75ed0488d23b14ba8
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <IncludePath>C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include;$(SolutionDir)SoundLib\Include;$(IncludePath)</IncludePath>
@@ -83,7 +87,11 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <IncludePath>C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include;$(SolutionDir)SoundLib\Include;$(IncludePath)</IncludePath>
+<<<<<<< HEAD
     <LibraryPath>C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Lib\x64;$(PlatformTarget);$(SolutionDir)SoundLib\Lib\;$(LibraryPath)</LibraryPath>
+=======
+    <LibraryPath>C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Lib\x64;$(SolutionDir)SoundLib\Lib\Release;$(LibraryPath)</LibraryPath>
+>>>>>>> 075f0d6fc42d23b95591c8a75ed0488d23b14ba8
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

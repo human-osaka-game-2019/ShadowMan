@@ -1,4 +1,7 @@
 #include "GameClearScene.h"
+#include "Texture.h"
+#include"Input.h"
+#include <SoundsManager.h>
 
 // ゲームクリアシーンの初期化
 void InitGameClearScene();
@@ -28,12 +31,13 @@ SceneId UpdateGameClearScene()
 void DrawGameClearScene()
 {
 	// 描画処理
-
+	DrawTexture(0.0f, 0.0f, GetTexture(TextureCategoryGameClear, GameClearBackGroundTexture));
 }
 
 void InitGameClearScene()
 {
 	// テクスチャ読み込み
+	LoadTexture("Texture/ゲームクリア_背景.png", TextureCategoryGameClear, GameClearCategoryTextureList::GameClearBackGroundTexture);
 
 	ChangeSceneStep(SceneStep::MainStep);
 }
@@ -41,12 +45,16 @@ void InitGameClearScene()
 void MainGameClearScene()
 {
 	// ゲーム処理
-	ChangeSceneStep(SceneStep::EndStep);
+	if (GetKeyDown(ESCAPE) == true)
+	{
+		ChangeSceneStep(SceneStep::EndStep);
+	}
 }
 
 SceneId FinishGameClearScene()
 {
 	// リリース開放
+	ReleaseCategoryTexture(SceneId::GameClearScene);
 
 	return SceneId::TitleScene;
 }

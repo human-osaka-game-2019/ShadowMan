@@ -84,7 +84,7 @@ void DrawGameScene()
 	}
 
 	// Œõ‚Ì”z’u
-	if (Light.mode == 1)
+	if (Light.mode == 1 || Light.mode == 2)
 	{
 		AnimationLight(&Light, &light_id, 30);
 	}
@@ -279,50 +279,63 @@ void MainGameScene()
 	{
 		if (GetKey(SPACE) == true)
 		{
-			float tmp_x = ShadowMan.x;
-			float tmp_y = ShadowMan.y;
-			float tmp_row = ShadowMan.mapchip_num_row;
-			float tmp_col = ShadowMan.mapchip_num_col;
-			Light.x = tmp_x;
-			Light.y = tmp_y;
-			Light.mapchip_num_row = tmp_row;
-			Light.mapchip_num_col = tmp_col;
+			Light.mode = 2;
+			Light.mapchip_num_row = ShadowMan.mapchip_num_row;
+			Light.mapchip_num_col = ShadowMan.mapchip_num_col;
+			Light.x = ShadowMan.x;
+			Light.y = ShadowMan.y;
 
 			switch (direction)
 			{
 			case 1:
-				Light.mode = 2;
 				Light.speed = -8.0f;
-				while (MapChipList[Light.mapchip_num_row + 1][Light.mapchip_num_col] == 1)
+				value = ShadowMan.y;
+				while (true)
 				{
-					value += 64;
-					Light.mapchip_num_col++;
+					if (MapChipList[Light.mapchip_num_row - 1][Light.mapchip_num_col] != 1)
+					{
+						break;
+					}
+					value -= 64.0f;
+					Light.mapchip_num_row--;
 				}
 				break;
 			case 2:
-				Light.mode = 2;
 				Light.speed = 8.0f;
-				while (MapChipList[Light.mapchip_num_row - 1][Light.mapchip_num_col] == 1)
+				value = ShadowMan.y;
+				while (true)
 				{
-					value += -64;
-					Light.mapchip_num_col--;
+					if (MapChipList[Light.mapchip_num_row + 1][Light.mapchip_num_col] != 1)
+					{
+						break;
+					}
+					value += 64.0f;
+					Light.mapchip_num_row++;
 				}
 				break;
 			case 3:
-				Light.mode = 2;
-				Light.speed = -8.0f;
-				while (MapChipList[Light.mapchip_num_row][Light.mapchip_num_col - 1] == 1)
+				Light.speed = -8.0f;    
+				value = ShadowMan.x;
+				while (true)
 				{
-					value += -64;
+					if (MapChipList[Light.mapchip_num_row][Light.mapchip_num_col - 1] != 1)
+					{
+						break;
+					}
+					value -= 64.0f;
 					Light.mapchip_num_col--;
 				}
 				break;
 			case 4:
-				Light.mode = 2;
 				Light.speed = 8.0f;
-				while (MapChipList[Light.mapchip_num_row][Light.mapchip_num_col + 1] == 1)
+				value = ShadowMan.x;
+				while (true)
 				{
-					value += 64;
+					if (MapChipList[Light.mapchip_num_row][Light.mapchip_num_col + 1] != 1)
+					{
+						break;
+					}
+					value += 64.0f;
 					Light.mapchip_num_col++;
 				}
 				break;
@@ -333,23 +346,36 @@ void MainGameScene()
 	// Œõ‚Ì“f‚«o‚µ 
 	if (Light.mode == 2)
 	{
-		AnimationLight(&Light, &light_id, 30);
-		float value = 0;
-		if (direction == 3 || direction == 4)
+		switch (direction)
 		{
-			Light.x += Light.speed;
-			if (Light.x >= Light.x + value)
-			{
-				Light.mode = -1;
-			}
-		}
-		else if (direction == 1 || direction == 2)
-		{
+		case 1:
 			Light.y += Light.speed;
-			if (Light.y >= Light.y + value)
+			if (Light.y <= value)
 			{
 				Light.mode = -1;
 			}
+			break;
+		case 2:
+			Light.y += Light.speed;
+			if (Light.y >= value)
+			{
+				Light.mode = -1;
+			}
+			break;
+		case 3:
+			Light.x += Light.speed;
+			if (Light.x <= value)
+			{
+				Light.mode = -1;
+			}
+			break;
+		case 4:
+			Light.x += Light.speed;
+			if (Light.x >= value)
+			{
+				Light.mode = -1;
+			}
+			break;
 		}
 	}
 

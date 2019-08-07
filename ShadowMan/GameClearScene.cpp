@@ -37,7 +37,7 @@ void DrawGameClearScene()
 void InitGameClearScene()
 {
 	// テクスチャ読み込み
-	LoadTexture("Texture/ゲームクリア_背景.png", TextureCategoryGameClear, GameClearCategoryTextureList::GameClearBackGroundTexture);
+	LoadTexture("Texture/ゲームクリア2.png", TextureCategoryGameClear, GameClearCategoryTextureList::GameClearBackGroundTexture);
 
 	ChangeSceneStep(SceneStep::MainStep);
 }

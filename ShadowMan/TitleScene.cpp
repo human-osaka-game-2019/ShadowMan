@@ -1,9 +1,7 @@
 #include "TitleScene.h"
 #include "Texture.h"
 #include"Input.h"
-#include <SoundsManager.h>
 
-extern SoundLib::SoundsManager g_SoundManager;
 
 // タイトルシーンの初期化
 void InitTitleScene();
@@ -42,8 +40,6 @@ void InitTitleScene()
 {
 	LoadTexture("Texture/title_bg.png",TextureCategoryTitle,TitleCategoryTextureList::TitleBackGroundTexture);
 	
-	g_SoundManager.AddFile("Sound/launcher1.wav","TitleBgm");
-	g_SoundManager.Start("TitleBgm",TRUE);
 
 	ChangeSceneStep(SceneStep::MainStep);
 }
